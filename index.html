@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R.Llastarry IA — Web · Automatización · Formación</title>
+    <meta name="description" content="Ricardo Llastarry — Consultor IA para autónomos y pequeñas empresas en Rubí. Web con IA, automatizaciones y formación práctica.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ── RESET ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        /* ── VARIABLES ── */
+        :root {
+            --navy:   #0f1c2e;
+            --navy2:  #162438;
+            --orange: #f07c1e;
+            --orange2:#d96810;
+            --blue:   #3a6898;
+            --white:  #ffffff;
+            --offwhite: #f0f4f8;
+            --text-muted: #8ba5c2;
+            --font-brand: 'Bricolage Grotesque', sans-serif;
+            --font-body:  'Instrument Sans', sans-serif;
+        }
+
+        /* ── BASE ── */
+        body {
+            background: var(--navy);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        /* ── NAVIGATION ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2.5rem;
+            background: rgba(15,28,46,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(58,104,152,0.2);
+        }
+        .nav-brand {
+            font-family: var(--font-brand);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: var(--white);
+            text-decoration: none;
+        }
+        .nav-brand span { color: var(--orange); }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--orange); }
+
+        /* ── HERO ── */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 6rem 2.5rem 4rem;
+            overflow: hidden;
+        }
+        #waveCanvas {
+            position: absolute;
+            right: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 640px;
+            height: 640px;
+            opacity: 0.85;
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 620px;
+        }
+        .hero-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(240,124,30,0.4);
+            padding: 0.3rem 0.8rem;
+            border-radius: 2px;
+        }
+        .hero-name {
+            font-family: var(--font-brand);
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        .hero-name span { color: var(--orange); }
+        .hero-tagline {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 1.8rem;
+        }
+        .hero-tagline span { color: var(--text-muted); margin: 0 0.4em; }
+        .hero-desc {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.72);
+            max-width: 480px;
+            margin-bottom: 2.4rem;
+            line-height: 1.7;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--orange);
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            padding: 0.85rem 1.8rem;
+            border-radius: 3px;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .hero-cta:hover { background: var(--orange2); transform: translateY(-2px); }
+        .hero-cta-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            border: 1.5px solid rgba(240,124,30,0.5);
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            padding: 0.85rem 1.8rem;
+            border-radius: 3px;
+            margin-left: 1rem;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .hero-cta-ghost:hover { border-color: var(--orange); color: var(--white); }
+        .hero-location {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* ── ORANGE LINE DIVIDER ── */
+        .orange-line {
+            height: 2px;
+            background: linear-gradient(90deg, var(--orange) 0%, transparent 100%);
+            margin: 0 2.5rem;
+        }
+
+        /* ── SECTION BASE ── */
+        section {
+            padding: 6rem 2.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.8rem;
+        }
+        .section-title {
+            font-family: var(--font-brand);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+        .section-title span { color: var(--orange); }
+
+        /* ── SOBRE MÍ ── */
+        #sobre {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .sobre-text p {
+            color: rgba(255,255,255,0.75);
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            line-height: 1.75;
+        }
+        .sobre-text p strong { color: var(--orange); font-weight: 600; }
+        .sobre-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .stat-card {
+            background: rgba(22,36,56,0.8);
+            border: 1px solid rgba(58,104,152,0.25);
+            border-radius: 6px;
+            padding: 1.4rem;
+        }
+        .stat-number {
+            font-family: var(--font-brand);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--orange);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+        .stat-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* ── SERVICIOS ── */
+        #servicios { background: none; }
+        #servicios > div:first-child { text-align: center; margin-bottom: 3rem; }
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .servicio-card {
+            background: var(--navy2);
+            border: 1px solid rgba(58,104,152,0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: border-color 0.25s, transform 0.2s;
+        }
+        .servicio-card:hover {
+            border-color: var(--orange);
+            transform: translateY(-4px);
+        }
+        .servicio-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(240,124,30,0.12);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+        .servicio-icon svg { width: 24px; height: 24px; }
+        .servicio-title {
+            font-family: var(--font-brand);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: var(--white);
+        }
+        .servicio-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+        .servicio-tag {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: var(--orange);
+            background: rgba(240,124,30,0.1);
+            padding: 0.25rem 0.6rem;
+            border-radius: 2px;
+        }
+
+        /* ── EVENTO BANNER ── */
+        #evento {
+            padding: 0 2.5rem;
+            max-width: 1100px;
+            margin: 0 auto 4rem;
+        }
+        .evento-banner {
+            background: linear-gradient(135deg, rgba(240,124,30,0.15) 0%, rgba(58,104,152,0.12) 100%);
+            border: 1px solid rgba(240,124,30,0.35);
+            border-radius: 10px;
+            padding: 2.5rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .evento-badge {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--navy);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2px;
+            margin-bottom: 0.8rem;
+        }
+        .evento-title {
+            font-family: var(--font-brand);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .evento-title em {
+            color: var(--orange);
+            font-style: normal;
+        }
+        .evento-details {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .evento-details strong { color: rgba(255,255,255,0.8); }
+        .evento-cta {
+            flex-shrink: 0;
+            background: var(--orange);
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.9rem 2rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .evento-cta:hover { background: var(--orange2); }
+
+        /* ── CONTACTO ── */
+        #contacto {
+            text-align: center;
+            padding: 6rem 2.5rem;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .contacto-desc {
+            color: rgba(255,255,255,0.65);
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+        }
+        .contacto-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 420px;
+            margin: 0 auto 2.5rem;
+        }
+        .contacto-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--navy2);
+            border: 1px solid rgba(58,104,152,0.2);
+            border-radius: 6px;
+            padding: 1rem 1.4rem;
+            text-decoration: none;
+            color: var(--white);
+            font-size: 0.95rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .contacto-link:hover {
+            border-color: var(--orange);
+            background: rgba(240,124,30,0.06);
+        }
+        .contacto-link-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(240,124,30,0.12);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .contacto-link-icon svg { width: 18px; height: 18px; }
+        .contacto-link-text { text-align: left; }
+        .contacto-link-label { font-size: 0.75rem; color: var(--text-muted); display: block; }
+        .contacto-link-value { font-weight: 600; font-size: 0.95rem; }
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(58,104,152,0.3);
+            border-radius: 4px;
+            padding: 0.65rem 1.2rem;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .social-btn:hover { color: var(--orange); border-color: var(--orange); }
+        .social-btn svg { width: 16px; height: 16px; }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid rgba(58,104,152,0.15);
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        footer a { color: var(--orange); text-decoration: none; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.2rem; }
+            .nav-links { display: none; }
+            #hero { padding: 5rem 1.2rem 3rem; min-height: auto; }
+            #waveCanvas { width: 260px; height: 260px; right: -60px; opacity: 0.45; }
+            #sobre { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.2rem; }
+            section { padding: 3rem 1.2rem; }
+            .servicios-grid { grid-template-columns: 1fr; }
+            .evento-banner { flex-direction: column; padding: 1.8rem; }
+            .orange-line { margin: 0 1.2rem; }
+            footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a class="nav-brand" href="#hero">R.<span>Llastarry</span> IA</a>
+    <ul class="nav-links">
+        <li><a href="#sobre">Sobre mí</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#evento">Evento</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+    <canvas id="waveCanvas" width="640" height="640"></canvas>
+    <div class="hero-content">
+        <div class="hero-label">Consultor IA · Rubí, Barcelona</div>
+        <h1 class="hero-name">R.<span>Llastarry</span><br>IA</h1>
+        <p class="hero-tagline">Web <span>·</span> Automatización <span>·</span> Formación</p>
+        <p class="hero-desc">Ayudo a autónomos y pequeñas empresas a integrar la inteligencia artificial en su negocio de forma práctica, sin tecnicismos y con resultados reales.</p>
+        <a href="#contacto" class="hero-cta">Hablemos →</a>
+        <a href="#servicios" class="hero-cta-ghost">Ver servicios</a>
+        <p class="hero-location">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Rubí · Barcelona
+        </p>
+    </div>
+</section>
+
+<div class="orange-line"></div>
+
+<!-- SOBRE MÍ -->
+<section id="sobre">
+    <div class="sobre-text">
+        <p class="section-label">Sobre mí</p>
+        <h2 class="section-title">De la educación financiera a la <span>IA práctica</span></h2>
+        <p>Llevo años divulgando sobre finanzas personales e inversión, y cuando descubrí el potencial real de la inteligencia artificial, entendí que podía hacer lo mismo con la IA: <strong>acercarla a las personas de forma clara y útil</strong>.</p>
+        <p>Hoy acompaño a autónomos y pequeñas empresas de Rubí y alrededores a crear su presencia digital con IA, automatizar tareas repetitivas y formarse en herramientas que ya están cambiando el mundo del trabajo.</p>
+        <p>Sin tecnicismos. Sin humo. Solo soluciones que funcionan.</p>
+    </div>
+    <div class="sobre-stats">
+        <div class="stat-card">
+            <div class="stat-number">+86</div>
+            <div class="stat-desc">Vídeos de contenido propio sobre finanzas e IA en YouTube</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">IA</div>
+            <div class="stat-desc">Especialización en herramientas de IA aplicadas a negocios locales</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">Rubí</div>
+            <div class="stat-desc">Base en Rubí · Barcelona. Red de contactos local activa y creciendo</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-desc">Resultados prácticos. Sin inversión inicial para el cliente con Kit Digital</div>
+        </div>
+    </div>
+</section>
+
+<div class="orange-line"></div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+    <div>
+        <p class="section-label">Servicios</p>
+        <h2 class="section-title">¿En qué puedo <span>ayudarte</span>?</h2>
+    </div>
+    <div class="servicios-grid">
+        <div class="servicio-card">
+            <div class="servicio-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <div class="servicio-title">Web con IA</div>
+            <div class="servicio-desc">Creación de páginas web profesionales para tu negocio. Diseño moderno, rápido y optimizado. Compatible con Kit Digital — hasta 3.000€ de subvención del gobierno.</div>
+            <span class="servicio-tag">Kit Digital disponible</span>
+        </div>
+        <div class="servicio-card">
+            <div class="servicio-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div class="servicio-title">Automatizaciones</div>
+            <div class="servicio-desc">Elimina las tareas repetitivas de tu día a día. Facturación automática, respuestas a clientes, gestión de agenda... Te ahorras horas cada semana.</div>
+            <span class="servicio-tag">Más tiempo para ti</span>
+        </div>
+        <div class="servicio-card">
+            <div class="servicio-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="servicio-title">Formación IA</div>
+            <div class="servicio-desc">Talleres prácticos y sesiones individuales. Aprende a usar ChatGPT, Claude y otras herramientas de IA para tu negocio. Desde cero, sin conocimientos previos.</div>
+            <span class="servicio-tag">Para todos los niveles</span>
+        </div>
+    </div>
+</section>
+
+<!-- EVENTO BANNER -->
+<div id="evento" style="padding: 0 2.5rem; max-width: 1100px; margin: 0 auto 5rem;">
+    <div class="evento-banner">
+        <div>
+            <span class="evento-badge">🎤 Próximo evento — Entrada gratuita</span>
+            <h3 class="evento-title">Tu <em>dIA</em> a día — Encuentro sobre IA</h3>
+            <div class="evento-details">
+                <span>📅 <strong>19 de mayo de 2026</strong> · 18:30h</span>
+                <span>📍 <strong>Sala Neus Català</strong> · C/ Ulloa, 9 · Rubí</span>
+                <span>45 minutos para entender la IA sin tecnicismos · Acceso libre</span>
+            </div>
+        </div>
+        <a href="mailto:ricardollastarry.ai@gmail.com?subject=Reserva%20Tu%20dIA%20a%20día%2019%20mayo" class="evento-cta">Reservar plaza →</a>
+    </div>
+</div>
+
+<!-- CONTACTO -->
+<section id="contacto">
+    <p class="section-label">Contacto</p>
+    <h2 class="section-title">¿Hablamos?</h2>
+    <p class="contacto-desc">Si tienes una pregunta, un proyecto en mente o simplemente quieres saber más, escríbeme. Respondo en menos de 24h.</p>
+    <div class="contacto-links">
+        <a class="contacto-link" href="mailto:ricardollastarry.ai@gmail.com">
+            <div class="contacto-link-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contacto-link-text">
+                <span class="contacto-link-label">Email</span>
+                <span class="contacto-link-value">ricardollastarry.ai@gmail.com</span>
+            </div>
+        </a>
+        <a class="contacto-link" href="tel:+34686712391">
+            <div class="contacto-link-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.92a16 16 0 006.17 6.17l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="contacto-link-text">
+                <span class="contacto-link-label">Teléfono / WhatsApp</span>
+                <span class="contacto-link-value">686 712 391</span>
+            </div>
+        </a>
+    </div>
+    <div class="social-row">
+        <a class="social-btn" href="https://www.linkedin.com/in/ricardollastarry/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+        </a>
+        <a class="social-btn" href="https://www.instagram.com/ricardollastarry/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+        </a>
+        <a class="social-btn" href="https://www.youtube.com/@RicardoFinanzas50" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+            YouTube
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <span>© 2026 R.Llastarry IA · Rubí, Barcelona</span>
+    <span>Hecho con IA · <a href="mailto:ricardollastarry.ai@gmail.com">ricardollastarry.ai@gmail.com</a></span>
+</footer>
+
+<!-- WAVE CANVAS ANIMATION -->
+<script>
+(function() {
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = 640, H = 640;
+    const CX = W / 2, CY = H / 2;
+    const BG = [15, 28, 46];
+    const ORANGE = [240, 124, 30];
+    const BLUE   = [58, 104, 152];
+
+    function lerp(a, b, t) { return a + (b - a) * Math.max(0, Math.min(1, t)); }
+    function lerpColor(c1, c2, t) {
+        return [lerp(c1[0],c2[0],t), lerp(c1[1],c2[1],t), lerp(c1[2],c2[2],t)];
+    }
+
+    let phase = 0; // animation offset
+
+    function drawWaves() {
+        ctx.clearRect(0, 0, W, H);
+
+        const N_RINGS = 14;
+        const R_MAX = 290;
+        const RATIO = 0.38;
+        const ANIM_SPEED = 0.012;
+
+        for (let i = 0; i < N_RINGS; i++) {
+            // Animated: rings pulse outward
+            let rawT = (i + 1) / N_RINGS;
+            // Offset by phase — each ring moves outward, wraps around
+            let t = ((rawT + phase) % 1.0);
+            if (t < 0) t += 1;
+
+            const r  = Math.round(R_MAX * Math.pow(t, 1.4));
+            const ry = Math.max(2, Math.round(r * RATIO));
+
+            // Alpha fade at outer edge
+            const fadeTrigger = 0.6;
+            const fade = t > fadeTrigger ? Math.pow((t - fadeTrigger) / (1 - fadeTrigger), 0.6) : 0;
+            const af = 1 - fade;
+
+            let color, alpha, lineW;
+
+            if (i % 2 === 0) { // ORANGE — protagonist
+                const cf = t > 0.55 ? Math.pow((t - 0.55) / 0.45, 0.7) : 0;
+                color = lerpColor(ORANGE, BG, cf);
+                alpha = Math.round(240 * af);
+                lineW = t < 0.35 ? 4 : (t < 0.6 ? 3 : 2);
+            } else { // BLUE — separator
+                const cf = t > 0.4 ? Math.pow((t - 0.4) / 0.6, 0.6) : 0;
+                color = lerpColor(BLUE, BG, cf);
+                alpha = Math.round(140 * af);
+                lineW = 1;
+            }
+
+            if (alpha < 4) continue;
+
+            ctx.beginPath();
+            ctx.ellipse(CX, CY, r, ry, 0, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(${color[0]},${color[1]},${color[2]},${alpha/255})`;
+            ctx.lineWidth = lineW;
+            ctx.stroke();
+        }
+
+        // Center impact point — amber glow
+        const dotR = 28;
+        for (let r = dotR; r > 0; r--) {
+            const tDot = 1 - r / dotR;
+            const col = lerpColor([255, 240, 204], [240, 124, 30], Math.pow(tDot, 0.4));
+            const alpha = lerp(0, 220, Math.pow(tDot, 0.5));
+            const ry = Math.max(1, Math.round(r * RATIO));
+            ctx.beginPath();
+            ctx.ellipse(CX, CY, r, ry, 0, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},${alpha/255})`;
+            ctx.fill();
+        }
+        // Highlight
+        ctx.beginPath();
+        ctx.ellipse(CX, CY, 3, 2, 0, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,248,225,0.7)';
+        ctx.fill();
+
+        phase = (phase + ANIM_SPEED) % 1.0;
+        requestAnimationFrame(drawWaves);
+    }
+
+    drawWaves();
+})();
+</script>
+
+</body>
+</html>
