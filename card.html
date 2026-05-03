@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0f1c2e">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="R.Llastarry IA">
+  <meta name="description" content="Tarjeta digital de Ricardo Llastarry — Consultor IA en Rubí, Barcelona">
+  <title>R.Llastarry IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy:   #0f1c2e;
+      --navy2:  #162538;
+      --navy3:  #1e3452;
+      --orange: #f07c1e;
+      --orange2:#d96810;
+      --blue:   #3a6898;
+      --muted:  #8ba5c2;
+      --white:  #ffffff;
+      --text:   #cdd8e8;
+    }
+
+    html, body {
+      height: 100%;
+      min-height: 100dvh;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Instrument Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+      padding: 24px 20px 32px;
+    }
+
+    /* === CARD CONTAINER === */
+    .card {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* === WAVE TOP DECORATION === */
+    .wave-top {
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, transparent 0%, var(--orange) 30%, var(--blue) 70%, transparent 100%);
+      border-radius: 3px;
+      margin-bottom: 28px;
+      opacity: 0.8;
+    }
+
+    /* === HEADER === */
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+      width: 100%;
+    }
+
+    .label {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .name-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .name-main {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(30px, 9vw, 38px);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .name-ia {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(30px, 9vw, 38px);
+      font-weight: 800;
+      color: var(--orange);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .tagline {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    /* === QR SECTION === */
+    .qr-section {
+      background: var(--navy2);
+      border: 1px solid rgba(58, 104, 152, 0.35);
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      width: 100%;
+    }
+
+    .qr-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    #qr-code {
+      background: white;
+      padding: 10px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #qr-code canvas,
+    #qr-code img {
+      display: block;
+      border-radius: 4px;
+    }
+
+    .qr-url {
+      font-size: 12px;
+      color: var(--blue);
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    /* === BUTTONS === */
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px 24px;
+      border-radius: 14px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      cursor: pointer;
+      border: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+      opacity: 0.9;
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: #fff;
+    }
+
+    .btn-email {
+      background: var(--navy3);
+      color: var(--white);
+      border: 1px solid rgba(58, 104, 152, 0.4);
+    }
+
+    .btn-share {
+      background: var(--orange);
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 17px 24px;
+    }
+
+    .btn-share:hover {
+      background: var(--orange2);
+    }
+
+    .btn svg {
+      flex-shrink: 0;
+    }
+
+    /* === DIVIDER === */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(58, 104, 152, 0.2);
+      margin: 4px 0 16px;
+    }
+
+    /* === FOOTER === */
+    .footer {
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      opacity: 0.6;
+      letter-spacing: 0.5px;
+    }
+
+    /* === COPY TOAST === */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--orange);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 8px 32px rgba(240, 124, 30, 0.4);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* === RESPONSIVE === */
+    @media (min-height: 750px) {
+      body {
+        padding: 32px 20px 40px;
+      }
+      .qr-section {
+        padding: 24px;
+      }
+    }
+
+    @media (max-height: 600px) {
+      body {
+        justify-content: flex-start;
+        padding-top: 20px;
+      }
+      .wave-top {
+        margin-bottom: 16px;
+      }
+      .header {
+        margin-bottom: 14px;
+      }
+      .qr-section {
+        padding: 14px;
+        margin-bottom: 14px;
+        gap: 8px;
+      }
+      .buttons {
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <!-- Wave decoration -->
+    <div class="wave-top"></div>
+
+    <!-- Header -->
+    <div class="header">
+      <div class="label">Consultor IA · Rubí, Barcelona</div>
+      <div class="name-row">
+        <span class="name-main">R.Llastarry</span>
+        <span class="name-ia">IA</span>
+      </div>
+      <div class="tagline">Web · Automatización · Formación</div>
+    </div>
+
+    <!-- QR Code -->
+    <div class="qr-section">
+      <div class="qr-label">Escanea para ver mi web</div>
+      <div id="qr-code"></div>
+      <div class="qr-url">ricardollastarry.github.io</div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="buttons">
+
+      <!-- WhatsApp -->
+      <a class="btn btn-whatsapp"
+         href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20servicios"
+         target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        WhatsApp
+      </a>
+
+      <!-- Email -->
+      <a class="btn btn-email"
+         href="mailto:ricardollastarry.ai@gmail.com">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        ricardollastarry.ai@gmail.com
+      </a>
+
+      <div class="divider"></div>
+
+      <!-- Share button -->
+      <button class="btn btn-share" id="share-btn" onclick="shareCard()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+          <polyline points="16 6 12 2 8 6"/>
+          <line x1="12" y1="2" x2="12" y2="15"/>
+        </svg>
+        Compartir tarjeta
+      </button>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">R.Llastarry IA · Rubí, Barcelona</div>
+
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast">✅ Enlace copiado al portapapeles</div>
+
+  <script>
+    // === QR CODE GENERATION ===
+    (function() {
+      var qrContainer = document.getElementById('qr-code');
+      var size = Math.min(window.innerWidth * 0.42, 190);
+      size = Math.max(size, 150);
+
+      new QRCode(qrContainer, {
+        text: 'https://ricardollastarry.github.io',
+        width: size,
+        height: size,
+        colorDark: '#0f1c2e',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    })();
+
+    // === SHARE FUNCTION ===
+    function shareCard() {
+      var shareData = {
+        title: 'R.Llastarry IA — Consultor IA',
+        text: 'Ricardo Llastarry · Web, Automatización y Formación en IA para autónomos y negocios locales · Rubí, Barcelona',
+        url: 'https://ricardollastarry.github.io/card.html'
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData).catch(function(err) {
+          // User cancelled — no action needed
+          if (err.name !== 'AbortError') {
+            fallbackCopy(shareData.url);
+          }
+        });
+      } else {
+        fallbackCopy(shareData.url);
+      }
+    }
+
+    function fallbackCopy(url) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function() {
+          showToast('✅ Enlace copiado al portapapeles');
+        }).catch(function() {
+          showToast('🔗 ' + url);
+        });
+      } else {
+        // Ancient fallback
+        var ta = document.createElement('textarea');
+        ta.value = url;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+          document.execCommand('copy');
+          showToast('✅ Enlace copiado al portapapeles');
+        } catch(e) {
+          showToast('🔗 ricardollastarry.github.io/card.html');
+        }
+        document.body.removeChild(ta);
+      }
+    }
+
+    function showToast(msg) {
+      var toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(function() {
+        toast.classList.remove('show');
+      }, 2800);
+    }
+  </script>
+
+</body>
+</html>
