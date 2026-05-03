@@ -422,16 +422,10 @@
         .evento-cta:hover { background: var(--orange2); }
 
         /* ── CONTACTO ── */
-        #contacto {
-            text-align: center;
-            padding: 6rem 2.5rem;
-            max-width: 680px;
-            margin: 0 auto;
-        }
         .contacto-desc {
             color: rgba(255,255,255,0.65);
             font-size: 1.05rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
         .contacto-links {
             display: flex;
@@ -492,6 +486,110 @@
         }
         .social-btn:hover { color: var(--orange); border-color: var(--orange); }
         .social-btn svg { width: 16px; height: 16px; }
+
+        /* ── FORMULARIO CONTACTO ── */
+        #contacto {
+            text-align: center;
+            padding: 6rem 2.5rem;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+        .contacto-form {
+            background: var(--navy2);
+            border: 1px solid rgba(58,104,152,0.25);
+            border-radius: 10px;
+            padding: 2rem 2.2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .form-group { margin-bottom: 1.1rem; }
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .form-optional {
+            font-weight: 400;
+            text-transform: none;
+            font-size: 0.78rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: rgba(15,28,46,0.9);
+            border: 1px solid rgba(58,104,152,0.3);
+            border-radius: 5px;
+            padding: 0.75rem 1rem;
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus { border-color: var(--orange); }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(139,165,194,0.45); }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .form-submit {
+            width: 100%;
+            background: var(--orange);
+            color: var(--navy);
+            border: none;
+            border-radius: 5px;
+            padding: 0.95rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            letter-spacing: 0.02em;
+            margin-top: 0.3rem;
+        }
+        .form-submit:hover { background: var(--orange2); }
+        .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+        .form-success {
+            display: none;
+            background: rgba(46,160,67,0.1);
+            border: 1px solid rgba(46,160,67,0.3);
+            border-radius: 6px;
+            padding: 1.2rem;
+            color: #7ee88a;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .form-error-msg {
+            display: none;
+            background: rgba(255,80,80,0.08);
+            border: 1px solid rgba(255,80,80,0.25);
+            border-radius: 6px;
+            padding: 1rem;
+            color: #ff9090;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.88rem;
+        }
+        .form-error-msg a { color: var(--orange); }
+        .contacto-alt {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .contacto-form { padding: 1.4rem; }
+        }
 
         /* ── FOOTER ── */
         footer {
@@ -688,7 +786,33 @@
 <section id="contacto">
     <p class="section-label">Contacto</p>
     <h2 class="section-title">¿Hablamos?</h2>
-    <p class="contacto-desc">Si tienes una pregunta, un proyecto en mente o simplemente quieres saber más, escríbeme. Respondo en menos de 24h.</p>
+    <p class="contacto-desc">Cuéntame qué necesitas y te respondo en menos de 24h.</p>
+
+    <form class="contacto-form" id="contact-form">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+            </div>
+            <div class="form-group">
+                <label for="femail">Email *</label>
+                <input type="email" id="femail" name="email" required placeholder="tu@email.com">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono / WhatsApp <span class="form-optional">(opcional)</span></label>
+            <input type="tel" id="telefono" name="telefono" placeholder="600 000 000">
+        </div>
+        <div class="form-group">
+            <label for="mensaje">¿En qué puedo ayudarte? *</label>
+            <textarea id="mensaje" name="mensaje" required placeholder="Cuéntame tu proyecto o pregunta..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="form-btn">Enviar mensaje →</button>
+        <div class="form-success" id="form-success">✅ ¡Mensaje recibido! Te respondo en menos de 24h.</div>
+        <div class="form-error-msg" id="form-error">Algo fue mal al enviar. Escríbeme directamente por <a href="https://wa.me/34686712391">WhatsApp</a>.</div>
+    </form>
+
+    <p class="contacto-alt">O si prefieres contacto directo:</p>
     <div class="contacto-links">
         <a class="contacto-link" href="mailto:ricardollastarry.ai@gmail.com">
             <div class="contacto-link-icon">
@@ -701,7 +825,7 @@
         </a>
         <a class="contacto-link" href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20servicios" target="_blank" rel="noopener">
             <div class="contacto-link-icon">
-                <svg viewBox="0 0 24 24" fill="#f07c1e" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <svg viewBox="0 0 24 24" fill="#f07c1e"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </div>
             <div class="contacto-link-text">
                 <span class="contacto-link-label">WhatsApp</span>
@@ -730,6 +854,44 @@
     <span>© 2026 R.Llastarry IA · Rubí, Barcelona</span>
     <span>Hecho con IA · <a href="mailto:ricardollastarry.ai@gmail.com">ricardollastarry.ai@gmail.com</a></span>
 </footer>
+
+<!-- FORMULARIO CONTACTO — FORMSPREE -->
+<script>
+(function() {
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('form-btn');
+        var successEl = document.getElementById('form-success');
+        var errorEl   = document.getElementById('form-error');
+        btn.disabled = true;
+        btn.textContent = 'Enviando…';
+        successEl.style.display = 'none';
+        errorEl.style.display   = 'none';
+        try {
+            var resp = await fetch('https://formspree.io/f/xaqvqder', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+            if (resp.ok) {
+                form.querySelectorAll('input, textarea').forEach(function(el){ el.value = ''; });
+                btn.style.display = 'none';
+                successEl.style.display = 'block';
+            } else {
+                btn.disabled = false;
+                btn.textContent = 'Enviar mensaje →';
+                errorEl.style.display = 'block';
+            }
+        } catch(err) {
+            btn.disabled = false;
+            btn.textContent = 'Enviar mensaje →';
+            errorEl.style.display = 'block';
+        }
+    });
+})();
+</script>
 
 <!-- WAVE CANVAS ANIMATION -->
 <script>
