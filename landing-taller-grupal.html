@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller IA Grupal para equipos y asociaciones — R.Llastarry IA</title>
+    <meta name="description" content="Taller práctico de 2 horas sobre IA para equipos, asociaciones y PYMES en Rubí y Barcelona. Sin tecnicismos, con ejemplos reales. Desde 25€/persona.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --navy:   #0f1c2e;
+            --navy2:  #162538;
+            --navy3:  #1e3452;
+            --orange: #f07c1e;
+            --orange2:#d96810;
+            --blue:   #3a6898;
+            --muted:  #8ba5c2;
+            --white:  #ffffff;
+            --font-brand: 'Bricolage Grotesque', sans-serif;
+            --font-body:  'Instrument Sans', sans-serif;
+        }
+
+        body { background: var(--navy); color: var(--white); font-family: var(--font-body); font-size: 1rem; line-height: 1.65; overflow-x: hidden; }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2.5rem; background: rgba(15,28,46,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(58,104,152,0.2); }
+        .nav-brand { font-family: var(--font-brand); font-size: 1.05rem; font-weight: 700; color: var(--white); text-decoration: none; }
+        .nav-brand span { color: var(--orange); }
+        .nav-back { font-size: 0.85rem; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; font-weight: 600; transition: color 0.2s; }
+        .nav-back:hover { color: var(--orange); }
+
+        /* HERO */
+        #hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2.5rem 5rem;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse 60% 70% at 40% 50%, rgba(58,104,152,0.1) 0%, transparent 70%);
+        }
+        .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+        .hero-badge { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); border: 1px solid rgba(240,124,30,0.4); padding: 0.3rem 0.85rem; border-radius: 2px; margin-bottom: 1.4rem; }
+        h1 { font-family: var(--font-brand); font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 1.2rem; }
+        h1 span { color: var(--orange); }
+        .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 2.2rem; max-width: 480px; }
+        .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--orange); color: var(--navy); text-decoration: none; font-weight: 700; font-size: 0.95rem; padding: 0.9rem 1.9rem; border-radius: 4px; transition: background 0.2s, transform 0.15s; white-space: nowrap; }
+        .btn-primary:hover { background: var(--orange2); transform: translateY(-2px); }
+        .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; border: 1.5px solid rgba(240,124,30,0.45); color: var(--orange); text-decoration: none; font-weight: 600; font-size: 0.95rem; padding: 0.9rem 1.6rem; border-radius: 4px; transition: border-color 0.2s, background 0.2s; white-space: nowrap; }
+        .btn-ghost:hover { border-color: var(--orange); background: rgba(240,124,30,0.06); }
+        .hero-trust { margin-top: 2rem; display: flex; gap: 1.8rem; flex-wrap: wrap; }
+        .trust-item { font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: 0.4rem; }
+        .trust-item svg { width: 14px; height: 14px; color: var(--orange); flex-shrink: 0; }
+
+        /* Hero visual: asistentes */
+        .hero-visual { display: flex; justify-content: center; align-items: center; }
+        .taller-mock {
+            width: 100%;
+            max-width: 380px;
+            background: var(--navy2);
+            border: 1px solid rgba(58,104,152,0.25);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+        }
+        .taller-mock-header {
+            background: linear-gradient(135deg, rgba(240,124,30,0.15), rgba(58,104,152,0.1));
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(58,104,152,0.2);
+            text-align: center;
+        }
+        .taller-mock-emoji { font-size: 2.5rem; margin-bottom: 0.5rem; display: block; }
+        .taller-mock-title { font-family: var(--font-brand); font-size: 1rem; font-weight: 800; }
+        .taller-mock-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; }
+        .taller-mock-body { padding: 1.3rem; }
+        .taller-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1rem; }
+        .taller-stat { background: var(--navy3); border-radius: 8px; padding: 0.9rem; text-align: center; }
+        .taller-stat-num { font-family: var(--font-brand); font-size: 1.4rem; font-weight: 800; color: var(--orange); line-height: 1; }
+        .taller-stat-label { font-size: 0.72rem; color: var(--muted); margin-top: 0.25rem; }
+        .taller-topics { display: flex; flex-direction: column; gap: 0.45rem; }
+        .taller-topic { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: rgba(255,255,255,0.75); }
+        .taller-topic::before { content: '→'; color: var(--orange); font-weight: 700; flex-shrink: 0; }
+
+        /* DIVIDER */
+        .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(58,104,152,0.3), transparent); }
+
+        /* SECTIONS */
+        .section { padding: 5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.8rem; }
+        h2 { font-family: var(--font-brand); font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.2rem; }
+        h2 span { color: var(--orange); }
+
+        /* PARA QUIÉN */
+        .audiencias-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+        .audiencia-card { background: var(--navy2); border: 1px solid rgba(58,104,152,0.2); border-radius: 8px; padding: 1.8rem; transition: border-color 0.2s; }
+        .audiencia-card:hover { border-color: rgba(240,124,30,0.35); }
+        .audiencia-icon { font-size: 2rem; margin-bottom: 0.9rem; display: block; }
+        .audiencia-card h3 { font-family: var(--font-brand); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; }
+        .audiencia-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+        /* SOLUCIÓN */
+        #solucion { background: var(--navy2); max-width: 100%; padding: 5rem 0; }
+        .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
+        .solucion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 2rem; }
+        .solucion-text p { color: rgba(255,255,255,0.72); font-size: 1.02rem; line-height: 1.75; margin-bottom: 1rem; }
+        .solucion-text p strong { color: var(--orange); font-weight: 600; }
+        .solucion-features { display: flex; flex-direction: column; gap: 1rem; }
+        .feature-item { display: flex; gap: 1rem; align-items: flex-start; background: var(--navy); border: 1px solid rgba(58,104,152,0.2); border-radius: 8px; padding: 1.2rem 1.4rem; }
+        .feature-icon { width: 40px; height: 40px; background: rgba(240,124,30,0.12); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem; }
+        .feature-item h4 { font-family: var(--font-brand); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .feature-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+        /* CONTENIDO */
+        .contenido-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2.5rem; align-items: start; }
+        .agenda-taller { background: var(--navy2); border: 1px solid rgba(58,104,152,0.2); border-radius: 10px; padding: 2rem; }
+        .agenda-taller h3 { font-family: var(--font-brand); font-size: 1.05rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--orange); }
+        .agenda-item { display: flex; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid rgba(58,104,152,0.12); }
+        .agenda-item:last-child { border-bottom: none; }
+        .agenda-time { font-family: var(--font-brand); font-size: 0.78rem; font-weight: 700; color: var(--orange); background: rgba(240,124,30,0.1); padding: 0.2rem 0.5rem; border-radius: 3px; white-space: nowrap; height: fit-content; margin-top: 0.1rem; }
+        .agenda-content h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .agenda-content p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+        .incluye-taller { display: flex; flex-direction: column; gap: 0.9rem; }
+        .incluye-item { display: flex; gap: 0.9rem; align-items: flex-start; padding: 1rem 1.2rem; background: var(--navy2); border: 1px solid rgba(58,104,152,0.18); border-radius: 8px; }
+        .incluye-check { width: 22px; height: 22px; background: rgba(240,124,30,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; }
+        .incluye-check svg { width: 12px; height: 12px; }
+        .incluye-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.15rem; }
+        .incluye-item p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+        /* CÓMO FUNCIONA */
+        #como { background: var(--navy2); max-width: 100%; padding: 5rem 0; }
+        .pasos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; position: relative; }
+        .pasos::before { content: ''; position: absolute; top: 1.5rem; left: 12%; right: 12%; height: 1px; background: linear-gradient(90deg, transparent, rgba(240,124,30,0.3), transparent); }
+        .paso { text-align: center; }
+        .paso-num { width: 48px; height: 48px; background: var(--navy2); border: 1.5px solid rgba(240,124,30,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-family: var(--font-brand); font-size: 1.1rem; font-weight: 800; color: var(--orange); position: relative; z-index: 1; }
+        .paso h3 { font-family: var(--font-brand); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .paso p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+
+        /* PRECIO */
+        .precio-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+        .precio-card { background: var(--navy2); border: 1.5px solid rgba(58,104,152,0.25); border-radius: 12px; padding: 2.2rem; position: relative; overflow: hidden; }
+        .precio-card.featured { border-color: rgba(240,124,30,0.45); }
+        .precio-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--orange), var(--blue)); }
+        .precio-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 2px; margin-bottom: 1rem; }
+        .precio-tag.base { background: rgba(58,104,152,0.2); color: var(--muted); }
+        .precio-tag.sala { background: rgba(240,124,30,0.15); color: var(--orange); border: 1px solid rgba(240,124,30,0.3); }
+        .precio-amount { font-family: var(--font-brand); font-size: 2.8rem; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 0.3rem; }
+        .precio-card.featured .precio-amount { color: var(--orange); }
+        .precio-unit { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.2rem; }
+        .precio-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+        .precio-list li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.88rem; color: rgba(255,255,255,0.8); }
+        .precio-list li::before { content: '→'; color: var(--orange); font-weight: 700; flex-shrink: 0; }
+        .precio-nota { margin-top: 2.5rem; background: rgba(58,104,152,0.1); border: 1px solid rgba(58,104,152,0.25); border-radius: 8px; padding: 1.2rem 1.5rem; font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
+        .precio-nota strong { color: var(--white); }
+
+        /* CTA FINAL */
+        #cta-final { background: linear-gradient(135deg, rgba(240,124,30,0.08) 0%, rgba(58,104,152,0.08) 100%); max-width: 100%; padding: 5rem 0; border-top: 1px solid rgba(240,124,30,0.15); }
+        #cta-final .cta-inner { max-width: 780px; margin: 0 auto; padding: 0 2.5rem; text-align: center; }
+        #cta-final h2 { margin-bottom: 0.8rem; }
+        .cta-sub { color: rgba(255,255,255,0.65); font-size: 1.05rem; margin-bottom: 2.5rem; }
+        .cta-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .btn-whatsapp { display: inline-flex; align-items: center; gap: 0.6rem; background: #25d366; color: #fff; text-decoration: none; font-weight: 700; font-size: 0.95rem; padding: 0.9rem 1.9rem; border-radius: 4px; transition: background 0.2s, transform 0.15s; }
+        .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
+        .btn-whatsapp svg { width: 18px; height: 18px; }
+
+        .contacto-form { background: var(--navy2); border: 1px solid rgba(58,104,152,0.25); border-radius: 10px; padding: 2rem 2.2rem; text-align: left; max-width: 600px; margin: 0 auto; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-bottom: 0.4rem; letter-spacing: 0.04em; text-transform: uppercase; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; background: rgba(15,28,46,0.9); border: 1px solid rgba(58,104,152,0.3); border-radius: 5px; padding: 0.75rem 1rem; color: var(--white); font-family: var(--font-body); font-size: 0.95rem; transition: border-color 0.2s; outline: none; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--orange); }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(139,165,194,0.4); }
+        .form-group select option { background: var(--navy2); }
+        .form-group textarea { resize: vertical; min-height: 110px; }
+        .form-submit { width: 100%; background: var(--orange); color: var(--navy); border: none; border-radius: 5px; padding: 0.95rem; font-family: var(--font-body); font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s; margin-top: 0.3rem; }
+        .form-submit:hover { background: var(--orange2); }
+        .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+        .form-success { display: none; background: rgba(46,160,67,0.1); border: 1px solid rgba(46,160,67,0.3); border-radius: 6px; padding: 1.2rem; color: #7ee88a; text-align: center; margin-top: 1rem; font-size: 0.95rem; font-weight: 600; }
+        .form-error-msg { display: none; background: rgba(255,80,80,0.08); border: 1px solid rgba(255,80,80,0.25); border-radius: 6px; padding: 1rem; color: #ff9090; text-align: center; margin-top: 1rem; font-size: 0.88rem; }
+        .form-error-msg a { color: var(--orange); }
+        .form-separator { text-align: center; font-size: 0.82rem; color: var(--muted); margin: 1.5rem 0; position: relative; }
+        .form-separator::before, .form-separator::after { content: ''; position: absolute; top: 50%; width: 40%; height: 1px; background: rgba(58,104,152,0.25); }
+        .form-separator::before { left: 0; }
+        .form-separator::after { right: 0; }
+
+        footer { border-top: 1px solid rgba(58,104,152,0.15); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: var(--muted); }
+        footer a { color: var(--orange); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.2rem; }
+            #hero { padding: 6rem 1.2rem 3.5rem; min-height: auto; }
+            .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+            .hero-visual { display: none; }
+            .section { padding: 3.5rem 1.2rem; }
+            .section-inner { padding: 0 1.2rem; }
+            #solucion, #como, #cta-final { padding: 3.5rem 0; }
+            .solucion-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .audiencias-grid { grid-template-columns: 1fr; }
+            .contenido-wrapper { grid-template-columns: 1fr; }
+            .pasos { grid-template-columns: 1fr 1fr; }
+            .pasos::before { display: none; }
+            .precio-options { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .contacto-form { padding: 1.4rem; }
+            footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+        }
+        @media (max-width: 480px) {
+            .pasos { grid-template-columns: 1fr; }
+            .hero-ctas { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a class="nav-brand" href="index.html">R.<span>Llastarry</span> IA</a>
+    <a class="nav-back" href="index.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Volver a la web
+    </a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+    <div class="hero-inner">
+        <div>
+            <div class="hero-badge">🎤 Servicio — Taller IA Grupal</div>
+            <h1>2 horas para que tu equipo <span>entienda la IA</span> de verdad</h1>
+            <p class="hero-sub">Taller práctico y sin tecnicismos para asociaciones, comerciantes, autónomos y PYMES. Aprended a usar la IA en vuestro negocio con ejemplos reales.</p>
+            <div class="hero-ctas">
+                <a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20me%20interesa%20organizar%20un%20Taller%20de%20IA%20para%20mi%20equipo%20o%20asociaci%C3%B3n" target="_blank" rel="noopener" class="btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Organizar taller por WhatsApp
+                </a>
+                <a href="#formulario" class="btn-ghost">Ver el programa →</a>
+            </div>
+            <div class="hero-trust">
+                <span class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    2 horas prácticas
+                </span>
+                <span class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>
+                    Mínimo 6 personas
+                </span>
+                <span class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Desde 25€/persona
+                </span>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="taller-mock">
+                <div class="taller-mock-header">
+                    <span class="taller-mock-emoji">🎤</span>
+                    <div class="taller-mock-title">Taller IA para tu negocio</div>
+                    <div class="taller-mock-sub">Sesión práctica · 2 horas · Sin tecnicismos</div>
+                </div>
+                <div class="taller-mock-body">
+                    <div class="taller-stat-row">
+                        <div class="taller-stat">
+                            <div class="taller-stat-num">2h</div>
+                            <div class="taller-stat-label">De formación práctica</div>
+                        </div>
+                        <div class="taller-stat">
+                            <div class="taller-stat-num">6+</div>
+                            <div class="taller-stat-label">Personas por sesión</div>
+                        </div>
+                    </div>
+                    <div class="taller-topics">
+                        <div class="taller-topic">Qué es la IA y qué no es</div>
+                        <div class="taller-topic">Herramientas para tu sector</div>
+                        <div class="taller-topic">Demo en vivo con ChatGPT</div>
+                        <div class="taller-topic">Casos reales de negocios como el tuyo</div>
+                        <div class="taller-topic">Hoja de ruta para empezar mañana</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PARA QUIÉN -->
+<div class="section">
+    <p class="section-label">¿Para quién es?</p>
+    <h2>Ideal para grupos que quieren <span>moverse juntos</span></h2>
+    <div class="audiencias-grid">
+        <div class="audiencia-card">
+            <span class="audiencia-icon">🏪</span>
+            <h3>Asociaciones de comerciantes</h3>
+            <p>Comercio local, mercados, asociaciones de barrio o polígono. Aprended juntos a usar la IA en vuestros negocios sin depender de nadie.</p>
+        </div>
+        <div class="audiencia-card">
+            <span class="audiencia-icon">💼</span>
+            <h3>Grupos de autónomos y PYMES</h3>
+            <p>Equipos pequeños, coworking, grupos de networking. Formación adaptada a los retos concretos de trabajar sin gran equipo de soporte.</p>
+        </div>
+        <div class="audiencia-card">
+            <span class="audiencia-icon">🏢</span>
+            <h3>Empresas con equipos</h3>
+            <p>Para poneros al día todos a la vez. Formación interna rápida y práctica, sin parar la operativa días enteros.</p>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SOLUCIÓN -->
+<div id="solucion">
+    <div class="section-inner">
+        <p class="section-label">Por qué este taller</p>
+        <h2>No es una charla de <span>PowerPoint aburrido</span></h2>
+        <div class="solucion-grid">
+            <div class="solucion-text">
+                <p>La mayoría de formaciones de IA son demasiado técnicas o demasiado genéricas. Este taller es diferente: es práctico, con demos en vivo, adaptado a tu sector y pensado para que salgáis con algo que podéis usar mañana mismo.</p>
+                <p>No hace falta saber nada de tecnología. <strong>El único requisito es tener un negocio y querer mejorar.</strong></p>
+                <p>El contenido se adapta al grupo — no es lo mismo un taller para peluqueros que para consultores. Me informo antes para que los ejemplos sean relevantes.</p>
+            </div>
+            <div class="solucion-features">
+                <div class="feature-item">
+                    <div class="feature-icon">🎮</div>
+                    <div>
+                        <h4>100% práctico</h4>
+                        <p>Demos en vivo, ejercicios en grupo y ejemplos reales. No teoría, sino herramientas que podéis usar al salir.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <div>
+                        <h4>Adaptado a vuestro sector</h4>
+                        <p>Me informo sobre vuestro negocio antes del taller para que los ejemplos sean relevantes y aplicables.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🗣️</div>
+                    <div>
+                        <h4>Espacio para preguntas</h4>
+                        <p>El taller es una conversación, no un monólogo. Hay tiempo para resolver dudas concretas de cada persona.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📄</div>
+                    <div>
+                        <h4>Material para llevarse</h4>
+                        <p>Cada asistente se lleva una guía de recursos y herramientas recomendadas para su tipo de negocio.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTENIDO -->
+<div class="section">
+    <p class="section-label">Contenido</p>
+    <h2>Lo que vemos en <span>las 2 horas</span></h2>
+    <div class="contenido-wrapper">
+        <div class="agenda-taller">
+            <h3>📋 Agenda del taller — "IA para Tu Vida"</h3>
+            <div class="agenda-item">
+                <div class="agenda-time">0–20 min</div>
+                <div class="agenda-content">
+                    <h4>🧠 ¿Qué es la IA? Los 3 Grandes</h4>
+                    <p>ChatGPT, Claude y Gemini en versión gratuita. Cómo acceder desde el móvil y en qué se diferencian de Google.</p>
+                </div>
+            </div>
+            <div class="agenda-item">
+                <div class="agenda-time">20–40 min</div>
+                <div class="agenda-content">
+                    <h4>💌 Tu Asistente para Escribir</h4>
+                    <p>El email que llevas semanas sin enviar, reclamaciones, cartas y mensajes delicados. Práctica en directo con tu caso real.</p>
+                </div>
+            </div>
+            <div class="agenda-item">
+                <div class="agenda-time">40–70 min</div>
+                <div class="agenda-content">
+                    <h4>📄 Documentos del Día a Día ⭐</h4>
+                    <p>Cartas del juzgado, informes médicos, contratos de alquiler, notificaciones de Hacienda. La IA te lo explica en palabras simples.</p>
+                </div>
+            </div>
+            <div class="agenda-item">
+                <div class="agenda-time">70–85 min</div>
+                <div class="agenda-content">
+                    <h4>🌐 Traducción y Comprensión</h4>
+                    <p>Traducción instantánea a cualquier idioma. Resumir documentos largos en 5 puntos. Textos técnicos en lenguaje normal.</p>
+                </div>
+            </div>
+            <div class="agenda-item">
+                <div class="agenda-time">85–100 min</div>
+                <div class="agenda-content">
+                    <h4>🌟 La IA Como Amigo que Sabe de Todo</h4>
+                    <p>Recetas con lo que tienes en la nevera, plan de viaje con tu presupuesto, ideas de regalo. Sin juicios, sin vergüenza.</p>
+                </div>
+            </div>
+            <div class="agenda-item">
+                <div class="agenda-time">100–120 min</div>
+                <div class="agenda-content">
+                    <h4>💪 Práctica Libre y Preguntas</h4>
+                    <p>Cada asistente trabaja su caso real. El ponente guía individualmente. Resolución de dudas y próximos pasos.</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <p class="section-label" style="margin-bottom: 1rem;">Cada asistente se lleva</p>
+            <div class="incluye-taller">
+                <div class="incluye-item">
+                    <div class="incluye-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div>
+                        <h4>Guía de herramientas recomendadas</h4>
+                        <p>Lista personalizada según su tipo de negocio y nivel técnico.</p>
+                    </div>
+                </div>
+                <div class="incluye-item">
+                    <div class="incluye-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div>
+                        <h4>Prompts listos para usar</h4>
+                        <p>Plantillas de prompts adaptadas a su sector para empezar sin esfuerzo.</p>
+                    </div>
+                </div>
+                <div class="incluye-item">
+                    <div class="incluye-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div>
+                        <h4>Acceso a recursos adicionales</h4>
+                        <p>Tutoriales, artículos y vídeos seleccionados para seguir aprendiendo a su ritmo.</p>
+                    </div>
+                </div>
+                <div class="incluye-item">
+                    <div class="incluye-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div>
+                        <h4>Contacto directo para dudas</h4>
+                        <p>7 días post-taller para resolver por WhatsApp cualquier duda que surja al aplicarlo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CÓMO FUNCIONA -->
+<div id="como">
+    <div class="section-inner">
+        <p class="section-label">Organizar el taller</p>
+        <h2>Fácil de organizar, <span>impacto inmediato</span></h2>
+        <div class="pasos">
+            <div class="paso">
+                <div class="paso-num">1</div>
+                <h3>Me contactas</h3>
+                <p>Cuéntame quiénes sois, cuántas personas y de qué sector. En 24h te doy presupuesto.</p>
+            </div>
+            <div class="paso">
+                <div class="paso-num">2</div>
+                <h3>Acordamos fecha</h3>
+                <p>Tú decides cuándo y dónde (con sala propia o yo me encargo). Nos adaptamos a vuestra agenda.</p>
+            </div>
+            <div class="paso">
+                <div class="paso-num">3</div>
+                <h3>Me preparo</h3>
+                <p>Adapto el contenido a vuestro sector con ejemplos reales de vuestro tipo de negocio.</p>
+            </div>
+            <div class="paso">
+                <div class="paso-num">4</div>
+                <h3>¡El taller!</h3>
+                <p>2 horas de formación práctica. Todos salen con herramientas concretas para aplicar.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PRECIO -->
+<div class="section">
+    <p class="section-label">Inversión</p>
+    <h2>Precio según <span>el grupo y el espacio</span></h2>
+    <div class="precio-options">
+        <div class="precio-card">
+            <div class="precio-tag base">Sin sala propia</div>
+            <div class="precio-amount">55€</div>
+            <div class="precio-unit">por persona · mínimo 6 personas</div>
+            <ul class="precio-list">
+                <li>Taller completo de 2 horas</li>
+                <li>Me encargo del espacio</li>
+                <li>Material para todos los asistentes</li>
+                <li>Prompts y guía de recursos</li>
+                <li>7 días de soporte post-taller</li>
+            </ul>
+        </div>
+        <div class="precio-card featured">
+            <div class="precio-tag sala">Con sala propia ⭐</div>
+            <div class="precio-amount">25–40€</div>
+            <div class="precio-unit">por persona · mínimo 6 personas</div>
+            <ul class="precio-list">
+                <li>Taller completo de 2 horas</li>
+                <li>El grupo aporta el espacio (asociación, local…)</li>
+                <li>Precio reducido por ahorrar en sala</li>
+                <li>Material para todos los asistentes</li>
+                <li>Prompts y guía de recursos</li>
+                <li>7 días de soporte post-taller</li>
+            </ul>
+        </div>
+    </div>
+    <div class="precio-nota">
+        <strong>Grupos grandes o formaciones a medida:</strong> si sois más de 20 personas o queréis un taller de mayor duración o más técnico, consúltame. Puedo adaptar el precio y el contenido. Para asociaciones sin ánimo de lucro también tengo tarifas especiales.
+    </div>
+</div>
+
+<!-- CTA FINAL -->
+<div id="cta-final">
+    <div class="cta-inner">
+        <p class="section-label">¿Organizamos vuestro taller?</p>
+        <h2>Que tu equipo salga con <span>algo útil esta semana</span></h2>
+        <p class="cta-sub">Cuéntame quiénes sois y os preparo presupuesto en 24h. Sin compromiso.</p>
+        <div class="cta-buttons">
+            <a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20quiero%20organizar%20un%20Taller%20de%20IA%20para%20mi%20grupo%2F%20asociaci%C3%B3n" target="_blank" rel="noopener" class="btn-whatsapp">
+                <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Organizar por WhatsApp
+            </a>
+            <a href="mailto:ricardollastarry.ai@gmail.com?subject=Consulta%20Taller%20IA%20Grupal" class="btn-ghost">Enviar email →</a>
+        </div>
+
+        <div class="form-separator" id="formulario">o rellena el formulario</div>
+
+        <form class="contacto-form" id="contact-form">
+            <input type="hidden" name="servicio" value="Taller IA Grupal">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nombre">Nombre *</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label for="femail">Email *</label>
+                    <input type="email" id="femail" name="email" required placeholder="tu@email.com">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono / WhatsApp</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="600 000 000">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="grupo">Nombre del grupo / asociación</label>
+                    <input type="text" id="grupo" name="grupo" placeholder="Ej: Associació de Comerciants de Rubí">
+                </div>
+                <div class="form-group">
+                    <label for="personas">Nº aproximado de personas *</label>
+                    <select id="personas" name="personas" required>
+                        <option value="">Selecciona</option>
+                        <option value="6-10">6–10 personas</option>
+                        <option value="10-20">10–20 personas</option>
+                        <option value="20-30">20–30 personas</option>
+                        <option value="30+">Más de 30</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sala">¿Tenéis sala propia?</label>
+                <select id="sala" name="sala">
+                    <option value="">Selecciona</option>
+                    <option value="si">Sí, disponemos de espacio</option>
+                    <option value="no">No, necesitamos sala</option>
+                    <option value="gestionar">Podemos gestionarlo, pero necesito ayuda</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sector">¿A qué se dedica vuestro grupo?</label>
+                <input type="text" id="sector" name="sector" placeholder="Ej: comercio local, restauración, servicios profesionales…">
+            </div>
+            <div class="form-group">
+                <label for="mensaje">Fecha aproximada o más información</label>
+                <textarea id="mensaje" name="mensaje" placeholder="¿Tenéis alguna fecha en mente? ¿Algún requisito especial?"></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="form-btn">Pedir presupuesto para el taller →</button>
+            <div class="form-success" id="form-success">✅ ¡Mensaje recibido! Os mando presupuesto en menos de 24h.</div>
+            <div class="form-error-msg" id="form-error">Algo fue mal. Escríbenos directamente por <a href="https://wa.me/34686712391">WhatsApp</a>.</div>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <span>© 2026 R.Llastarry IA · Rubí, Barcelona</span>
+    <a href="index.html">← Volver a la web principal</a>
+</footer>
+
+<script>
+(function() {
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('form-btn');
+        var successEl = document.getElementById('form-success');
+        var errorEl = document.getElementById('form-error');
+        btn.disabled = true;
+        btn.textContent = 'Enviando…';
+        successEl.style.display = 'none';
+        errorEl.style.display = 'none';
+        try {
+            var resp = await fetch('https://formspree.io/f/xaqvqder', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+            if (resp.ok) {
+                form.querySelectorAll('input, textarea, select').forEach(function(el){ el.value = ''; });
+                btn.style.display = 'none';
+                successEl.style.display = 'block';
+            } else {
+                btn.disabled = false;
+                btn.textContent = 'Pedir presupuesto para el taller →';
+                errorEl.style.display = 'block';
+            }
+        } catch(err) {
+            btn.disabled = false;
+            btn.textContent = 'Pedir presupuesto para el taller →';
+            errorEl.style.display = 'block';
+        }
+    });
+})();
+</script>
+</body>
+</html>

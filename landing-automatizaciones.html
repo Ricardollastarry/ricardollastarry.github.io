@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatizaciones con IA para tu negocio — R.Llastarry IA</title>
+    <meta name="description" content="Automatiza las tareas repetitivas de tu negocio con IA. Facturación, recordatorios, respuestas automáticas y más. Desde 150€. Rubí, Barcelona.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --navy:   #0f1c2e;
+            --navy2:  #162538;
+            --navy3:  #1e3452;
+            --orange: #f07c1e;
+            --orange2:#d96810;
+            --blue:   #3a6898;
+            --muted:  #8ba5c2;
+            --white:  #ffffff;
+            --font-brand: 'Bricolage Grotesque', sans-serif;
+            --font-body:  'Instrument Sans', sans-serif;
+        }
+
+        body {
+            background: var(--navy);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2.5rem;
+            background: rgba(15,28,46,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(58,104,152,0.2);
+        }
+        .nav-brand { font-family: var(--font-brand); font-size: 1.05rem; font-weight: 700; color: var(--white); text-decoration: none; }
+        .nav-brand span { color: var(--orange); }
+        .nav-back { font-size: 0.85rem; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; font-weight: 600; transition: color 0.2s; }
+        .nav-back:hover { color: var(--orange); }
+
+        /* HERO */
+        #hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2.5rem 5rem;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse 60% 70% at 70% 40%, rgba(58,104,152,0.1) 0%, transparent 70%);
+        }
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-badge { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); border: 1px solid rgba(240,124,30,0.4); padding: 0.3rem 0.85rem; border-radius: 2px; margin-bottom: 1.4rem; }
+        h1 { font-family: var(--font-brand); font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 1.2rem; }
+        h1 span { color: var(--orange); }
+        .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 2.2rem; max-width: 480px; }
+        .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--orange); color: var(--navy); text-decoration: none; font-weight: 700; font-size: 0.95rem; padding: 0.9rem 1.9rem; border-radius: 4px; transition: background 0.2s, transform 0.15s; white-space: nowrap; }
+        .btn-primary:hover { background: var(--orange2); transform: translateY(-2px); }
+        .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; border: 1.5px solid rgba(240,124,30,0.45); color: var(--orange); text-decoration: none; font-weight: 600; font-size: 0.95rem; padding: 0.9rem 1.6rem; border-radius: 4px; transition: border-color 0.2s, background 0.2s; white-space: nowrap; }
+        .btn-ghost:hover { border-color: var(--orange); background: rgba(240,124,30,0.06); }
+        .hero-trust { margin-top: 2rem; display: flex; gap: 1.8rem; flex-wrap: wrap; }
+        .trust-item { font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: 0.4rem; }
+        .trust-item svg { width: 14px; height: 14px; color: var(--orange); flex-shrink: 0; }
+
+        /* Hero visual: flujo de automatización */
+        .hero-visual { display: flex; justify-content: center; align-items: center; }
+        .flow-mock {
+            width: 100%;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .flow-node {
+            background: var(--navy2);
+            border: 1px solid rgba(58,104,152,0.25);
+            border-radius: 8px;
+            padding: 0.9rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            position: relative;
+        }
+        .flow-node.trigger { border-color: rgba(240,124,30,0.4); background: rgba(240,124,30,0.06); }
+        .flow-node.action { border-color: rgba(58,104,152,0.4); }
+        .flow-node.result { border-color: rgba(46,160,67,0.4); background: rgba(46,160,67,0.05); }
+        .flow-node-icon { font-size: 1.3rem; flex-shrink: 0; }
+        .flow-node-text { flex: 1; }
+        .flow-node-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.15rem; }
+        .flow-node.trigger .flow-node-label { color: var(--orange); }
+        .flow-node.result .flow-node-label { color: #4ade80; }
+        .flow-node-title { font-size: 0.88rem; font-weight: 600; color: var(--white); }
+        .flow-arrow { text-align: center; color: var(--orange); font-size: 1rem; opacity: 0.6; margin: -0.1rem 0; }
+        .flow-badge { background: rgba(46,160,67,0.15); border: 1px solid rgba(46,160,67,0.3); color: #4ade80; font-size: 0.72rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 3px; white-space: nowrap; }
+
+        /* DIVIDER */
+        .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(58,104,152,0.3), transparent); }
+
+        /* SECTIONS */
+        .section { padding: 5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.8rem; }
+        h2 { font-family: var(--font-brand); font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.2rem; }
+        h2 span { color: var(--orange); }
+
+        /* PROBLEMA */
+        .horas-perdidas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        .hora-card {
+            background: var(--navy2);
+            border: 1px solid rgba(58,104,152,0.2);
+            border-radius: 8px;
+            padding: 1.8rem;
+            text-align: center;
+        }
+        .hora-number { font-family: var(--font-brand); font-size: 3rem; font-weight: 800; color: var(--orange); line-height: 1; margin-bottom: 0.4rem; }
+        .hora-label { font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
+        .problema-intro { font-size: 1.05rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 1rem; max-width: 700px; }
+
+        /* SOLUCIÓN */
+        #solucion { background: var(--navy2); max-width: 100%; padding: 5rem 0; }
+        .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
+        .solucion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 2rem; }
+        .solucion-text p { color: rgba(255,255,255,0.72); font-size: 1.02rem; line-height: 1.75; margin-bottom: 1rem; }
+        .solucion-text p strong { color: var(--orange); font-weight: 600; }
+        .solucion-features { display: flex; flex-direction: column; gap: 1rem; }
+        .feature-item { display: flex; gap: 1rem; align-items: flex-start; background: var(--navy); border: 1px solid rgba(58,104,152,0.2); border-radius: 8px; padding: 1.2rem 1.4rem; }
+        .feature-icon { width: 40px; height: 40px; background: rgba(240,124,30,0.12); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem; }
+        .feature-item h4 { font-family: var(--font-brand); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .feature-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+        /* QUÉ INCLUYE */
+        .automatizaciones-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-top: 2.5rem;
+        }
+        .auto-card {
+            background: var(--navy2);
+            border: 1px solid rgba(58,104,152,0.18);
+            border-radius: 10px;
+            padding: 1.6rem;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .auto-card:hover { border-color: rgba(240,124,30,0.4); transform: translateY(-3px); }
+        .auto-icon { font-size: 2rem; margin-bottom: 0.9rem; display: block; }
+        .auto-card h3 { font-family: var(--font-brand); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .auto-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+        .auto-saving { display: inline-block; font-size: 0.72rem; font-weight: 700; color: var(--orange); background: rgba(240,124,30,0.1); padding: 0.15rem 0.5rem; border-radius: 2px; margin-top: 0.7rem; }
+
+        /* CÓMO FUNCIONA */
+        #como { background: var(--navy2); max-width: 100%; padding: 5rem 0; }
+        .pasos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; position: relative; }
+        .pasos::before { content: ''; position: absolute; top: 1.5rem; left: 12%; right: 12%; height: 1px; background: linear-gradient(90deg, transparent, rgba(240,124,30,0.3), transparent); }
+        .paso { text-align: center; }
+        .paso-num { width: 48px; height: 48px; background: var(--navy2); border: 1.5px solid rgba(240,124,30,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-family: var(--font-brand); font-size: 1.1rem; font-weight: 800; color: var(--orange); position: relative; z-index: 1; }
+        .paso h3 { font-family: var(--font-brand); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .paso p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+
+        /* PRECIO */
+        .precio-card {
+            background: var(--navy2);
+            border: 1.5px solid rgba(240,124,30,0.35);
+            border-radius: 12px;
+            padding: 3rem;
+            max-width: 720px;
+            margin: 2.5rem auto 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .precio-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--orange), var(--blue)); }
+        .precio-badge { display: inline-block; background: rgba(240,124,30,0.15); color: var(--orange); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 1.2rem; border: 1px solid rgba(240,124,30,0.3); }
+        .precio-main { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.4rem; }
+        .precio-amount { font-family: var(--font-brand); font-size: 3.5rem; font-weight: 800; color: var(--white); line-height: 1; }
+        .precio-amount span { font-size: 1.5rem; color: var(--orange); }
+        .precio-note { font-size: 0.88rem; color: var(--muted); margin-bottom: 2rem; }
+        .precio-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+        .precio-col h4 { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; }
+        .precio-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+        .precio-list li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.88rem; color: rgba(255,255,255,0.8); }
+        .precio-list li::before { content: '→'; color: var(--orange); font-weight: 700; flex-shrink: 0; }
+        .precio-disclaimer { font-size: 0.8rem; color: var(--muted); border-top: 1px solid rgba(58,104,152,0.2); padding-top: 1.2rem; line-height: 1.6; }
+        .mantenimiento-banner {
+            background: rgba(58,104,152,0.12);
+            border: 1px solid rgba(58,104,152,0.3);
+            border-radius: 8px;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .mantenimiento-banner p { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+        .mantenimiento-banner strong { color: var(--white); }
+        .mantenimiento-price { font-family: var(--font-brand); font-size: 1.4rem; font-weight: 800; color: var(--blue); white-space: nowrap; }
+
+        /* CTA FINAL */
+        #cta-final { background: linear-gradient(135deg, rgba(240,124,30,0.08) 0%, rgba(58,104,152,0.08) 100%); max-width: 100%; padding: 5rem 0; border-top: 1px solid rgba(240,124,30,0.15); }
+        #cta-final .cta-inner { max-width: 780px; margin: 0 auto; padding: 0 2.5rem; text-align: center; }
+        #cta-final h2 { margin-bottom: 0.8rem; }
+        .cta-sub { color: rgba(255,255,255,0.65); font-size: 1.05rem; margin-bottom: 2.5rem; }
+        .cta-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .btn-whatsapp { display: inline-flex; align-items: center; gap: 0.6rem; background: #25d366; color: #fff; text-decoration: none; font-weight: 700; font-size: 0.95rem; padding: 0.9rem 1.9rem; border-radius: 4px; transition: background 0.2s, transform 0.15s; }
+        .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
+        .btn-whatsapp svg { width: 18px; height: 18px; }
+
+        .contacto-form { background: var(--navy2); border: 1px solid rgba(58,104,152,0.25); border-radius: 10px; padding: 2rem 2.2rem; text-align: left; max-width: 600px; margin: 0 auto; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-bottom: 0.4rem; letter-spacing: 0.04em; text-transform: uppercase; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; background: rgba(15,28,46,0.9); border: 1px solid rgba(58,104,152,0.3); border-radius: 5px; padding: 0.75rem 1rem; color: var(--white); font-family: var(--font-body); font-size: 0.95rem; transition: border-color 0.2s; outline: none; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--orange); }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(139,165,194,0.4); }
+        .form-group select option { background: var(--navy2); }
+        .form-group textarea { resize: vertical; min-height: 110px; }
+        .form-submit { width: 100%; background: var(--orange); color: var(--navy); border: none; border-radius: 5px; padding: 0.95rem; font-family: var(--font-body); font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s; margin-top: 0.3rem; }
+        .form-submit:hover { background: var(--orange2); }
+        .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+        .form-success { display: none; background: rgba(46,160,67,0.1); border: 1px solid rgba(46,160,67,0.3); border-radius: 6px; padding: 1.2rem; color: #7ee88a; text-align: center; margin-top: 1rem; font-size: 0.95rem; font-weight: 600; }
+        .form-error-msg { display: none; background: rgba(255,80,80,0.08); border: 1px solid rgba(255,80,80,0.25); border-radius: 6px; padding: 1rem; color: #ff9090; text-align: center; margin-top: 1rem; font-size: 0.88rem; }
+        .form-error-msg a { color: var(--orange); }
+        .form-separator { text-align: center; font-size: 0.82rem; color: var(--muted); margin: 1.5rem 0; position: relative; }
+        .form-separator::before, .form-separator::after { content: ''; position: absolute; top: 50%; width: 40%; height: 1px; background: rgba(58,104,152,0.25); }
+        .form-separator::before { left: 0; }
+        .form-separator::after { right: 0; }
+
+        footer { border-top: 1px solid rgba(58,104,152,0.15); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: var(--muted); }
+        footer a { color: var(--orange); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.2rem; }
+            #hero { padding: 6rem 1.2rem 3.5rem; min-height: auto; }
+            .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+            .hero-visual { display: none; }
+            .section { padding: 3.5rem 1.2rem; }
+            .section-inner { padding: 0 1.2rem; }
+            #solucion, #como, #cta-final { padding: 3.5rem 0; }
+            .solucion-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .horas-perdidas { grid-template-columns: 1fr; }
+            .automatizaciones-grid { grid-template-columns: 1fr; }
+            .pasos { grid-template-columns: 1fr 1fr; }
+            .pasos::before { display: none; }
+            .precio-card { padding: 1.8rem; }
+            .precio-two-col { grid-template-columns: 1fr; gap: 1rem; }
+            .mantenimiento-banner { flex-direction: column; text-align: center; }
+            .form-row { grid-template-columns: 1fr; }
+            .contacto-form { padding: 1.4rem; }
+            footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+        }
+        @media (max-width: 480px) {
+            .pasos { grid-template-columns: 1fr; }
+            .hero-ctas { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a class="nav-brand" href="index.html">R.<span>Llastarry</span> IA</a>
+    <a class="nav-back" href="index.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Volver a la web
+    </a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+    <div class="hero-inner">
+        <div>
+            <div class="hero-badge">⚙️ Servicio — Automatizaciones</div>
+            <h1>Deja de hacer <span>lo mismo</span> una y otra vez</h1>
+            <p class="hero-sub">Automatizo las tareas repetitivas de tu negocio con IA. Facturas, recordatorios, respuestas, reservas… Tú dedícate a lo que realmente importa.</p>
+            <div class="hero-ctas">
+                <a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20me%20interesa%20el%20servicio%20de%20Automatizaciones%20con%20IA" target="_blank" rel="noopener" class="btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Pedir información por WhatsApp
+                </a>
+                <a href="#formulario" class="btn-ghost">Ver qué automatizo →</a>
+            </div>
+            <div class="hero-trust">
+                <span class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    Desde 150€
+                </span>
+                <span class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    Funciona 24/7
+                </span>
+                <span class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    Sin tecnicismos
+                </span>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="flow-mock">
+                <div class="flow-node trigger">
+                    <div class="flow-node-icon">📩</div>
+                    <div class="flow-node-text">
+                        <span class="flow-node-label">Disparador</span>
+                        <span class="flow-node-title">Llega un email de cliente</span>
+                    </div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-node action">
+                    <div class="flow-node-icon">🤖</div>
+                    <div class="flow-node-text">
+                        <span class="flow-node-label">IA analiza</span>
+                        <span class="flow-node-title">Detecta tipo de consulta</span>
+                    </div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-node action">
+                    <div class="flow-node-icon">✍️</div>
+                    <div class="flow-node-text">
+                        <span class="flow-node-label">Acción automática</span>
+                        <span class="flow-node-title">Responde y agenda cita</span>
+                    </div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-node result">
+                    <div class="flow-node-icon">✅</div>
+                    <div class="flow-node-text">
+                        <span class="flow-node-label">Resultado</span>
+                        <span class="flow-node-title">Cliente atendido en 2 min</span>
+                    </div>
+                    <div class="flow-badge">Sin tocar nada</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EL PROBLEMA -->
+<div class="section">
+    <p class="section-label">El tiempo que pierdes</p>
+    <h2>Cada semana, <span>horas enteras</span> en tareas que no aportan valor</h2>
+    <p class="problema-intro">La mayoría de autónomos y pequeños negocios dedican entre 8 y 15 horas semanales a tareas administrativas y repetitivas que podrían hacerse solas.</p>
+    <div class="horas-perdidas">
+        <div class="hora-card">
+            <div class="hora-number">3h</div>
+            <div class="hora-label">Respondiendo siempre las mismas preguntas por WhatsApp o email</div>
+        </div>
+        <div class="hora-card">
+            <div class="hora-number">2h</div>
+            <div class="hora-label">Haciendo y enviando facturas, albaranes y recordatorios de pago</div>
+        </div>
+        <div class="hora-card">
+            <div class="hora-number">4h</div>
+            <div class="hora-label">Gestionando agenda, confirmaciones y cambios de cita manualmente</div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- LA SOLUCIÓN -->
+<div id="solucion">
+    <div class="section-inner">
+        <p class="section-label">La solución</p>
+        <h2>Automatizaciones que <span>trabajan mientras tú duermes</span></h2>
+        <div class="solucion-grid">
+            <div class="solucion-text">
+                <p>Analizo tu negocio e identifico qué tareas se pueden automatizar. Luego configuro los flujos con herramientas de IA que trabajan de forma autónoma, sin que tengas que hacer nada.</p>
+                <p>No es magia — es tecnología bien configurada. <strong>Desde la primera semana ya notas la diferencia</strong> en el tiempo que recuperas.</p>
+                <p>Y si algo falla o quieres ajustes, <strong>estoy disponible con mantenimiento mensual opcional</strong> para que nunca te quedes solo.</p>
+            </div>
+            <div class="solucion-features">
+                <div class="feature-item">
+                    <div class="feature-icon">🔄</div>
+                    <div>
+                        <h4>Análisis previo incluido</h4>
+                        <p>Antes de configurar nada, analizamos juntos qué tiene más sentido automatizar en tu negocio concreto.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div>
+                        <h4>Resultados desde la semana 1</h4>
+                        <p>Las automatizaciones más sencillas se ven en funcionamiento en días. No esperas meses para notar resultados.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <div>
+                        <h4>Formación incluida</h4>
+                        <p>Te explico cómo funciona todo para que entiendas qué hace cada automatización y puedas supervisarla.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📍</div>
+                    <div>
+                        <h4>Adaptado a tu sector</h4>
+                        <p>No es lo mismo una peluquería que un taller mecánico. Las automatizaciones se diseñan para tu caso.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- QUÉ INCLUYE -->
+<div class="section">
+    <p class="section-label">Qué puedo automatizar</p>
+    <h2>Las tareas que <span>más tiempo te roban</span></h2>
+    <div class="automatizaciones-grid">
+        <div class="auto-card">
+            <span class="auto-icon">🧾</span>
+            <h3>Facturación automática</h3>
+            <p>Genera y envía facturas o albaranes de forma automática cuando se completa un servicio o pago.</p>
+            <span class="auto-saving">Ahorra ~2h/semana</span>
+        </div>
+        <div class="auto-card">
+            <span class="auto-icon">🔔</span>
+            <h3>Recordatorios de cobro</h3>
+            <p>Envío automático de avisos de pago pendiente a clientes, sin que tengas que escribir ni uno.</p>
+            <span class="auto-saving">Sin incómodos</span>
+        </div>
+        <div class="auto-card">
+            <span class="auto-icon">📊</span>
+            <h3>Registro de gastos</h3>
+            <p>Captura y clasifica tus gastos automáticamente desde el móvil, sin hojas de Excel manuales.</p>
+            <span class="auto-saving">Ahorra ~1h/semana</span>
+        </div>
+        <div class="auto-card">
+            <span class="auto-icon">💬</span>
+            <h3>Respuestas automáticas</h3>
+            <p>Atiende las preguntas frecuentes de clientes por WhatsApp o email sin que estés pendiente.</p>
+            <span class="auto-saving">Ahorra ~3h/semana</span>
+        </div>
+        <div class="auto-card">
+            <span class="auto-icon">📅</span>
+            <h3>Agenda y reservas online</h3>
+            <p>Los clientes reservan cita solos. El sistema confirma, recuerda y gestiona cancelaciones.</p>
+            <span class="auto-saving">Ahorra ~4h/semana</span>
+        </div>
+        <div class="auto-card">
+            <span class="auto-icon">📱</span>
+            <h3>Notificaciones inteligentes</h3>
+            <p>Recibe alertas cuando algo requiere tu atención real. El resto lo gestiona el sistema solo.</p>
+            <span class="auto-saving">Solo lo urgente</span>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CÓMO FUNCIONA -->
+<div id="como">
+    <div class="section-inner">
+        <p class="section-label">El proceso</p>
+        <h2>De la idea a la <span>automatización en marcha</span></h2>
+        <div class="pasos">
+            <div class="paso">
+                <div class="paso-num">1</div>
+                <h3>Diagnóstico</h3>
+                <p>Analizamos qué tareas realizas cada semana y cuáles tienen más potencial de automatización.</p>
+            </div>
+            <div class="paso">
+                <div class="paso-num">2</div>
+                <h3>Diseño del flujo</h3>
+                <p>Diseño las automatizaciones priorizando las que más impacto tienen en menos tiempo.</p>
+            </div>
+            <div class="paso">
+                <div class="paso-num">3</div>
+                <h3>Configuración</h3>
+                <p>Conecto las herramientas, configuro los flujos y hago pruebas hasta que todo funciona perfectamente.</p>
+            </div>
+            <div class="paso">
+                <div class="paso-num">4</div>
+                <h3>Entrega + formación</h3>
+                <p>Te explico cómo funciona todo y te dejo las automatizaciones corriendo. Opcionalmente, mantenimiento mensual.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PRECIO -->
+<div class="section">
+    <p class="section-label">Inversión</p>
+    <h2>Precio <span>claro desde el primer día</span></h2>
+    <div class="precio-card">
+        <div class="precio-badge">⚙️ Configuración inicial</div>
+        <div class="precio-main">
+            <div class="precio-amount"><span>Desde </span>150€</div>
+        </div>
+        <p class="precio-note">Pago único por la configuración. Sin sorpresas. El precio final depende del número y complejidad de las automatizaciones.</p>
+        <div class="precio-two-col">
+            <div class="precio-col">
+                <h4>Incluye siempre</h4>
+                <ul class="precio-list">
+                    <li>Análisis de tu negocio</li>
+                    <li>Diseño del flujo de automatización</li>
+                    <li>Configuración completa</li>
+                    <li>Pruebas y ajustes</li>
+                    <li>Formación de uso (30 min)</li>
+                    <li>15 días de soporte post-entrega</li>
+                </ul>
+            </div>
+            <div class="precio-col">
+                <h4>Ejemplos de precio</h4>
+                <ul class="precio-list">
+                    <li>Respuestas automáticas básicas: ~150€</li>
+                    <li>Sistema de reservas + recordatorios: ~250€</li>
+                    <li>Facturación + cobros automáticos: ~300€</li>
+                    <li>Pack completo (3–5 automatizaciones): ~450€</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mantenimiento-banner">
+            <div>
+                <p><strong>Mantenimiento mensual opcional</strong></p>
+                <p>Revisión periódica, ajustes y soporte continuo para que todo siga funcionando.</p>
+            </div>
+            <div class="mantenimiento-price">30–50€/mes</div>
+        </div>
+        <p class="precio-disclaimer" style="margin-top: 1.5rem;">El precio de las herramientas (Make, Zapier, etc.) no está incluido — suelen costar entre 0 y 20€/mes. Te ayudo a elegir la opción más económica para tu caso.</p>
+    </div>
+</div>
+
+<!-- CTA FINAL -->
+<div id="cta-final">
+    <div class="cta-inner">
+        <p class="section-label">¿Empezamos?</p>
+        <h2>Recupera <span>horas cada semana</span></h2>
+        <p class="cta-sub">Cuéntame qué haces y te digo en qué puedo ayudarte. Sin compromiso.</p>
+        <div class="cta-buttons">
+            <a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20me%20interesa%20automatizar%20tareas%20de%20mi%20negocio%2C%20%C2%BFhablamos%3F" target="_blank" rel="noopener" class="btn-whatsapp">
+                <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Escribir por WhatsApp
+            </a>
+            <a href="mailto:ricardollastarry.ai@gmail.com?subject=Informaci%C3%B3n%20Automatizaciones%20IA" class="btn-ghost">Enviar email →</a>
+        </div>
+
+        <div class="form-separator" id="formulario">o rellena el formulario</div>
+
+        <form class="contacto-form" id="contact-form">
+            <input type="hidden" name="servicio" value="Automatizaciones IA">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nombre">Nombre *</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label for="femail">Email *</label>
+                    <input type="email" id="femail" name="email" required placeholder="tu@email.com">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono / WhatsApp</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="600 000 000">
+            </div>
+            <div class="form-group">
+                <label for="negocio">¿A qué te dedicas? *</label>
+                <input type="text" id="negocio" name="negocio" required placeholder="Ej: fontanero, fisioterapeuta, gestoría…">
+            </div>
+            <div class="form-group">
+                <label for="tarea">¿Qué tarea quieres automatizar primero?</label>
+                <select id="tarea" name="tarea">
+                    <option value="">Selecciona una opción</option>
+                    <option value="facturas">Facturación y albaranes</option>
+                    <option value="cobros">Recordatorios de cobro</option>
+                    <option value="respuestas">Respuestas automáticas (email/WhatsApp)</option>
+                    <option value="agenda">Agenda y reservas</option>
+                    <option value="gastos">Registro de gastos</option>
+                    <option value="no-se">No sé, quiero que me lo digas tú</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mensaje">Cuéntame más (opcional)</label>
+                <textarea id="mensaje" name="mensaje" placeholder="¿Cuánto tiempo dedicas a estas tareas? ¿Usas alguna herramienta ya?"></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="form-btn">Quiero automatizar mi negocio →</button>
+            <div class="form-success" id="form-success">✅ ¡Mensaje recibido! Te respondo en menos de 24h.</div>
+            <div class="form-error-msg" id="form-error">Algo fue mal. Escríbeme directamente por <a href="https://wa.me/34686712391">WhatsApp</a>.</div>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <span>© 2026 R.Llastarry IA · Rubí, Barcelona</span>
+    <a href="index.html">← Volver a la web principal</a>
+</footer>
+
+<script>
+(function() {
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('form-btn');
+        var successEl = document.getElementById('form-success');
+        var errorEl = document.getElementById('form-error');
+        btn.disabled = true;
+        btn.textContent = 'Enviando…';
+        successEl.style.display = 'none';
+        errorEl.style.display = 'none';
+        try {
+            var resp = await fetch('https://formspree.io/f/xaqvqder', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+            if (resp.ok) {
+                form.querySelectorAll('input, textarea, select').forEach(function(el){ el.value = ''; });
+                btn.style.display = 'none';
+                successEl.style.display = 'block';
+            } else {
+                btn.disabled = false;
+                btn.textContent = 'Quiero automatizar mi negocio →';
+                errorEl.style.display = 'block';
+            }
+        } catch(err) {
+            btn.disabled = false;
+            btn.textContent = 'Quiero automatizar mi negocio →';
+            errorEl.style.display = 'block';
+        }
+    });
+})();
+</script>
+</body>
+</html>

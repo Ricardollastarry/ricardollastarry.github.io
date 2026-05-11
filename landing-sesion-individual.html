@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión Individual de IA para tu negocio — R.Llastarry IA</title>
+    <meta name="description" content="1 hora de diagnóstico personalizado con IA para autónomos y PYMES en Rubí. Hoja de ruta concreta + 15 días de seguimiento. Desde 90€.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --navy:   #0f1c2e;
+            --navy2:  #162538;
+            --navy3:  #1e3452;
+            --orange: #f07c1e;
+            --orange2:#d96810;
+            --blue:   #3a6898;
+            --muted:  #8ba5c2;
+            --white:  #ffffff;
+            --font-brand: 'Bricolage Grotesque', sans-serif;
+            --font-body:  'Instrument Sans', sans-serif;
+        }
+
+        body {
+            background: var(--navy);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2.5rem;
+            background: rgba(15,28,46,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(58,104,152,0.2);
+        }
+        .nav-brand {
+            font-family: var(--font-brand);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+        .nav-brand span { color: var(--orange); }
+        .nav-back {
+            font-size: 0.85rem;
+            color: var(--muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--orange); }
+
+        /* ── HERO ── */
+        #hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2.5rem 5rem;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse 60% 70% at 30% 50%, rgba(58,104,152,0.1) 0%, transparent 70%);
+        }
+        #hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse 40% 50% at 75% 40%, rgba(240,124,30,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--orange);
+            border: 1px solid rgba(240,124,30,0.4);
+            padding: 0.3rem 0.85rem;
+            border-radius: 2px;
+            margin-bottom: 1.4rem;
+        }
+        h1 {
+            font-family: var(--font-brand);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.2rem;
+        }
+        h1 span { color: var(--orange); }
+        .hero-sub {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+            margin-bottom: 2.2rem;
+            max-width: 480px;
+        }
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--orange);
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.9rem 1.9rem;
+            border-radius: 4px;
+            transition: background 0.2s, transform 0.15s;
+            white-space: nowrap;
+        }
+        .btn-primary:hover { background: var(--orange2); transform: translateY(-2px); }
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1.5px solid rgba(240,124,30,0.45);
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.9rem 1.6rem;
+            border-radius: 4px;
+            transition: border-color 0.2s, background 0.2s;
+            white-space: nowrap;
+        }
+        .btn-ghost:hover { border-color: var(--orange); background: rgba(240,124,30,0.06); }
+        .hero-trust {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+        }
+        .trust-item {
+            font-size: 0.82rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .trust-item svg { width: 14px; height: 14px; color: var(--orange); flex-shrink: 0; }
+
+        /* Hero visual: sesión card */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+        }
+        .sesion-card-mock {
+            width: 100%;
+            max-width: 380px;
+            background: var(--navy2);
+            border: 1px solid rgba(240,124,30,0.25);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+        }
+        .sesion-card-header {
+            background: linear-gradient(135deg, rgba(240,124,30,0.18) 0%, rgba(58,104,152,0.12) 100%);
+            padding: 1.8rem;
+            border-bottom: 1px solid rgba(240,124,30,0.15);
+        }
+        .sesion-card-emoji { font-size: 2rem; margin-bottom: 0.6rem; }
+        .sesion-card-title {
+            font-family: var(--font-brand);
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 0.3rem;
+        }
+        .sesion-card-sub {
+            font-size: 0.82rem;
+            color: var(--muted);
+        }
+        .sesion-card-body { padding: 1.5rem; }
+        .sesion-detail-row {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(58,104,152,0.12);
+            font-size: 0.88rem;
+        }
+        .sesion-detail-row:last-child { border-bottom: none; }
+        .sesion-detail-icon {
+            width: 32px; height: 32px;
+            background: rgba(240,124,30,0.1);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        .sesion-detail-label { color: var(--muted); font-size: 0.75rem; display: block; }
+        .sesion-detail-value { color: var(--white); font-weight: 600; }
+        .sesion-price-row {
+            margin-top: 1.2rem;
+            background: rgba(240,124,30,0.08);
+            border: 1px solid rgba(240,124,30,0.25);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sesion-price-label { font-size: 0.8rem; color: var(--muted); }
+        .sesion-price-value {
+            font-family: var(--font-brand);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--orange);
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(58,104,152,0.3), transparent);
+        }
+
+        /* ── SECTIONS ── */
+        .section {
+            padding: 5rem 2.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 0.8rem;
+        }
+        h2 {
+            font-family: var(--font-brand);
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+        }
+        h2 span { color: var(--orange); }
+
+        /* ── PROBLEMA ── */
+        .problema-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        .problema-card {
+            background: var(--navy2);
+            border: 1px solid rgba(58,104,152,0.2);
+            border-radius: 8px;
+            padding: 1.8rem;
+        }
+        .problema-icon { font-size: 1.8rem; margin-bottom: 0.9rem; }
+        .problema-card h3 {
+            font-family: var(--font-brand);
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+        .problema-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+        /* ── SOLUCIÓN ── */
+        #solucion {
+            background: var(--navy2);
+            max-width: 100%;
+            padding: 5rem 0;
+        }
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+        .solucion-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            margin-top: 2rem;
+        }
+        .solucion-text p {
+            color: rgba(255,255,255,0.72);
+            font-size: 1.02rem;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+        .solucion-text p strong { color: var(--orange); font-weight: 600; }
+        .solucion-quote {
+            background: rgba(240,124,30,0.06);
+            border-left: 3px solid var(--orange);
+            padding: 1.2rem 1.4rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
+            font-style: italic;
+            line-height: 1.6;
+        }
+        .solucion-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: var(--navy);
+            border: 1px solid rgba(58,104,152,0.2);
+            border-radius: 8px;
+            padding: 1.2rem 1.4rem;
+        }
+        .feature-icon {
+            width: 40px; height: 40px;
+            background: rgba(240,124,30,0.12);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+        .feature-item h4 {
+            font-family: var(--font-brand);
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .feature-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+        /* ── QUÉ INCLUYE ── */
+        .incluye-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+        .incluye-item {
+            display: flex;
+            gap: 0.9rem;
+            align-items: flex-start;
+            padding: 1.2rem 1.4rem;
+            background: var(--navy2);
+            border: 1px solid rgba(58,104,152,0.18);
+            border-radius: 8px;
+        }
+        .incluye-check {
+            width: 22px; height: 22px;
+            background: rgba(240,124,30,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+        .incluye-check svg { width: 12px; height: 12px; }
+        .incluye-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .incluye-item p { font-size: 0.83rem; color: var(--muted); line-height: 1.5; }
+
+        /* ── CÓMO FUNCIONA ── */
+        #como {
+            background: var(--navy2);
+            max-width: 100%;
+            padding: 5rem 0;
+        }
+        .pasos {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            position: relative;
+        }
+        .pasos::before {
+            content: '';
+            position: absolute;
+            top: 1.5rem;
+            left: 12%;
+            right: 12%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(240,124,30,0.3), transparent);
+        }
+        .paso { text-align: center; position: relative; }
+        .paso-num {
+            width: 48px; height: 48px;
+            background: var(--navy2);
+            border: 1.5px solid rgba(240,124,30,0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-family: var(--font-brand);
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--orange);
+            position: relative;
+            z-index: 1;
+        }
+        .paso h3 { font-family: var(--font-brand); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .paso p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+        .paso-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--orange);
+            background: rgba(240,124,30,0.1);
+            padding: 0.15rem 0.5rem;
+            border-radius: 2px;
+            margin-top: 0.5rem;
+        }
+
+        /* ── PRECIO ── */
+        .precio-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        .precio-card {
+            background: var(--navy2);
+            border: 1.5px solid rgba(58,104,152,0.25);
+            border-radius: 12px;
+            padding: 2.2rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .precio-card.featured {
+            border-color: rgba(240,124,30,0.45);
+        }
+        .precio-card.featured::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--orange), var(--blue));
+        }
+        .precio-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.7rem;
+            border-radius: 2px;
+            margin-bottom: 1rem;
+        }
+        .precio-tag.normal { background: rgba(58,104,152,0.2); color: var(--muted); }
+        .precio-tag.popular { background: rgba(240,124,30,0.15); color: var(--orange); border: 1px solid rgba(240,124,30,0.3); }
+        .precio-amount {
+            font-family: var(--font-brand);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+        .precio-card.featured .precio-amount { color: var(--orange); }
+        .precio-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.5; }
+        .precio-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .precio-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.8);
+        }
+        .precio-list li::before {
+            content: '→';
+            color: var(--orange);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* ── CTA FINAL ── */
+        #cta-final {
+            background: linear-gradient(135deg, rgba(240,124,30,0.08) 0%, rgba(58,104,152,0.08) 100%);
+            max-width: 100%;
+            padding: 5rem 0;
+            border-top: 1px solid rgba(240,124,30,0.15);
+        }
+        #cta-final .cta-inner {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        #cta-final h2 { margin-bottom: 0.8rem; }
+        #cta-final > .cta-inner > p {
+            color: rgba(255,255,255,0.65);
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #25d366;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.9rem 1.9rem;
+            border-radius: 4px;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
+        .btn-whatsapp svg { width: 18px; height: 18px; }
+
+        .contacto-form {
+            background: var(--navy2);
+            border: 1px solid rgba(58,104,152,0.25);
+            border-radius: 10px;
+            padding: 2rem 2.2rem;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            background: rgba(15,28,46,0.9);
+            border: 1px solid rgba(58,104,152,0.3);
+            border-radius: 5px;
+            padding: 0.75rem 1rem;
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus { border-color: var(--orange); }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(139,165,194,0.4); }
+        .form-group select option { background: var(--navy2); }
+        .form-group textarea { resize: vertical; min-height: 110px; }
+        .form-submit {
+            width: 100%;
+            background: var(--orange);
+            color: var(--navy);
+            border: none;
+            border-radius: 5px;
+            padding: 0.95rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 0.3rem;
+        }
+        .form-submit:hover { background: var(--orange2); }
+        .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+        .form-success {
+            display: none;
+            background: rgba(46,160,67,0.1);
+            border: 1px solid rgba(46,160,67,0.3);
+            border-radius: 6px;
+            padding: 1.2rem;
+            color: #7ee88a;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .form-error-msg {
+            display: none;
+            background: rgba(255,80,80,0.08);
+            border: 1px solid rgba(255,80,80,0.25);
+            border-radius: 6px;
+            padding: 1rem;
+            color: #ff9090;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.88rem;
+        }
+        .form-error-msg a { color: var(--orange); }
+        .form-separator {
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        .form-separator::before, .form-separator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: rgba(58,104,152,0.25);
+        }
+        .form-separator::before { left: 0; }
+        .form-separator::after { right: 0; }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid rgba(58,104,152,0.15);
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+        footer a { color: var(--orange); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.2rem; }
+            #hero { padding: 6rem 1.2rem 3.5rem; min-height: auto; }
+            .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+            .hero-visual { display: none; }
+            .section { padding: 3.5rem 1.2rem; }
+            .section-inner { padding: 0 1.2rem; }
+            #solucion, #como, #cta-final { padding: 3.5rem 0; }
+            .solucion-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .problema-grid { grid-template-columns: 1fr; }
+            .incluye-grid { grid-template-columns: 1fr; }
+            .pasos { grid-template-columns: 1fr 1fr; }
+            .pasos::before { display: none; }
+            .precio-wrapper { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .contacto-form { padding: 1.4rem; }
+            footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .hero-trust { gap: 1rem; }
+        }
+        @media (max-width: 480px) {
+            .pasos { grid-template-columns: 1fr; }
+            .hero-ctas { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a class="nav-brand" href="index.html">R.<span>Llastarry</span> IA</a>
+    <a class="nav-back" href="index.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Volver a la web
+    </a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+    <div class="hero-inner">
+        <div>
+            <div class="hero-badge">🎯 Servicio — Sesión Individual</div>
+            <h1>1 hora para saber <span>exactamente qué hacer</span> con la IA</h1>
+            <p class="hero-sub">Diagnóstico personalizado de tu negocio. Te digo qué herramientas usar, cómo empezar y te acompaño durante 15 días. Sin rodeos.</p>
+            <div class="hero-ctas">
+                <a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20me%20interesa%20reservar%20una%20Sesi%C3%B3n%20Individual%20de%20IA" target="_blank" rel="noopener" class="btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Reservar sesión por WhatsApp
+                </a>
+                <a href="#formulario" class="btn-ghost">Ver detalles →</a>
+            </div>
+            <div class="hero-trust">
+                <span class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    1 hora intensiva
+                </span>
+                <span class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    15 días seguimiento
+                </span>
+                <span class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Desde 90€
+                </span>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="sesion-card-mock">
+                <div class="sesion-card-header">
+                    <div class="sesion-card-emoji">🎯</div>
+                    <div class="sesion-card-title">Sesión Individual IA</div>
+                    <div class="sesion-card-sub">Tu negocio · Tu IA · Tu hoja de ruta</div>
+                </div>
+                <div class="sesion-card-body">
+                    <div class="sesion-detail-row">
+                        <div class="sesion-detail-icon">⏱️</div>
+                        <div>
+                            <span class="sesion-detail-label">Duración</span>
+                            <span class="sesion-detail-value">1 hora de sesión</span>
+                        </div>
+                    </div>
+                    <div class="sesion-detail-row">
+                        <div class="sesion-detail-icon">📋</div>
+                        <div>
+                            <span class="sesion-detail-label">Incluye</span>
+                            <span class="sesion-detail-value">Diagnóstico + hoja de ruta</span>
+                        </div>
+                    </div>
+                    <div class="sesion-detail-row">
+                        <div class="sesion-detail-icon">💬</div>
+                        <div>
+                            <span class="sesion-detail-label">Seguimiento</span>
+                            <span class="sesion-detail-value">15 días por WhatsApp</span>
+                        </div>
+                    </div>
+                    <div class="sesion-detail-row">
+                        <div class="sesion-detail-icon">📍</div>
+                        <div>
+                            <span class="sesion-detail-label">Modalidad</span>
+                            <span class="sesion-detail-value">Online o presencial (Rubí)</span>
+                        </div>
+                    </div>
+                    <div class="sesion-price-row">
+                        <div>
+                            <div class="sesion-price-label">Inversión</div>
+                        </div>
+                        <div class="sesion-price-value">90–120€</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EL PROBLEMA -->
+<div class="section">
+    <p class="section-label">¿Te suena familiar?</p>
+    <h2>Sabes que la IA puede ayudarte, <span>pero no sabes por dónde empezar</span></h2>
+    <div class="problema-grid">
+        <div class="problema-card">
+            <div class="problema-icon">🌀</div>
+            <h3>Demasiadas herramientas</h3>
+            <p>ChatGPT, Gemini, Copilot, Make, Notion AI… El mercado se mueve muy rápido y es fácil perderse sin saber qué te conviene realmente.</p>
+        </div>
+        <div class="problema-card">
+            <div class="problema-icon">⏳</div>
+            <h3>No tienes tiempo de probarlo todo</h3>
+            <p>Llevas tu negocio solo o con pocos empleados. No puedes invertir horas en tutoriales que puede que no apliquen a tu caso concreto.</p>
+        </div>
+        <div class="problema-card">
+            <div class="problema-icon">🎯</div>
+            <h3>Quieres resultados, no teoría</h3>
+            <p>No te interesan las charlas genéricas sobre "el futuro de la IA". Quieres saber qué herramienta específica te ahorra tiempo esta semana.</p>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- LA SOLUCIÓN -->
+<div id="solucion">
+    <div class="section-inner">
+        <p class="section-label">Lo que conseguirás</p>
+        <h2>Una hoja de ruta <span>hecha para tu negocio concreto</span></h2>
+        <div class="solucion-grid">
+            <div class="solucion-text">
+                <p>En 1 hora te escucho, analizo tu negocio y te digo exactamente qué herramientas usar, en qué orden y cómo sacarles partido.</p>
+                <p>No recibo comisiones de ninguna herramienta. Mi única motivación es que <strong>tú salgas con algo útil y aplicable desde ese mismo día</strong>.</p>
+                <p>Después de la sesión, tienes 15 días para escribirme por WhatsApp con cualquier duda que surja al implementar lo que hablamos. No estás solo en el proceso.</p>
+                <div class="solucion-quote">
+                    "Salgo de la sesión con 3 herramientas concretas que ya estoy usando y que me ahorran 2 horas al día. Ojalá lo hubiera hecho antes."
+                    <br><br><strong style="color: var(--orange); font-style: normal;">— El objetivo de cada sesión</strong>
+                </div>
+            </div>
+            <div class="solucion-features">
+                <div class="feature-item">
+                    <div class="feature-icon">🔍</div>
+                    <div>
+                        <h4>Diagnóstico real</h4>
+                        <p>Analizamos juntos cómo funciona tu negocio hoy y dónde la IA puede generar más impacto con menos esfuerzo.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🛠️</div>
+                    <div>
+                        <h4>Herramientas concretas</h4>
+                        <p>No listas genéricas. Las 2–4 herramientas específicas que más sentido tienen para tu sector y tu forma de trabajar.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🗺️</div>
+                    <div>
+                        <h4>Hoja de ruta escrita</h4>
+                        <p>Al final de la sesión recibes un documento con los pasos ordenados, los recursos y las prioridades. Nada se pierde.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💬</div>
+                    <div>
+                        <h4>15 días de acompañamiento</h4>
+                        <p>Si al implementarlo surge alguna duda, me escribes por WhatsApp y te respondo. No desaparezco tras la sesión.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- QUÉ INCLUYE -->
+<div class="section">
+    <p class="section-label">Qué incluye</p>
+    <h2>Todo lo que necesitas para <span>arrancar de verdad</span></h2>
+    <div class="incluye-grid">
+        <div class="incluye-item">
+            <div class="incluye-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+                <h4>Cuestionario previo</h4>
+                <p>Antes de la sesión te envío 5 preguntas cortas para aprovechar al máximo la hora juntos.</p>
+            </div>
+        </div>
+        <div class="incluye-item">
+            <div class="incluye-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+                <h4>1 hora de sesión 1:1</h4>
+                <p>Online por videollamada o presencial en Rubí, según prefieras. Sin interrupciones, enfocada en ti.</p>
+            </div>
+        </div>
+        <div class="incluye-item">
+            <div class="incluye-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+                <h4>Diagnóstico de tu situación actual</h4>
+                <p>Qué estás haciendo hoy, dónde pierdes más tiempo y qué tareas son candidatas a automatizarse.</p>
+            </div>
+        </div>
+        <div class="incluye-item">
+            <div class="incluye-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+                <h4>Herramientas recomendadas</h4>
+                <p>Las 2–4 herramientas de IA más adecuadas para tu negocio específico, con explicación de cómo usarlas.</p>
+            </div>
+        </div>
+        <div class="incluye-item">
+            <div class="incluye-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+                <h4>Hoja de ruta de primeros pasos</h4>
+                <p>Documento escrito con las acciones ordenadas por prioridad para que sepas exactamente qué hacer primero.</p>
+            </div>
+        </div>
+        <div class="incluye-item">
+            <div class="incluye-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+                <h4>15 días de seguimiento por WhatsApp</h4>
+                <p>Dudas, ajustes, "esto no me funciona"… Estoy disponible para acompañarte mientras arrancas.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CÓMO FUNCIONA -->
+<div id="como">
+    <div class="section-inner">
+        <p class="section-label">El proceso</p>
+        <h2>Sencillo, rápido y <span>sin burocracia</span></h2>
+        <div class="pasos">
+            <div class="paso">
+                <div class="paso-num">1</div>
+                <h3>Reservas</h3>
+                <p>Me escribes por WhatsApp o formulario. Elegimos fecha y te envío el cuestionario previo de 5 preguntas.</p>
+                <span class="paso-tag">Hoy mismo</span>
+            </div>
+            <div class="paso">
+                <div class="paso-num">2</div>
+                <h3>Me preparas</h3>
+                <p>Rellenas el cuestionario en 10 minutos. Así llego a la sesión ya con contexto de tu negocio.</p>
+                <span class="paso-tag">Antes de la sesión</span>
+            </div>
+            <div class="paso">
+                <div class="paso-num">3</div>
+                <h3>Sesión 1 hora</h3>
+                <p>Diagnóstico, herramientas recomendadas y hoja de ruta. Concreto, sin rodeos y adaptado a ti.</p>
+                <span class="paso-tag">Día acordado</span>
+            </div>
+            <div class="paso">
+                <div class="paso-num">4</div>
+                <h3>Arrancas + soporte</h3>
+                <p>Recibes la hoja de ruta escrita. Durante 15 días puedes escribirme las dudas que vayan surgiendo.</p>
+                <span class="paso-tag">15 días</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PRECIO -->
+<div class="section">
+    <p class="section-label">Inversión</p>
+    <h2>Elige el formato que <span>más te encaja</span></h2>
+    <div class="precio-wrapper">
+        <div class="precio-card">
+            <div class="precio-tag normal">Sesión única</div>
+            <div class="precio-amount">90€</div>
+            <p class="precio-desc">Para quien quiere un diagnóstico rápido y ya tiene claro que va a moverse solo después.</p>
+            <ul class="precio-list">
+                <li>Cuestionario previo</li>
+                <li>1 hora de sesión 1:1</li>
+                <li>Diagnóstico completo</li>
+                <li>Herramientas recomendadas</li>
+                <li>Hoja de ruta escrita</li>
+                <li>7 días de seguimiento WhatsApp</li>
+            </ul>
+        </div>
+        <div class="precio-card featured">
+            <div class="precio-tag popular">⭐ Más completo</div>
+            <div class="precio-amount">120€</div>
+            <p class="precio-desc">Para quien quiere asegurarse de que las cosas arrancan bien y tener apoyo durante las primeras semanas.</p>
+            <ul class="precio-list">
+                <li>Todo lo del plan Sesión única</li>
+                <li>15 días de seguimiento WhatsApp</li>
+                <li>Demo en vivo de las herramientas</li>
+                <li>Recursos adicionales y tutoriales</li>
+                <li>Ajuste de la hoja de ruta si cambia algo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- CTA FINAL -->
+<div id="cta-final">
+    <div class="cta-inner">
+        <p class="section-label">¿Empezamos?</p>
+        <h2>Reserva tu sesión y sal con <span>un plan claro</span></h2>
+        <p>Escríbeme por WhatsApp o rellena el formulario. En menos de 24h te confirmo fecha y te envío el cuestionario previo.</p>
+        <div class="cta-buttons">
+            <a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20quiero%20reservar%20una%20Sesi%C3%B3n%20Individual%20de%20IA%20para%20mi%20negocio" target="_blank" rel="noopener" class="btn-whatsapp">
+                <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Reservar por WhatsApp
+            </a>
+            <a href="mailto:ricardollastarry.ai@gmail.com?subject=Reserva%20Sesi%C3%B3n%20Individual%20IA" class="btn-ghost">Enviar email →</a>
+        </div>
+
+        <div class="form-separator" id="formulario">o rellena el formulario</div>
+
+        <form class="contacto-form" id="contact-form">
+            <input type="hidden" name="servicio" value="Sesión Individual IA">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nombre">Nombre *</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label for="femail">Email *</label>
+                    <input type="email" id="femail" name="email" required placeholder="tu@email.com">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono / WhatsApp</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="600 000 000">
+            </div>
+            <div class="form-group">
+                <label for="negocio">¿A qué te dedicas? *</label>
+                <input type="text" id="negocio" name="negocio" required placeholder="Ej: carpintero, consultor, tienda de moda…">
+            </div>
+            <div class="form-group">
+                <label for="formato">Formato preferido</label>
+                <select id="formato" name="formato">
+                    <option value="">Selecciona una opción</option>
+                    <option value="online">Online (videollamada)</option>
+                    <option value="presencial">Presencial en Rubí</option>
+                    <option value="indiferente">Me es indiferente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mensaje">¿Qué quieres conseguir con la sesión?</label>
+                <textarea id="mensaje" name="mensaje" placeholder="Cuéntame brevemente qué te gustaría mejorar en tu negocio con la IA..."></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="form-btn">Reservar mi sesión →</button>
+            <div class="form-success" id="form-success">✅ ¡Mensaje recibido! Te confirmo fecha en menos de 24h.</div>
+            <div class="form-error-msg" id="form-error">Algo fue mal. Escríbeme directamente por <a href="https://wa.me/34686712391">WhatsApp</a>.</div>
+        </form>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <span>© 2026 R.Llastarry IA · Rubí, Barcelona</span>
+    <a href="index.html">← Volver a la web principal</a>
+</footer>
+
+<script>
+(function() {
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('form-btn');
+        var successEl = document.getElementById('form-success');
+        var errorEl = document.getElementById('form-error');
+        btn.disabled = true;
+        btn.textContent = 'Enviando…';
+        successEl.style.display = 'none';
+        errorEl.style.display = 'none';
+        try {
+            var resp = await fetch('https://formspree.io/f/xaqvqder', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+            if (resp.ok) {
+                form.querySelectorAll('input, textarea, select').forEach(function(el){ el.value = ''; });
+                btn.style.display = 'none';
+                successEl.style.display = 'block';
+            } else {
+                btn.disabled = false;
+                btn.textContent = 'Reservar mi sesión →';
+                errorEl.style.display = 'block';
+            }
+        } catch(err) {
+            btn.disabled = false;
+            btn.textContent = 'Reservar mi sesión →';
+            errorEl.style.display = 'block';
+        }
+    });
+})();
+</script>
+
+</body>
+</html>
