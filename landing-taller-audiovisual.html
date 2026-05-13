@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taller IA Grupal para equipos y asociaciones — R.Llastarry IA</title>
-    <meta name="description" content="Taller práctico de 3 horas (mínimo) sobre IA para equipos, asociaciones y PYMES en Rubí y Barcelona. Sin tecnicismos, con ejemplos reales. Desde 40€/persona.">
+    <title>Taller Audiovisual con IA — Crea imágenes, música y vídeos — R.Llastarry IA</title>
+    <meta name="description" content="Taller práctico para crear imágenes, música, voces y vídeos con IA desde el móvil. Sin experiencia previa. Rubí, Barcelona. 10€. Lista de espera abierta.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -43,8 +43,9 @@
             overflow: hidden;
             background: radial-gradient(ellipse 60% 70% at 40% 50%, rgba(58,104,152,0.1) 0%, transparent 70%);
         }
+        #hero::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse 35% 50% at 75% 35%, rgba(240,124,30,0.06) 0%, transparent 70%); pointer-events: none; }
         .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
-        .hero-badge { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); border: 1px solid rgba(240,124,30,0.4); padding: 0.3rem 0.85rem; border-radius: 2px; margin-bottom: 1.4rem; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); border: 1px solid rgba(240,124,30,0.4); padding: 0.3rem 0.85rem; border-radius: 2px; margin-bottom: 1.4rem; }
         h1 { font-family: var(--font-brand); font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 1.2rem; }
         h1 span { color: var(--orange); }
         .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 2.2rem; max-width: 480px; }
@@ -57,34 +58,36 @@
         .trust-item { font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: 0.4rem; }
         .trust-item svg { width: 14px; height: 14px; color: var(--orange); flex-shrink: 0; }
 
-        /* Hero visual: asistentes */
+        /* ESPERA BADGE */
+        .espera-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(240,124,30,0.12); border: 1px solid rgba(240,124,30,0.35); border-radius: 6px; padding: 0.6rem 1rem; font-size: 0.85rem; color: var(--orange); font-weight: 600; margin-bottom: 1.5rem; }
+        .espera-dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; animation: pulse 1.5s infinite; flex-shrink: 0; }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+
+        /* HERO VISUAL: modulos grid */
         .hero-visual { display: flex; justify-content: center; align-items: center; }
-        .taller-mock {
+        .modulos-mock {
             width: 100%;
-            max-width: 380px;
+            max-width: 360px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .modulo-card {
             background: var(--navy2);
             border: 1px solid rgba(58,104,152,0.25);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: border-color 0.2s;
         }
-        .taller-mock-header {
-            background: linear-gradient(135deg, rgba(240,124,30,0.15), rgba(58,104,152,0.1));
-            padding: 1.5rem;
-            border-bottom: 1px solid rgba(58,104,152,0.2);
-            text-align: center;
-        }
-        .taller-mock-emoji { font-size: 2.5rem; margin-bottom: 0.5rem; display: block; }
-        .taller-mock-title { font-family: var(--font-brand); font-size: 1rem; font-weight: 800; }
-        .taller-mock-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; }
-        .taller-mock-body { padding: 1.3rem; }
-        .taller-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1rem; }
-        .taller-stat { background: var(--navy3); border-radius: 8px; padding: 0.9rem; text-align: center; }
-        .taller-stat-num { font-family: var(--font-brand); font-size: 1.4rem; font-weight: 800; color: var(--orange); line-height: 1; }
-        .taller-stat-label { font-size: 0.72rem; color: var(--muted); margin-top: 0.25rem; }
-        .taller-topics { display: flex; flex-direction: column; gap: 0.45rem; }
-        .taller-topic { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: rgba(255,255,255,0.75); }
-        .taller-topic::before { content: '→'; color: var(--orange); font-weight: 700; flex-shrink: 0; }
+        .modulo-card:hover { border-color: rgba(240,124,30,0.4); }
+        .modulo-emoji { font-size: 1.8rem; flex-shrink: 0; }
+        .modulo-info { flex: 1; }
+        .modulo-title { font-family: var(--font-brand); font-size: 0.9rem; font-weight: 700; margin-bottom: 0.2rem; }
+        .modulo-tools { font-size: 0.72rem; color: var(--orange); }
+        .modulo-time { font-size: 0.72rem; color: var(--muted); font-family: var(--font-brand); font-weight: 700; }
 
         /* DIVIDER */
         .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(58,104,152,0.3), transparent); }
@@ -103,27 +106,23 @@
         .audiencia-card h3 { font-family: var(--font-brand); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; }
         .audiencia-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
 
-        /* SOLUCIÓN */
+        /* MODULOS DETALLE */
         #solucion { background: var(--navy2); max-width: 100%; padding: 5rem 0; }
         .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
-        .solucion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 2rem; }
-        .solucion-text p { color: rgba(255,255,255,0.72); font-size: 1.02rem; line-height: 1.75; margin-bottom: 1rem; }
-        .solucion-text p strong { color: var(--orange); font-weight: 600; }
-        .solucion-features { display: flex; flex-direction: column; gap: 1rem; }
-        .feature-item { display: flex; gap: 1rem; align-items: flex-start; background: var(--navy); border: 1px solid rgba(58,104,152,0.2); border-radius: 8px; padding: 1.2rem 1.4rem; }
-        .feature-icon { width: 40px; height: 40px; background: rgba(240,124,30,0.12); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem; }
-        .feature-item h4 { font-family: var(--font-brand); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
-        .feature-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+        .modulos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+        .modulo-detail-card { background: var(--navy); border: 1px solid rgba(58,104,152,0.2); border-radius: 10px; padding: 1.8rem; position: relative; overflow: hidden; transition: border-color 0.2s; }
+        .modulo-detail-card:hover { border-color: rgba(240,124,30,0.3); }
+        .modulo-detail-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--orange), transparent); }
+        .modulo-num { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); background: rgba(240,124,30,0.1); padding: 0.2rem 0.6rem; border-radius: 2px; margin-bottom: 1rem; }
+        .modulo-detail-emoji { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+        .modulo-detail-card h3 { font-family: var(--font-brand); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .modulo-detail-card .duracion { font-size: 0.78rem; color: var(--orange); font-weight: 700; margin-bottom: 0.8rem; }
+        .modulo-detail-card p { font-size: 0.88rem; color: rgba(255,255,255,0.72); line-height: 1.65; margin-bottom: 0.8rem; }
+        .modulo-tools-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .tool-chip { font-size: 0.72rem; font-weight: 600; color: var(--muted); background: rgba(58,104,152,0.2); padding: 0.2rem 0.6rem; border-radius: 3px; }
 
-        /* CONTENIDO */
+        /* INCLUYE */
         .contenido-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2.5rem; align-items: start; }
-        .agenda-taller { background: var(--navy2); border: 1px solid rgba(58,104,152,0.2); border-radius: 10px; padding: 2rem; }
-        .agenda-taller h3 { font-family: var(--font-brand); font-size: 1.05rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--orange); }
-        .agenda-item { display: flex; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid rgba(58,104,152,0.12); }
-        .agenda-item:last-child { border-bottom: none; }
-        .agenda-time { font-family: var(--font-brand); font-size: 0.78rem; font-weight: 700; color: var(--orange); background: rgba(240,124,30,0.1); padding: 0.2rem 0.5rem; border-radius: 3px; white-space: nowrap; height: fit-content; margin-top: 0.1rem; }
-        .agenda-content h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.2rem; }
-        .agenda-content p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
         .incluye-taller { display: flex; flex-direction: column; gap: 0.9rem; }
         .incluye-item { display: flex; gap: 0.9rem; align-items: flex-start; padding: 1rem 1.2rem; background: var(--navy2); border: 1px solid rgba(58,104,152,0.18); border-radius: 8px; }
         .incluye-check { width: 22px; height: 22px; background: rgba(240,124,30,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; }
@@ -141,21 +140,20 @@
         .paso p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
 
         /* PRECIO */
-        .precio-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
-        .precio-card { background: var(--navy2); border: 1.5px solid rgba(58,104,152,0.25); border-radius: 12px; padding: 2.2rem; position: relative; overflow: hidden; }
-        .precio-card.featured { border-color: rgba(240,124,30,0.45); }
-        .precio-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--orange), var(--blue)); }
-        .precio-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 2px; margin-bottom: 1rem; }
-        .precio-tag.base { background: rgba(58,104,152,0.2); color: var(--muted); }
-        .precio-tag.sala { background: rgba(240,124,30,0.15); color: var(--orange); border: 1px solid rgba(240,124,30,0.3); }
-        .precio-amount { font-family: var(--font-brand); font-size: 2.8rem; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 0.3rem; }
-        .precio-card.featured .precio-amount { color: var(--orange); }
-        .precio-unit { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.2rem; }
-        .precio-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+        .precio-card-single { background: var(--navy2); border: 1.5px solid rgba(240,124,30,0.45); border-radius: 12px; padding: 2.5rem; position: relative; overflow: hidden; max-width: 560px; margin: 2.5rem auto 0; text-align: center; }
+        .precio-card-single::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--orange), var(--blue)); }
+        .precio-tag-single { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(240,124,30,0.15); color: var(--orange); border: 1px solid rgba(240,124,30,0.3); padding: 0.25rem 0.7rem; border-radius: 2px; margin-bottom: 1rem; }
+        .precio-amount { font-family: var(--font-brand); font-size: 4rem; font-weight: 800; color: var(--orange); line-height: 1; margin-bottom: 0.3rem; }
+        .precio-unit { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.5rem; }
+        .precio-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; text-align: left; }
         .precio-list li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.88rem; color: rgba(255,255,255,0.8); }
         .precio-list li::before { content: '→'; color: var(--orange); font-weight: 700; flex-shrink: 0; }
-        .precio-nota { margin-top: 2.5rem; background: rgba(58,104,152,0.1); border: 1px solid rgba(58,104,152,0.25); border-radius: 8px; padding: 1.2rem 1.5rem; font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
+        .precio-nota { margin-top: 2rem; background: rgba(58,104,152,0.1); border: 1px solid rgba(58,104,152,0.25); border-radius: 8px; padding: 1.2rem 1.5rem; font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.6; max-width: 560px; margin-left: auto; margin-right: auto; }
         .precio-nota strong { color: var(--white); }
+        .organiz-box { background: linear-gradient(135deg, rgba(58,104,152,0.12), rgba(240,124,30,0.06)); border: 1px solid rgba(240,124,30,0.25); border-radius: 10px; padding: 2rem 2.5rem; margin-top: 2.5rem; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start; }
+        .organiz-icon { font-size: 2.8rem; }
+        .organiz-box h3 { font-family: var(--font-brand); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.6rem; }
+        .organiz-box p { font-size: 0.9rem; color: rgba(255,255,255,0.72); line-height: 1.7; margin-bottom: 0.8rem; }
 
         /* CTA FINAL */
         #cta-final { background: linear-gradient(135deg, rgba(240,124,30,0.08) 0%, rgba(58,104,152,0.08) 100%); max-width: 100%; padding: 5rem 0; border-top: 1px solid rgba(240,124,30,0.15); }
@@ -166,7 +164,6 @@
         .btn-whatsapp { display: inline-flex; align-items: center; gap: 0.6rem; background: #25d366; color: #fff; text-decoration: none; font-weight: 700; font-size: 0.95rem; padding: 0.9rem 1.9rem; border-radius: 4px; transition: background 0.2s, transform 0.15s; }
         .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
         .btn-whatsapp svg { width: 18px; height: 18px; }
-
         .contacto-form { background: var(--navy2); border: 1px solid rgba(58,104,152,0.25); border-radius: 10px; padding: 2rem 2.2rem; text-align: left; max-width: 600px; margin: 0 auto; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         .form-group { margin-bottom: 1rem; }
@@ -175,7 +172,7 @@
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--orange); }
         .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(139,165,194,0.4); }
         .form-group select option { background: var(--navy2); }
-        .form-group textarea { resize: vertical; min-height: 110px; }
+        .form-group textarea { resize: vertical; min-height: 100px; }
         .form-submit { width: 100%; background: var(--orange); color: var(--navy); border: none; border-radius: 5px; padding: 0.95rem; font-family: var(--font-body); font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s; margin-top: 0.3rem; }
         .form-submit:hover { background: var(--orange2); }
         .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -186,7 +183,6 @@
         .form-separator::before, .form-separator::after { content: ''; position: absolute; top: 50%; width: 40%; height: 1px; background: rgba(58,104,152,0.25); }
         .form-separator::before { left: 0; }
         .form-separator::after { right: 0; }
-
         footer { border-top: 1px solid rgba(58,104,152,0.15); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: var(--muted); }
         footer a { color: var(--orange); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
@@ -199,16 +195,15 @@
             .section { padding: 3.5rem 1.2rem; }
             .section-inner { padding: 0 1.2rem; }
             #solucion, #como, #cta-final { padding: 3.5rem 0; }
-            .solucion-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .audiencias-grid { grid-template-columns: 1fr; }
+            .audiencias-grid, .modulos-grid { grid-template-columns: 1fr; }
             .contenido-wrapper { grid-template-columns: 1fr; }
             .pasos { grid-template-columns: 1fr 1fr; }
             .pasos::before { display: none; }
-            .precio-options { grid-template-columns: 1fr; }
             .form-row { grid-template-columns: 1fr; }
             .contacto-form { padding: 1.4rem; }
             footer { flex-direction: column; gap: 0.5rem; text-align: center; }
             .cta-buttons { flex-direction: column; align-items: center; }
+            .organiz-box { grid-template-columns: 1fr; gap: 1rem; }
         }
         @media (max-width: 480px) {
             .pasos { grid-template-columns: 1fr; }
@@ -230,15 +225,19 @@
 <section id="hero">
     <div class="hero-inner">
         <div>
-            <div class="hero-badge">🎤 Servicio — Taller IA Grupal</div>
-            <h1>Mínimo 3 horas para que tu equipo <span>entienda la IA</span> de verdad</h1>
-            <p class="hero-sub">Taller práctico y sin tecnicismos para asociaciones, comerciantes, autónomos y PYMES. Aprended a usar la IA en vuestro negocio con ejemplos reales.</p>
+            <div class="hero-badge">🎨 Taller Público — Lista de espera</div>
+            <h1>Crea imágenes, música y vídeos con <span>IA desde el móvil</span></h1>
+            <p class="hero-sub">Un taller práctico para generar contenido audiovisual con herramientas de IA gratuitas. Sin diseño, sin conocimientos técnicos. Solo 10€.</p>
+            <div class="espera-badge">
+                <span class="espera-dot"></span>
+                Próxima convocatoria por confirmar — apúntate ya
+            </div>
             <div class="hero-ctas">
-                <a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20me%20interesa%20organizar%20un%20Taller%20de%20IA%20para%20mi%20equipo%20o%20asociaci%C3%B3n" target="_blank" rel="noopener" class="btn-primary">
+                <a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20quiero%20apuntarme%20a%20la%20lista%20de%20espera%20del%20Taller%20Audiovisual%20con%20IA" target="_blank" rel="noopener" class="btn-primary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    Organizar taller por WhatsApp
+                    Apuntarme a la lista de espera
                 </a>
-                <a href="#formulario" class="btn-ghost">Ver el programa →</a>
+                <a href="#modulos" class="btn-ghost">Ver los módulos →</a>
             </div>
             <div class="hero-trust">
                 <span class="trust-item">
@@ -246,40 +245,48 @@
                     Mínimo 3 horas
                 </span>
                 <span class="trust-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>
-                    Mínimo 6 personas
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Solo 10€/persona
                 </span>
                 <span class="trust-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Desde 40€/persona
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                    Herramientas gratuitas
                 </span>
             </div>
         </div>
         <div class="hero-visual">
-            <div class="taller-mock">
-                <div class="taller-mock-header">
-                    <span class="taller-mock-emoji">🎤</span>
-                    <div class="taller-mock-title">Taller IA para tu negocio</div>
-                    <div class="taller-mock-sub">Sesión práctica · Mín. 3 horas · Sin tecnicismos</div>
+            <div class="modulos-mock">
+                <div class="modulo-card">
+                    <span class="modulo-emoji">🖼️</span>
+                    <div class="modulo-info">
+                        <div class="modulo-title">Imagen con IA</div>
+                        <div class="modulo-tools">Gemini · ChatGPT</div>
+                    </div>
+                    <div class="modulo-time">25 min</div>
                 </div>
-                <div class="taller-mock-body">
-                    <div class="taller-stat-row">
-                        <div class="taller-stat">
-                            <div class="taller-stat-num">3h+</div>
-                            <div class="taller-stat-label">De formación práctica</div>
-                        </div>
-                        <div class="taller-stat">
-                            <div class="taller-stat-num">6+</div>
-                            <div class="taller-stat-label">Personas por sesión</div>
-                        </div>
+                <div class="modulo-card">
+                    <span class="modulo-emoji">🎵</span>
+                    <div class="modulo-info">
+                        <div class="modulo-title">Música con IA</div>
+                        <div class="modulo-tools">Gemini Lyria · Suno</div>
                     </div>
-                    <div class="taller-topics">
-                        <div class="taller-topic">Qué es la IA y qué no es</div>
-                        <div class="taller-topic">Herramientas para tu sector</div>
-                        <div class="taller-topic">Demo en vivo con ChatGPT</div>
-                        <div class="taller-topic">Casos reales de negocios como el tuyo</div>
-                        <div class="taller-topic">Hoja de ruta para empezar mañana</div>
+                    <div class="modulo-time">20 min</div>
+                </div>
+                <div class="modulo-card">
+                    <span class="modulo-emoji">🎙️</span>
+                    <div class="modulo-info">
+                        <div class="modulo-title">Voz con IA</div>
+                        <div class="modulo-tools">NotebookLM · TTSMaker</div>
                     </div>
+                    <div class="modulo-time">15 min</div>
+                </div>
+                <div class="modulo-card">
+                    <span class="modulo-emoji">🎬</span>
+                    <div class="modulo-info">
+                        <div class="modulo-title">Vídeo con IA</div>
+                        <div class="modulo-tools">CapCut IA</div>
+                    </div>
+                    <div class="modulo-time">Bonus</div>
                 </div>
             </div>
         </div>
@@ -290,68 +297,80 @@
 
 <!-- PARA QUIÉN -->
 <div class="section">
-    <p class="section-label">¿Para quién es?</p>
-    <h2>Ideal para grupos que quieren <span>moverse juntos</span></h2>
+    <p class="section-label">¿Para quién es este taller?</p>
+    <h2>Para quien quiere <span>crear contenido sin saber diseño</span></h2>
     <div class="audiencias-grid">
         <div class="audiencia-card">
+            <span class="audiencia-icon">📱</span>
+            <h3>Creadores de contenido</h3>
+            <p>Si tienes redes sociales y quieres mejorar la calidad de tus publicaciones sin pagar herramientas caras ni pasar horas editando.</p>
+        </div>
+        <div class="audiencia-card">
             <span class="audiencia-icon">🏪</span>
-            <h3>Asociaciones de comerciantes</h3>
-            <p>Comercio local, mercados, asociaciones de barrio o polígono. Aprended juntos a usar la IA en vuestros negocios sin depender de nadie.</p>
+            <h3>Autónomos y pequeños negocios</h3>
+            <p>Para quien necesita imágenes atractivas para Instagram, el cartel de su negocio o un jingle memorable sin contratar a un diseñador.</p>
         </div>
         <div class="audiencia-card">
-            <span class="audiencia-icon">💼</span>
-            <h3>Grupos de autónomos y PYMES</h3>
-            <p>Equipos pequeños, coworking, grupos de networking. Formación adaptada a los retos concretos de trabajar sin gran equipo de soporte.</p>
-        </div>
-        <div class="audiencia-card">
-            <span class="audiencia-icon">🏢</span>
-            <h3>Empresas con equipos</h3>
-            <p>Para poneros al día todos a la vez. Formación interna rápida y práctica, sin parar la operativa días enteros.</p>
+            <span class="audiencia-icon">🎨</span>
+            <h3>Cualquier persona curiosa</h3>
+            <p>Si alguna vez quisiste crear algo visualmente bonito, componer una melodía o hacer un vídeo pero no sabías por dónde empezar — este taller es para ti.</p>
         </div>
     </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- SOLUCIÓN -->
+<!-- MÓDULOS -->
 <div id="solucion">
     <div class="section-inner">
-        <p class="section-label">Por qué este taller</p>
-        <h2>No es una charla de <span>PowerPoint aburrido</span></h2>
-        <div class="solucion-grid">
-            <div class="solucion-text">
-                <p>La mayoría de formaciones de IA son demasiado técnicas o demasiado genéricas. Este taller es diferente: es práctico, con demos en vivo, adaptado a tu sector y pensado para que salgáis con algo que podéis usar mañana mismo.</p>
-                <p>No hace falta saber nada de tecnología. <strong>El único requisito es tener un negocio y querer mejorar.</strong></p>
-                <p>El contenido se adapta al grupo — no es lo mismo un taller para peluqueros que para consultores. Me informo antes para que los ejemplos sean relevantes.</p>
+        <p class="section-label">El contenido</p>
+        <h2 id="modulos">4 módulos, <span>4 superpoderes</span></h2>
+        <div class="modulos-grid">
+            <div class="modulo-detail-card">
+                <div class="modulo-num">Módulo 1 · 25 min</div>
+                <span class="modulo-detail-emoji">🖼️</span>
+                <h3>Imagen con IA</h3>
+                <div class="duracion">Gemini · ChatGPT · 100% gratuito</div>
+                <p>Genera imágenes realistas, ilustraciones, logos y fotomontajes escribiendo solo una descripción. Aprenderás a redactar buenos prompts para obtener exactamente lo que imaginas.</p>
+                <p><strong style="color: var(--orange); font-weight: 600;">Saldrás con:</strong> imágenes propias creadas en el taller para usar donde quieras.</p>
+                <div class="modulo-tools-list">
+                    <span class="tool-chip">Gemini (Google)</span>
+                    <span class="tool-chip">ChatGPT (OpenAI)</span>
+                </div>
             </div>
-            <div class="solucion-features">
-                <div class="feature-item">
-                    <div class="feature-icon">🎮</div>
-                    <div>
-                        <h4>100% práctico</h4>
-                        <p>Demos en vivo, ejercicios en grupo y ejemplos reales. No teoría, sino herramientas que podéis usar al salir.</p>
-                    </div>
+            <div class="modulo-detail-card">
+                <div class="modulo-num">Módulo 2 · 20 min</div>
+                <span class="modulo-detail-emoji">🎵</span>
+                <h3>Música con IA</h3>
+                <div class="duracion">Gemini Lyria · Suno · 100% gratuito</div>
+                <p>Crea una canción completa con letra y melodía escribiendo el estilo y el tema. Música para tus vídeos, tu tienda, tu podcast o simplemente para el placer de crearla.</p>
+                <p><strong style="color: var(--orange); font-weight: 600;">Saldrás con:</strong> al menos una canción propia creada desde cero durante el taller.</p>
+                <div class="modulo-tools-list">
+                    <span class="tool-chip">Gemini Lyria</span>
+                    <span class="tool-chip">Suno</span>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🎯</div>
-                    <div>
-                        <h4>Adaptado a vuestro sector</h4>
-                        <p>Me informo sobre vuestro negocio antes del taller para que los ejemplos sean relevantes y aplicables.</p>
-                    </div>
+            </div>
+            <div class="modulo-detail-card">
+                <div class="modulo-num">Módulo 3 · 15 min</div>
+                <span class="modulo-detail-emoji">🎙️</span>
+                <h3>Voz con IA</h3>
+                <div class="duracion">NotebookLM · TTSMaker · 100% gratuito</div>
+                <p>Convierte cualquier texto en voz natural, crea podcasts automáticos o genera audios para tus vídeos. También podemos clonar el estilo de tu voz para narrar contenido.</p>
+                <p><strong style="color: var(--orange); font-weight: 600;">Saldrás con:</strong> un audio narrado listo para usar en tus redes o presentaciones.</p>
+                <div class="modulo-tools-list">
+                    <span class="tool-chip">NotebookLM</span>
+                    <span class="tool-chip">TTSMaker</span>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🗣️</div>
-                    <div>
-                        <h4>Espacio para preguntas</h4>
-                        <p>El taller es una conversación, no un monólogo. Hay tiempo para resolver dudas concretas de cada persona.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">📄</div>
-                    <div>
-                        <h4>Material para llevarse</h4>
-                        <p>Cada asistente se lleva una guía de recursos y herramientas recomendadas para su tipo de negocio.</p>
-                    </div>
+            </div>
+            <div class="modulo-detail-card">
+                <div class="modulo-num">Módulo 4 · Bonus</div>
+                <span class="modulo-detail-emoji">🎬</span>
+                <h3>Vídeo con IA</h3>
+                <div class="duracion">CapCut IA · gratuito</div>
+                <p>Edición automática de vídeo: subtítulos, recortes, transiciones y efectos con IA. Si traes un vídeo corto del móvil, lo mejoramos en directo durante el taller.</p>
+                <p><strong style="color: var(--orange); font-weight: 600;">Saldrás con:</strong> las bases para producir tus propios reels o vídeos de forma eficiente.</p>
+                <div class="modulo-tools-list">
+                    <span class="tool-chip">CapCut IA</span>
                 </div>
             </div>
         </div>
@@ -360,66 +379,20 @@
 
 <div class="divider"></div>
 
-<!-- CONTENIDO -->
+<!-- QUÉ TE LLEVAS -->
 <div class="section">
-    <p class="section-label">Contenido</p>
-    <h2>Lo que vemos en <span>el taller</span></h2>
+    <p class="section-label">Lo que incluye</p>
+    <h2>Sales del taller con <span>creaciones propias</span></h2>
     <div class="contenido-wrapper">
-        <div class="agenda-taller">
-            <h3>📋 Agenda del taller — "IA para Tu Vida"</h3>
-            <div class="agenda-item">
-                <div class="agenda-time">0–25 min</div>
-                <div class="agenda-content">
-                    <h4>🧠 ¿Qué es la IA? Los 3 Grandes</h4>
-                    <p>ChatGPT, Claude y Gemini en versión gratuita. Cómo acceder desde el móvil y en qué se diferencian de Google.</p>
-                </div>
-            </div>
-            <div class="agenda-item">
-                <div class="agenda-time">25–50 min</div>
-                <div class="agenda-content">
-                    <h4>💌 Tu Asistente para Escribir</h4>
-                    <p>El email que llevas semanas sin enviar, reclamaciones, cartas y mensajes delicados. Práctica en directo con tu caso real.</p>
-                </div>
-            </div>
-            <div class="agenda-item">
-                <div class="agenda-time">50–90 min</div>
-                <div class="agenda-content">
-                    <h4>📄 Documentos del Día a Día ⭐</h4>
-                    <p>Cartas del juzgado, informes médicos, contratos de alquiler, notificaciones de Hacienda. La IA te lo explica en palabras simples.</p>
-                </div>
-            </div>
-            <div class="agenda-item">
-                <div class="agenda-time">90–115 min</div>
-                <div class="agenda-content">
-                    <h4>🌐 Traducción y Comprensión</h4>
-                    <p>Traducción instantánea a cualquier idioma. Resumir documentos largos en 5 puntos. Textos técnicos en lenguaje normal.</p>
-                </div>
-            </div>
-            <div class="agenda-item">
-                <div class="agenda-time">115–140 min</div>
-                <div class="agenda-content">
-                    <h4>🌟 La IA Como Amigo que Sabe de Todo</h4>
-                    <p>Recetas con lo que tienes en la nevera, plan de viaje con tu presupuesto, ideas de regalo. Sin juicios, sin vergüenza.</p>
-                </div>
-            </div>
-            <div class="agenda-item">
-                <div class="agenda-time">140–180 min</div>
-                <div class="agenda-content">
-                    <h4>💪 Práctica Libre y Preguntas</h4>
-                    <p>Cada asistente trabaja su caso real. El ponente guía individualmente. Resolución de dudas y próximos pasos.</p>
-                </div>
-            </div>
-        </div>
         <div>
-            <p class="section-label" style="margin-bottom: 1rem;">Cada asistente se lleva</p>
             <div class="incluye-taller">
                 <div class="incluye-item">
                     <div class="incluye-check">
                         <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                     </div>
                     <div>
-                        <h4>Guía de herramientas recomendadas</h4>
-                        <p>Lista personalizada según su tipo de negocio y nivel técnico.</p>
+                        <h4>Imágenes propias generadas en el taller</h4>
+                        <p>Las tuyas, con tu tema, listas para descargar y usar donde quieras.</p>
                     </div>
                 </div>
                 <div class="incluye-item">
@@ -427,8 +400,8 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                     </div>
                     <div>
-                        <h4>Prompts listos para usar</h4>
-                        <p>Plantillas de prompts adaptadas a su sector para empezar sin esfuerzo.</p>
+                        <h4>Una canción creada por ti</h4>
+                        <p>Con Suno o Gemini Lyria. Descárgala y compártela como quieras.</p>
                     </div>
                 </div>
                 <div class="incluye-item">
@@ -436,8 +409,8 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                     </div>
                     <div>
-                        <h4>Acceso a recursos adicionales</h4>
-                        <p>Tutoriales, artículos y vídeos seleccionados para seguir aprendiendo a su ritmo.</p>
+                        <h4>Guía impresa de recursos y prompts</h4>
+                        <p>Los mejores trucos y frases para obtener buenos resultados en cada herramienta.</p>
                     </div>
                 </div>
                 <div class="incluye-item">
@@ -445,9 +418,38 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                     </div>
                     <div>
-                        <h4>Contacto directo para dudas</h4>
-                        <p>7 días post-taller para resolver por WhatsApp cualquier duda que surja al aplicarlo.</p>
+                        <h4>Acceso al grupo de WhatsApp</h4>
+                        <p>Para compartir creaciones, dudas y trucos con los demás asistentes.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="incluye-taller">
+            <div class="incluye-item">
+                <div class="incluye-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                    <h4>7 días de soporte por WhatsApp</h4>
+                    <p>Una semana para preguntar lo que sea sobre lo que aprendiste en el taller.</p>
+                </div>
+            </div>
+            <div class="incluye-item">
+                <div class="incluye-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                    <h4>Descuento en futuros talleres</h4>
+                    <p>Los asistentes tienen acceso preferente y precio reducido en las siguientes ediciones.</p>
+                </div>
+            </div>
+            <div class="incluye-item">
+                <div class="incluye-check">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                    <h4>Solo necesitas el móvil</h4>
+                    <p>Todas las herramientas son gratuitas y funcionan desde el navegador. Sin descargas obligatorias.</p>
                 </div>
             </div>
         </div>
@@ -459,28 +461,28 @@
 <!-- CÓMO FUNCIONA -->
 <div id="como">
     <div class="section-inner">
-        <p class="section-label">Organizar el taller</p>
-        <h2>Fácil de organizar, <span>impacto inmediato</span></h2>
+        <p class="section-label">Cómo funciona</p>
+        <h2>Sin complicaciones, <span>sin sorpresas</span></h2>
         <div class="pasos">
             <div class="paso">
                 <div class="paso-num">1</div>
-                <h3>Me contactas</h3>
-                <p>Cuéntame quiénes sois, cuántas personas y de qué sector. En 24h te doy presupuesto.</p>
+                <h3>Te apuntas</h3>
+                <p>Rellenas el formulario o me escribes por WhatsApp. Te añado a la lista de espera.</p>
             </div>
             <div class="paso">
                 <div class="paso-num">2</div>
-                <h3>Acordamos fecha</h3>
-                <p>Tú decides cuándo y dónde (con sala propia o yo me encargo). Nos adaptamos a vuestra agenda.</p>
+                <h3>Te aviso con fecha</h3>
+                <p>Cuando haya suficientes personas, confirmo fecha, hora y lugar en Rubí. Te llegará un mensaje.</p>
             </div>
             <div class="paso">
                 <div class="paso-num">3</div>
-                <h3>Me preparo</h3>
-                <p>Adapto el contenido a vuestro sector con ejemplos reales de vuestro tipo de negocio.</p>
+                <h3>Confirmas y pagas</h3>
+                <p>10€ por persona. El pago confirma tu plaza. Solo hace falta llevar el móvil el día del taller.</p>
             </div>
             <div class="paso">
                 <div class="paso-num">4</div>
                 <h3>¡El taller!</h3>
-                <p>Mínimo 3 horas de formación práctica. Todos salen con herramientas concretas para aplicar.</p>
+                <p>3 horas creando en Rubí. Sales con imágenes, música y vídeos generados por ti con IA.</p>
             </div>
         </div>
     </div>
@@ -490,59 +492,53 @@
 
 <!-- PRECIO -->
 <div class="section">
-    <p class="section-label">Inversión</p>
-    <h2>Precio según <span>quién aporta la sala</span></h2>
-    <div class="precio-options">
-        <div class="precio-card featured">
-            <div class="precio-tag sala">Asociaciones y entidades ⭐</div>
-            <div class="precio-amount">Desde 40€</div>
-            <div class="precio-unit">por persona · mínimo 6 personas</div>
-            <ul class="precio-list">
-                <li>El grupo aporta el espacio (asociación, local, aula…)</li>
-                <li>Taller completo mínimo 3 horas</li>
-                <li>Precio reducido al no tener coste de sala</li>
-                <li>Material para todos los asistentes</li>
-                <li>Prompts y guía de herramientas</li>
-                <li>7 días de soporte post-taller por WhatsApp</li>
-            </ul>
-        </div>
-        <div class="precio-card">
-            <div class="precio-tag base">Grupos particulares</div>
-            <div class="precio-amount">Desde 60€</div>
-            <div class="precio-unit">por persona · mínimo 6 personas</div>
-            <ul class="precio-list">
-                <li>Sin preocuparte por buscar espacio — yo lo gestiono</li>
-                <li>Taller completo mínimo 3 horas</li>
-                <li>Sala incluida en el precio</li>
-                <li>Material para todos los asistentes</li>
-                <li>Prompts y guía de herramientas</li>
-                <li>7 días de soporte post-taller por WhatsApp</li>
-            </ul>
-        </div>
+    <p class="section-label">Precio</p>
+    <h2>Accesible para <span>todo el mundo</span></h2>
+    <div class="precio-card-single">
+        <div class="precio-tag-single">🎨 Taller público — Precio simbólico</div>
+        <div class="precio-amount">10€</div>
+        <div class="precio-unit">por persona · espacio incluido · Rubí</div>
+        <ul class="precio-list">
+            <li>Taller completo de mínimo 3 horas</li>
+            <li>4 módulos: Imagen, Música, Voz y Vídeo</li>
+            <li>Espacio incluido en Rubí — sin que te preocupes por nada</li>
+            <li>Guía impresa de recursos y prompts</li>
+            <li>Acceso al grupo de WhatsApp del taller</li>
+            <li>7 días de soporte post-taller</li>
+        </ul>
     </div>
     <div class="precio-nota">
-        <strong>¿Sois más de 20 personas o queréis un taller a medida?</strong> Consúltame sin compromiso. Puedo adaptar duración, nivel técnico y precio. Para asociaciones sin ánimo de lucro, entidades públicas o grupos en situación de exclusión tengo tarifas especiales.
+        <strong>¿No puedes pagarlo?</strong> Escríbeme. No quiero que el precio sea un obstáculo para nadie.
+    </div>
+
+    <div class="organiz-box">
+        <div class="organiz-icon">🏛️</div>
+        <div>
+            <h3>¿Eres una entidad, asociación o centro cívico?</h3>
+            <p>Si quieres organizar este taller para vuestra comunidad — en vuestra sala, con vuestros socios o usuarios — podemos hablarlo. Puede ser con coste reducido o gratuito para los participantes según la entidad.</p>
+            <a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20somos%20una%20entidad%20y%20nos%20interesa%20organizar%20el%20taller%20Audiovisual%20con%20IA" target="_blank" rel="noopener" class="btn-ghost" style="display: inline-flex; font-size: 0.88rem; padding: 0.6rem 1.2rem;">Contactar para organizar →</a>
+        </div>
     </div>
 </div>
 
 <!-- CTA FINAL -->
 <div id="cta-final">
     <div class="cta-inner">
-        <p class="section-label">¿Organizamos vuestro taller?</p>
-        <h2>Que tu equipo salga con <span>algo útil esta semana</span></h2>
-        <p class="cta-sub">Cuéntame quiénes sois y os preparo presupuesto en 24h. Sin compromiso.</p>
+        <p class="section-label">¿Te apuntas?</p>
+        <h2>Únete a la lista — <span>te avisamos con la fecha</span></h2>
+        <p class="cta-sub">No hay fecha fija todavía. Cuando haya suficiente gente apuntada, confirmamos y os avisamos a todos.</p>
         <div class="cta-buttons">
-            <a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20quiero%20organizar%20un%20Taller%20de%20IA%20para%20mi%20grupo%2F%20asociaci%C3%B3n" target="_blank" rel="noopener" class="btn-whatsapp">
+            <a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20quiero%20apuntarme%20a%20la%20lista%20de%20espera%20del%20Taller%20Audiovisual%20con%20IA" target="_blank" rel="noopener" class="btn-whatsapp">
                 <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Organizar por WhatsApp
+                Apuntarme por WhatsApp
             </a>
-            <a href="mailto:ricardollastarry.ai@gmail.com?subject=Consulta%20Taller%20IA%20Grupal" class="btn-ghost">Enviar email →</a>
+            <a href="mailto:ricardollastarry.ai@gmail.com?subject=Lista%20de%20espera%20Taller%20Audiovisual%20con%20IA" class="btn-ghost">Enviar email →</a>
         </div>
 
         <div class="form-separator" id="formulario">o rellena el formulario</div>
 
         <form class="contacto-form" id="contact-form">
-            <input type="hidden" name="servicio" value="Taller IA Grupal">
+            <input type="hidden" name="servicio" value="Taller Audiovisual con IA - Lista Espera">
             <div class="form-row">
                 <div class="form-group">
                     <label for="nombre">Nombre *</label>
@@ -557,42 +553,24 @@
                 <label for="telefono">Teléfono / WhatsApp</label>
                 <input type="tel" id="telefono" name="telefono" placeholder="600 000 000">
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="grupo">Nombre del grupo / asociación</label>
-                    <input type="text" id="grupo" name="grupo" placeholder="Ej: Associació de Comerciants de Rubí">
-                </div>
-                <div class="form-group">
-                    <label for="personas">Nº aproximado de personas *</label>
-                    <select id="personas" name="personas" required>
-                        <option value="">Selecciona</option>
-                        <option value="6-10">6–10 personas</option>
-                        <option value="10-20">10–20 personas</option>
-                        <option value="20-30">20–30 personas</option>
-                        <option value="30+">Más de 30</option>
-                    </select>
-                </div>
-            </div>
             <div class="form-group">
-                <label for="sala">¿Tenéis sala propia?</label>
-                <select id="sala" name="sala">
+                <label for="modulo">¿Qué módulo te interesa más?</label>
+                <select id="modulo" name="modulo">
                     <option value="">Selecciona</option>
-                    <option value="si">Sí, disponemos de espacio</option>
-                    <option value="no">No, necesitamos sala</option>
-                    <option value="gestionar">Podemos gestionarlo, pero necesito ayuda</option>
+                    <option value="imagen">Imagen con IA</option>
+                    <option value="musica">Música con IA</option>
+                    <option value="voz">Voz con IA</option>
+                    <option value="video">Vídeo con IA</option>
+                    <option value="todos">Todos por igual</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="sector">¿A qué se dedica vuestro grupo?</label>
-                <input type="text" id="sector" name="sector" placeholder="Ej: comercio local, restauración, servicios profesionales…">
+                <label for="uso">¿Para qué usarías las herramientas?</label>
+                <textarea id="uso" name="uso" placeholder="Ej: para mi negocio en Instagram, para crear contenido personal, por curiosidad…"></textarea>
             </div>
-            <div class="form-group">
-                <label for="mensaje">Fecha aproximada o más información</label>
-                <textarea id="mensaje" name="mensaje" placeholder="¿Tenéis alguna fecha en mente? ¿Algún requisito especial?"></textarea>
-            </div>
-            <button type="submit" class="form-submit" id="form-btn">Pedir presupuesto para el taller →</button>
-            <div class="form-success" id="form-success">✅ ¡Mensaje recibido! Os mando presupuesto en menos de 24h.</div>
-            <div class="form-error-msg" id="form-error">Algo fue mal. Escríbenos directamente por <a href="https://wa.me/34686712391">WhatsApp</a>.</div>
+            <button type="submit" class="form-submit" id="form-btn">Apuntarme a la lista de espera →</button>
+            <div class="form-success" id="form-success">✅ ¡Apuntado/a! Te aviso cuando confirmemos fecha. Gracias por tu interés.</div>
+            <div class="form-error-msg" id="form-error">Algo fue mal. Escríbeme directamente por <a href="https://wa.me/34686712391">WhatsApp</a>.</div>
         </form>
     </div>
 </div>
@@ -627,12 +605,12 @@
                 successEl.style.display = 'block';
             } else {
                 btn.disabled = false;
-                btn.textContent = 'Pedir presupuesto para el taller →';
+                btn.textContent = 'Apuntarme a la lista de espera →';
                 errorEl.style.display = 'block';
             }
         } catch(err) {
             btn.disabled = false;
-            btn.textContent = 'Pedir presupuesto para el taller →';
+            btn.textContent = 'Apuntarme a la lista de espera →';
             errorEl.style.display = 'block';
         }
     });
