@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R.Llastarry IA — Web · Automatización · Formación</title>
-<meta name="description" content="Ricardo Llastarry — Consultor IA para autónomos y pequeñas empresas en Rubí. Web con IA, automatizaciones y formación práctica.">
+<title>R.Llastarry IA — Automatización · IA · Formación</title>
+<meta name="description" content="Ricardo Llastarry — Consultor IA en Rubí. Automatizaciones y chatbots para gestorías, despachos y negocios locales en Rubí y Sant Cugat. Sin tecnicismos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -355,7 +355,7 @@ text-decoration: none;
 #evento {
 padding: 0 2.5rem;
 max-width: 1100px;
-margin: 0 auto 4rem;
+margin: 0 auto;
 scroll-margin-top: 80px;
 }
 .evento-banner {
@@ -421,6 +421,54 @@ transition: background 0.2s;
 white-space: nowrap;
 }
 .evento-cta:hover { background: var(--orange2); }
+/* ── TESTIMONIOS Y GALERÍA ── */
+.testimonios-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.5rem;
+margin-top: 2.5rem;
+}
+.testimonio {
+background: var(--navy2);
+border: 1px solid rgba(58,104,152,0.2);
+border-radius: 8px;
+padding: 1.8rem;
+}
+.testimonio-texto {
+color: rgba(255,255,255,0.78);
+font-size: 0.95rem;
+line-height: 1.65;
+margin-bottom: 1.1rem;
+font-style: italic;
+}
+.testimonio-autor {
+color: var(--text-muted);
+font-size: 0.85rem;
+font-weight: 600;
+}
+.galeria-subtitulo {
+text-align: center;
+color: var(--text-muted);
+font-size: 0.95rem;
+margin-top: -0.8rem;
+margin-bottom: 2.5rem;
+}
+.galeria-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1rem;
+}
+.galeria-grid img {
+width: 100%;
+height: 220px;
+object-fit: cover;
+border-radius: 8px;
+border: 1px solid rgba(58,104,152,0.2);
+}
+@media (max-width: 768px) {
+.testimonios-grid { grid-template-columns: 1fr; }
+.galeria-grid { grid-template-columns: 1fr 1fr; }
+}
 /* ── CONTACTO ── */
 .contacto-desc {
 color: rgba(255,255,255,0.65);
@@ -637,8 +685,8 @@ footer { flex-direction: column; gap: 0.5rem; text-align: center; }
 <div class="hero-content">
 <div class="hero-label">Consultor IA · Rubí, Barcelona</div>
 <h1 class="hero-name">R.<span>Llastarry</span><br>IA</h1>
-<p class="hero-tagline">Web <span>·</span> Automatización <span>·</span> Formación</p>
-<p class="hero-desc">Ayudo a autónomos y pequeñas empresas a integrar la inteligencia artificial en su negocio de forma práctica, sin tecnicismos y con resultados reales.</p>
+<p class="hero-tagline">Automatización <span>·</span> IA <span>·</span> Formación</p>
+<p class="hero-desc">Ayudo a gestorías, despachos y negocios locales de Rubí y Sant Cugat a ahorrar tiempo automatizando lo que hacen a mano. Sin tecnicismos. Con resultados reales.</p>
 <a href="#contacto" class="hero-cta">Hablemos →</a>
 <a href="#servicios" class="hero-cta-ghost">Ver servicios</a>
 <p class="hero-location">
@@ -654,27 +702,28 @@ Rubí · Barcelona
 <section id="sobre">
 <div class="sobre-text">
 <p class="section-label">Sobre mí</p>
-<h2 class="section-title">De la educación financiera a la <span>IA práctica</span></h2>
-<p>Llevo años divulgando sobre finanzas personales e inversión, y cuando descubrí el potencial real de la inteligencia artificial, entendí que podía hacer lo mismo con la IA: <strong>acercarla a las personas de forma clara y útil</strong>.</p>
-<p>Hoy acompaño a autónomos y pequeñas empresas de Rubí y alrededores a crear su presencia digital con IA, automatizar tareas repetitivas y formarse en herramientas que ya están cambiando el mundo del trabajo.</p>
-<p>Sin tecnicismos. Sin humo. Solo soluciones que funcionan.</p>
+<h2 class="section-title">Consultor IA para empresas locales de <span>Rubí y Sant Cugat</span></h2>
+<p>Ayudo a gestorías, despachos de abogados, notarías y pequeños negocios a ahorrar tiempo automatizando las tareas que hacen a mano cada día.</p>
+<p>Sin necesidad de saber de tecnología. Sin cambiar cómo trabajas de golpe. Solo soluciones concretas que empiezan a funcionar desde el primer día.</p>
+<p>Llevo años trabajando con inteligencia artificial aplicada a negocios reales. Conozco Rubí, conozco a sus profesionales, y sé que el tiempo es el recurso más escaso en una empresa local. Mi trabajo es devolverte ese tiempo.</p>
+<p>Sin tecnicismos. Sin humo. Solo resultados.</p>
 </div>
 <div class="sobre-stats">
 <div class="stat-card">
 <div class="stat-number">+86</div>
-<div class="stat-desc">Vídeos de contenido propio sobre finanzas e IA en YouTube</div>
+<div class="stat-desc">Vídeos propios sobre IA y automatización en YouTube</div>
 </div>
 <div class="stat-card">
 <div class="stat-number">IA</div>
-<div class="stat-desc">Especialización en herramientas de IA aplicadas a negocios locales</div>
+<div class="stat-desc">Especialista en automatizaciones e IA para negocios locales</div>
 </div>
 <div class="stat-card">
 <div class="stat-number">Rubí</div>
-<div class="stat-desc">Base en Rubí · Barcelona. Red de contactos local activa y creciendo</div>
+<div class="stat-desc">Consultor local en Rubí · Barcelona. Disponible en Sant Cugat</div>
 </div>
 <div class="stat-card">
 <div class="stat-number">100%</div>
-<div class="stat-desc">Enfoque práctico. Soluciones reales para negocios reales.</div>
+<div class="stat-desc">Enfoque práctico. Tu tiempo vale dinero — yo te lo ahorro.</div>
 </div>
 </div>
 </section>
@@ -689,21 +738,22 @@ Rubí · Barcelona
 <p style="color:var(--text-muted);font-size:0.95rem;margin-top:-0.5rem;">Precios adaptados a autónomos y pequeños negocios. Sin sorpresas ni letra pequeña.</p>
 </div>
 <div class="servicios-grid">
-<!-- Web con IA -->
+<!-- Chatbot / Recepcionista IA -->
 <div class="servicio-card">
 <div class="servicio-icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+<svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
 </div>
-<div class="servicio-title">🌐 Web con IA — Presencia Digital</div>
-<div class="servicio-desc">Página web profesional para tu negocio. Diseño moderno, adaptada a móvil y lista en 5–7 días.</div>
+<div class="servicio-title">🤖 Chatbot / Recepcionista IA</div>
+<div class="servicio-desc">Tu negocio atendiendo consultas las 24 horas, los 7 días de la semana. Sin que tengas que estar tú.</div>
 <ul class="servicio-list">
-<li>Hasta 5 secciones: inicio, servicios, galería, contacto…</li>
-<li>Formulario de contacto funcional</li>
-<li>Adaptada a móvil y tablet</li>
-<li>Orientación con el dominio incluida</li>
+<li>Responde preguntas frecuentes de tus clientes automáticamente</li>
+<li>Filtra consultas y deriva las importantes a tu equipo</li>
+<li>Ideal para despachos de abogados, gestorías y clínicas</li>
+<li>Se integra en tu web o por WhatsApp</li>
+<li>Disponible en todo momento, sin coste por llamada</li>
 </ul>
-<div class="servicio-price">Desde 200€ <small>· precio de lanzamiento para primeros clientes</small></div>
-<a href="landing-web.html" class="servicio-cta">Pedir información →</a>
+<div class="servicio-price">A consultar <small>· según proyecto</small></div>
+<a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20me%20interesa%20el%20servicio%20de%20Chatbot%20%2F%20Recepcionista%20IA" target="_blank" rel="noopener" class="servicio-cta">Pedir información →</a>
 </div>
 <!-- Automatizaciones -->
 <div class="servicio-card">
@@ -798,6 +848,38 @@ Rubí · Barcelona
 </div>
 </section>
 
+<!-- SECCIÓN TESTIMONIOS (oculta hasta tener testimonios reales) -->
+<section id="testimonios" style="display:none;">
+<p class="section-label" style="text-align:center;">Testimonios</p>
+<h2 class="section-title" style="text-align:center;">Lo que dicen quienes ya han pasado por aquí</h2>
+<div class="testimonios-grid">
+<div class="testimonio">
+<p class="testimonio-texto">"[Texto del testimonio]"</p>
+<p class="testimonio-autor">— [Nombre], [Profesión/Empresa], Rubí</p>
+</div>
+<div class="testimonio">
+<p class="testimonio-texto">"[Texto del testimonio]"</p>
+<p class="testimonio-autor">— [Nombre], [Profesión/Empresa], Rubí</p>
+</div>
+<div class="testimonio">
+<p class="testimonio-texto">"[Texto del testimonio]"</p>
+<p class="testimonio-autor">— [Nombre], [Profesión/Empresa], Rubí</p>
+</div>
+</div>
+</section>
+
+<!-- SECCIÓN GALERÍA EVENTOS (vacía hasta tener fotos) -->
+<section id="galeria" style="display:none;">
+<p class="section-label" style="text-align:center;">Galería</p>
+<h2 class="section-title" style="text-align:center;">Así han sido los encuentros</h2>
+<p class="galeria-subtitulo">Fotos de los talleres y eventos celebrados en Rubí</p>
+<div class="galeria-grid">
+<!-- Las imágenes se añadirán cuando Ricardo las proporcione -->
+<!-- Ejemplo de cómo se insertará cada foto: -->
+<!-- <img src="img/evento-mayo-2026.jpg" alt="Evento Tu dIA a día — 19 mayo 2026 · Sala Neus Català · Rubí"> -->
+</div>
+</section>
+
 <!-- EVENTO BANNER -->
 <div id="evento" style="padding: 0 2.5rem; max-width: 1100px; margin: 0 auto 5rem;">
 
@@ -815,18 +897,18 @@ Rubí · Barcelona
     <span style="flex-shrink:0; font-size:0.82rem; color:var(--text-muted); font-weight:600; letter-spacing:0.05em; text-align:center; line-height:1.5;">SESIÓN<br>REALIZADA<br><span style="font-size:1.2rem;">✅</span></span>
   </div>
 
-  <!-- Próxima sesión: 10 de junio 2026 -->
-  <div class="evento-banner">
+  <!-- Evento pasado: 10 de junio 2026 -->
+  <div class="evento-banner past">
     <div>
-      <span class="evento-badge">🎤 Próximo evento — Entrada gratuita</span>
+      <span class="evento-badge past">✅ Celebrado — 10 de junio de 2026</span>
       <h3 class="evento-title">Tu <em>dIA</em> a día — <em>Segona Part</em></h3>
       <div class="evento-details">
-        <span>📅 <strong>10 de junio de 2026</strong> · 19:00h</span>
+        <span>📅 <strong>10 de junio de 2026</strong> · 19:00h · <span style="color:#7ee88a; font-weight:600;">¡Sesión completada con éxito!</span></span>
         <span>📍 <strong>Sala Neus Català</strong> · C/ Ulloa, 9 · Rubí</span>
         <span>Aplicaciones de IA para el día a día · Sin tecnicismos · Acceso libre</span>
       </div>
     </div>
-    <a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20me%20interesa%20asistir%20al%20evento%20Tu%20dIA%20a%20día%20del%2010%20de%20junio" target="_blank" rel="noopener" class="evento-cta">¡Me apunto! →</a>
+    <span style="flex-shrink:0; font-size:0.82rem; color:var(--text-muted); font-weight:600; letter-spacing:0.05em; text-align:center; line-height:1.5;">SESIÓN<br>REALIZADA<br><span style="font-size:1.2rem;">✅</span></span>
   </div>
 
 </div>
