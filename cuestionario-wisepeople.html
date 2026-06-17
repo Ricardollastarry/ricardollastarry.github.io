@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuestionario · Wise People Sant Cugat — R.Llastarry IA</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+         background: #f0f2f5; color: #1a1a2e; min-height: 100vh; }
+
+  /* ─── HEADER ─── */
+  header {
+    background: #0F1C2E;
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .header-logo { display: flex; align-items: center; gap: 12px; }
+  .header-logo svg { width: 36px; height: 36px; }
+  .logo-text { color: #F07C1E; font-size: 18px; font-weight: 800; letter-spacing: -0.5px; line-height:1; }
+  .logo-text span { color: white; }
+  .logo-sub { color: rgba(255,255,255,0.45); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+  .header-right { color: rgba(255,255,255,0.5); font-size: 12px; text-align: right; line-height: 1.4; }
+  .header-right strong { color: #F07C1E; display: block; font-size: 13px; }
+
+  /* ─── LAYOUT ─── */
+  .container { max-width: 740px; margin: 0 auto; padding: 28px 16px 72px; }
+
+  /* ─── INTRO ─── */
+  .intro-card {
+    background: white; border-radius: 14px; padding: 22px 24px 18px;
+    margin-bottom: 22px; border-left: 4px solid #F07C1E;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+  .intro-card h2 { font-size: 21px; color: #0F1C2E; margin-bottom: 8px; }
+  .intro-card p { font-size: 14px; color: #666; line-height: 1.65; margin-bottom: 12px; }
+  .obligatorio-nota {
+    background: #FFF3E8; border-radius: 8px; padding: 9px 14px;
+    font-size: 13px; color: #7a4000; display: flex; align-items: center; gap: 8px;
+  }
+  .obligatorio-nota .estrella { color: #F07C1E; font-size: 16px; font-weight: 900; }
+
+  /* ─── BLOQUES ─── */
+  .bloque {
+    background: white; border-radius: 14px;
+    margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); overflow: hidden;
+  }
+  .bloque-header {
+    background: linear-gradient(135deg, #0F1C2E 0%, #1a3050 100%);
+    padding: 13px 20px; display: flex; align-items: center; gap: 10px;
+  }
+  .bloque-num {
+    background: #F07C1E; color: white; font-weight: 800; font-size: 11px;
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .bloque-header h3 { color: white; font-size: 13px; font-weight: 700;
+                       letter-spacing: 0.4px; text-transform: uppercase; }
+  .bloque-body { padding: 22px; }
+
+  /* ─── CAMPOS ─── */
+  .campo { margin-bottom: 20px; }
+  .campo:last-child { margin-bottom: 0; }
+  .campo > label, .campo > .campo-label {
+    display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap;
+    font-size: 13px; font-weight: 600; color: #0F1C2E; margin-bottom: 7px;
+  }
+  .req { color: #F07C1E; font-size: 15px; line-height: 1; }
+  .hint { font-weight: 400; color: #999; font-size: 12px; }
+
+  input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+    width: 100%; padding: 11px 14px; border: 1.5px solid #e2e2e2;
+    border-radius: 9px; font-size: 14px; color: #1a1a2e;
+    background: #fafafa; transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none; border-color: #F07C1E; background: white;
+    box-shadow: 0 0 0 3px rgba(240,124,30,0.12);
+  }
+  textarea { resize: vertical; min-height: 95px; line-height: 1.6; }
+
+  /* ─── GRIDS ─── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  @media (max-width: 540px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+    .grid-5 { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ─── OPCIONES CHECKBOX/RADIO ─── */
+  .opciones { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 5px; }
+  .opcion {
+    display: flex; align-items: center; gap: 7px;
+    background: #f7f7f7; border: 1.5px solid #e2e2e2;
+    border-radius: 9px; padding: 9px 14px; cursor: pointer;
+    transition: all 0.18s; font-size: 13px; user-select: none;
+  }
+  .opcion:hover { border-color: #F07C1E; background: #fff8f3; }
+  .opcion input { width: auto; padding: 0; border: none; background: none;
+                   accent-color: #F07C1E; cursor: pointer; margin: 0; flex-shrink: 0; }
+  .opcion span { color: #333; line-height: 1.3; }
+  .opcion.ancho { flex: 1; min-width: 180px; }
+
+  /* ─── UPLOAD ─── */
+  .upload-area {
+    border: 2px dashed #e2e2e2; border-radius: 9px; padding: 18px;
+    text-align: center; cursor: pointer; transition: all 0.2s; background: #fafafa;
+    position: relative;
+  }
+  .upload-area:hover { border-color: #F07C1E; background: #fff8f3; }
+  .upload-area input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+  }
+  .upload-icon { font-size: 28px; margin-bottom: 6px; }
+  .upload-text { font-size: 13px; color: #666; }
+  .upload-text strong { color: #F07C1E; }
+  .upload-preview { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .preview-item {
+    width: 70px; height: 70px; object-fit: cover; border-radius: 7px;
+    border: 2px solid #F07C1E;
+  }
+
+  /* ─── NOTA INFO ─── */
+  .nota-info {
+    background: #f0f4ff; border-radius: 8px; padding: 10px 14px;
+    font-size: 12px; color: #3a4a7a; margin-top: 8px; line-height: 1.5;
+  }
+  .nota-aviso {
+    background: #fff8e8; border-radius: 8px; padding: 10px 14px;
+    font-size: 12px; color: #7a5a00; margin-top: 8px; line-height: 1.5;
+  }
+
+  /* ─── SUBMIT ─── */
+  .submit-area { background: white; border-radius: 14px; padding: 22px;
+                  box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin-bottom: 16px; }
+  .submit-destino {
+    background: #F5F5F5; border-radius: 9px; padding: 12px 16px;
+    font-size: 13px; color: #444; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .submit-destino .icono { font-size: 20px; }
+  .btn-enviar {
+    width: 100%; background: #F07C1E; color: white;
+    border: none; border-radius: 10px; padding: 16px;
+    font-size: 16px; font-weight: 700; cursor: pointer;
+    transition: background 0.2s, transform 0.1s; letter-spacing: 0.3px;
+  }
+  .btn-enviar:hover { background: #d96a10; }
+  .btn-enviar:active { transform: scale(0.98); }
+  .btn-enviar:disabled { background: #ccc; cursor: not-allowed; }
+
+  /* ─── PANTALLA ÉXITO ─── */
+  #success-screen {
+    display: none;
+    position: fixed; inset: 0; z-index: 9999;
+    background: #0F1C2E;
+    flex-direction: column; align-items: center; justify-content: center;
+    padding: 24px; text-align: center;
+  }
+  #success-screen .check-circle {
+    width: 90px; height: 90px; border-radius: 50%;
+    background: #F07C1E;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+    box-shadow: 0 0 0 16px rgba(240,124,30,0.15);
+    animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  @keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+  #success-screen .check-circle svg { width: 46px; height: 46px; }
+  #success-screen h2 {
+    color: white; font-size: 26px; font-weight: 800;
+    margin-bottom: 14px; line-height: 1.25;
+  }
+  #success-screen h2 span { color: #F07C1E; }
+  #success-screen .desc {
+    color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.65;
+    max-width: 440px; margin: 0 auto 32px;
+  }
+  #success-screen .steps {
+    background: rgba(255,255,255,0.06); border-radius: 14px;
+    padding: 20px 24px; max-width: 420px; width: 100%;
+    text-align: left; margin: 0 auto 28px;
+    border: 1px solid rgba(240,124,30,0.3);
+  }
+  #success-screen .steps p {
+    color: rgba(255,255,255,0.85); font-size: 13px;
+    line-height: 1.6; margin-bottom: 10px;
+  }
+  #success-screen .steps p:last-child { margin-bottom: 0; }
+  #success-screen .steps .step-icon { color: #F07C1E; margin-right: 6px; }
+  #success-screen .contact-info {
+    color: rgba(255,255,255,0.5); font-size: 13px; line-height: 1.7;
+  }
+  #success-screen .contact-info strong { color: #F07C1E; font-size: 15px; display: block; margin-bottom: 2px; }
+
+  .footer-note { text-align: center; font-size: 12px; color: #aaa; margin-top: 16px; line-height: 1.7; }
+  .footer-note a { color: #F07C1E; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-logo">
+    <!-- Ondas SVG marca R.Llastarry IA -->
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="20" cy="20" rx="5" ry="3" fill="#F07C1E" opacity="0.9"/>
+      <ellipse cx="20" cy="20" rx="11" ry="6.5" stroke="#F07C1E" stroke-width="1.5" opacity="0.65" fill="none"/>
+      <ellipse cx="20" cy="20" rx="17" ry="10" stroke="#3A6898" stroke-width="1" opacity="0.5" fill="none"/>
+      <ellipse cx="20" cy="20" rx="22" ry="13" stroke="#3A6898" stroke-width="0.7" opacity="0.3" fill="none"/>
+    </svg>
+    <div>
+      <div class="logo-text">R.<span>Llastarry</span> IA</div>
+      <div class="logo-sub">Web · Automatización · Formación</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <strong>686 712 391</strong>
+    ricardollastarry.ai@gmail.com
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="intro-card">
+    <h2>Cuéntame sobre Wise People Sant Cugat</h2>
+    <p>Rellenad este formulario con calma, entre quien mejor conozca la entidad. No hay respuestas correctas ni incorrectas — cuanto más me contéis, mejor quedará la web. Si tenéis dudas, dejadlo en blanco y lo hablamos en persona.</p>
+    <div class="obligatorio-nota">
+      <span class="estrella">*</span>
+      <span>Los campos marcados con <strong>*</strong> son obligatorios. El resto son opcionales.</span>
+    </div>
+  </div>
+
+  <form id="form-cliente" action="https://formspree.io/f/xaqvqder" method="POST">
+
+    <!-- BLOQUE 1 — DATOS -->
+    <div class="bloque">
+      <div class="bloque-header">
+        <div class="bloque-num">1</div>
+        <h3>Datos de la entidad</h3>
+      </div>
+      <div class="bloque-body">
+
+        <div class="campo">
+          <label>Nombre de la entidad</label>
+          <input type="text" name="nombre_negocio" placeholder="Wise People Sant Cugat" value="Wise People Sant Cugat">
+        </div>
+
+        <div class="campo">
+          <label>Persona de contacto <span class="req">*</span> <span class="hint">(quien rellena el formulario)</span></label>
+          <input type="text" name="nombre_propietario" placeholder="Nombre y apellidos" required>
+        </div>
+
+        <div class="grid-2">
+          <div class="campo">
+            <label>Teléfono de contacto <span class="req">*</span></label>
+            <input type="tel" name="telefono" placeholder="600 000 000" required>
+          </div>
+          <div class="campo">
+            <label>Email de contacto <span class="req">*</span></label>
+            <input type="email" name="email" placeholder="contacto@email.com" required>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label>Dirección / sede <span class="hint">(si tenéis sede o local)</span></label>
+          <input type="text" name="direccion" placeholder="Calle, número, ciudad">
+        </div>
+
+        <div class="campo">
+          <label>Horario de atención</label>
+          <input type="text" name="horario" placeholder="Ej: Lunes a viernes 9:00–18:00, sábados 10:00–14:00">
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BLOQUE 2 — LA ENTIDAD -->
+    <div class="bloque">
+      <div class="bloque-header">
+        <div class="bloque-num">2</div>
+        <h3>La entidad</h3>
+      </div>
+      <div class="bloque-body">
+
+        <div class="campo">
+          <label>¿Qué hace exactamente Wise People Sant Cugat? <span class="req">*</span> <span class="hint">En vuestras propias palabras, sin tecnicismos</span></label>
+          <textarea name="descripcion" placeholder="Contadme a qué os dedicáis como si se lo explicarais a un amigo..." required></textarea>
+        </div>
+
+        <div class="campo">
+          <label>¿Cuáles son las actividades y servicios principales? <span class="req">*</span></label>
+          <textarea name="servicios" placeholder="1. &#10;2. &#10;3. &#10;(añadid más si las hay)" style="min-height:110px;" required></textarea>
+        </div>
+
+        <div class="campo">
+          <label>¿A quién va dirigida la entidad? <span class="hint">(perfil de las personas asociadas o beneficiarias)</span></label>
+          <input type="text" name="publico" placeholder="Ej: Profesionales senior (+45 años) en búsqueda de empleo, empresas de Sant Cugat...">
+        </div>
+
+        <div class="campo">
+          <label>¿Qué os diferencia de otras entidades o iniciativas similares?</label>
+          <textarea name="diferenciacion" placeholder="¿Por qué alguien colaboraría con vosotros y no con otra iniciativa?"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BLOQUE 3 — IDENTIDAD VISUAL -->
+    <div class="bloque">
+      <div class="bloque-header">
+        <div class="bloque-num">3</div>
+        <h3>Identidad visual</h3>
+      </div>
+      <div class="bloque-body">
+
+        <div class="campo">
+          <label>¿Tenéis logo?</label>
+          <div class="opciones">
+            <label class="opcion">
+              <input type="radio" name="tiene_logo" value="si"> <span>Sí (lo enviamos por separado)</span>
+            </label>
+            <label class="opcion">
+              <input type="radio" name="tiene_logo" value="no"> <span>No tenemos</span>
+            </label>
+            <label class="opcion">
+              <input type="radio" name="tiene_logo" value="orientacion"> <span>No tenemos, pero nos gustaría orientación</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label>Colores de la entidad <span class="hint">(los que ya usáis, si los tenéis)</span></label>
+          <div class="grid-5">
+            <input type="text" name="color1" placeholder="Color 1">
+            <input type="text" name="color2" placeholder="Color 2">
+            <input type="text" name="color3" placeholder="Color 3">
+            <input type="text" name="color4" placeholder="Color 4">
+            <input type="text" name="color5" placeholder="Color 5">
+          </div>
+          <div class="nota-info">Podéis escribir el nombre del color (azul marino, naranja, beige...) o el código hex si lo tenéis (ej: #F07C1E). No os preocupéis si no lo sabéis exactamente.</div>
+        </div>
+
+        <div class="campo">
+          <label>Estilo visual que os gusta <span class="hint">(podéis marcar varios)</span></label>
+          <div class="opciones">
+            <label class="opcion"><input type="checkbox" name="estilo" value="moderno_minimalista"> <span>Moderno y minimalista</span></label>
+            <label class="opcion"><input type="checkbox" name="estilo" value="calido_cercano"> <span>Cálido y cercano</span></label>
+            <label class="opcion"><input type="checkbox" name="estilo" value="elegante_profesional"> <span>Elegante y profesional</span></label>
+            <label class="opcion"><input type="checkbox" name="estilo" value="dinamico_colorido"> <span>Dinámico y colorido</span></label>
+            <label class="opcion"><input type="checkbox" name="estilo" value="no_se"> <span>No lo tenemos claro (Ricardo propone)</span></label>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label>Web de referencia <span class="hint">(alguna que os guste visualmente, la que sea)</span></label>
+          <input type="text" name="referencia_web" placeholder="https://...  (no tiene que ser del mismo sector)">
+        </div>
+
+        <div class="campo">
+          <label>Fotos de la entidad / actividades</label>
+          <div class="upload-area" onclick="document.getElementById('fotos_input').click()">
+            <input type="file" id="fotos_input" name="fotos" accept="image/*" multiple
+                   onchange="mostrarPreviews(this)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;">
+            <div class="upload-icon">📷</div>
+            <div class="upload-text">
+              <strong>Toca aquí para adjuntar fotos</strong><br>
+              o arrástralas a esta zona · JPG, PNG · Máx. 5 fotos
+            </div>
+            <div class="upload-preview" id="preview-container"></div>
+          </div>
+          <div class="nota-info">Si tenéis muchas fotos o no podéis adjuntarlas ahora, enviadlas por separado. Lo que llegue aquí se recibirá junto con el formulario.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BLOQUE 4 — LA WEB -->
+    <div class="bloque">
+      <div class="bloque-header">
+        <div class="bloque-num">4</div>
+        <h3>La web</h3>
+      </div>
+      <div class="bloque-body">
+
+        <div class="campo">
+          <label>Secciones que queréis <span class="req">*</span> <span class="hint">(marcad todas las que queráis)</span></label>
+          <div class="opciones">
+            <label class="opcion"><input type="checkbox" name="secciones" value="inicio" checked> <span>Inicio / Portada</span></label>
+            <label class="opcion"><input type="checkbox" name="secciones" value="servicios"> <span>Servicios / Actividades</span></label>
+            <label class="opcion"><input type="checkbox" name="secciones" value="galeria"> <span>Galería / Fotos</span></label>
+            <label class="opcion"><input type="checkbox" name="secciones" value="sobre_mi"> <span>Sobre nosotros / Quiénes somos</span></label>
+            <label class="opcion"><input type="checkbox" name="secciones" value="contacto"> <span>Contacto</span></label>
+            <label class="opcion"><input type="checkbox" name="secciones" value="blog"> <span>Blog / Noticias</span></label>
+            <label class="opcion"><input type="checkbox" name="secciones" value="tienda"> <span>Tienda online 🛒</span></label>
+            <label class="opcion"><input type="checkbox" name="secciones" value="reservas"> <span>Reservas / Agenda</span></label>
+          </div>
+          <div class="nota-info" id="nota-tienda" style="display:none;">
+            🛒 <strong>Tienda online / carrito:</strong> ¡Anotado! Ricardo os explicará las opciones en la reunión.
+          </div>
+        </div>
+
+        <div class="campo">
+          <label>¿Tenéis dominio propio? <span class="hint">(ej: wisepeoplesantcugat.cat)</span></label>
+          <div class="opciones">
+            <label class="opcion ancho"><input type="radio" name="tiene_dominio" value="si"> <span>Sí, ya tenemos dominio</span></label>
+            <label class="opcion ancho"><input type="radio" name="tiene_dominio" value="no_quiero"> <span>No, y nos gustaría uno</span></label>
+            <label class="opcion ancho"><input type="radio" name="tiene_dominio" value="no_se"> <span>No lo sé / sin preferencia</span></label>
+          </div>
+          <div class="campo" id="campo-dominio-url" style="display:none;margin-top:10px;margin-bottom:0;">
+            <input type="text" name="dominio_url" placeholder="Escribid vuestro dominio: www.wisepeoplesantcugat.cat">
+          </div>
+        </div>
+
+        <div class="campo">
+          <label>Redes sociales a enlazar</label>
+          <div class="grid-3">
+            <input type="text" name="instagram" placeholder="Instagram (@...)">
+            <input type="text" name="facebook" placeholder="Facebook">
+            <input type="text" name="linkedin" placeholder="LinkedIn">
+          </div>
+          <div class="grid-2" style="margin-top:8px;">
+            <input type="text" name="youtube" placeholder="YouTube">
+            <input type="text" name="otras_redes" placeholder="Otras (TikTok, X...)">
+          </div>
+        </div>
+
+        <div class="campo">
+          <label>¿Quién redacta los textos de la web?</label>
+          <div class="opciones">
+            <label class="opcion ancho">
+              <input type="radio" name="textos" value="ricardo">
+              <span>Ricardo propone los textos, los revisamos <em style="color:#999;font-size:11px;">(recomendado)</em></span>
+            </label>
+            <label class="opcion ancho">
+              <input type="radio" name="textos" value="cliente">
+              <span>Los traemos hechos</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BLOQUE 5 — NOTAS -->
+    <div class="bloque">
+      <div class="bloque-header">
+        <div class="bloque-num">5</div>
+        <h3>Notas adicionales</h3>
+      </div>
+      <div class="bloque-body">
+        <div class="campo">
+          <label>¿Algo más que queráis contarme? <span class="hint">(ideas, dudas, cosas importantes sobre la entidad)</span></label>
+          <textarea name="notas" placeholder="Escribid aquí cualquier cosa que no hayáis podido contar antes..." style="min-height:110px;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENVÍO -->
+    <div class="submit-area">
+      <div class="submit-destino">
+        <span class="icono">📩</span>
+        <span>Las respuestas se enviarán directamente a <strong>ricardollastarry.ai@gmail.com</strong></span>
+      </div>
+      <button type="submit" class="btn-enviar" id="btn-enviar">
+        Enviar cuestionario →
+      </button>
+    </div>
+
+
+    <p class="footer-note">
+      R.Llastarry IA · Rubí, Barcelona · <strong>686 712 391</strong><br>
+      <a href="mailto:ricardollastarry.ai@gmail.com">ricardollastarry.ai@gmail.com</a> ·
+      <a href="https://ricardollastarry.github.io" target="_blank">ricardollastarry.github.io</a><br>
+      Estos datos se usan únicamente para crear la web de Wise People Sant Cugat y no se comparten con terceros.
+    </p>
+
+  </form>
+</div>
+
+<script>
+// ─── Preview de fotos ───
+function mostrarPreviews(input) {
+  const container = document.getElementById('preview-container');
+  container.innerHTML = '';
+  if (input.files && input.files.length > 0) {
+    const max = Math.min(input.files.length, 5);
+    for (let i = 0; i < max; i++) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.className = 'preview-item';
+        container.appendChild(img);
+      };
+      reader.readAsDataURL(input.files[i]);
+    }
+  }
+}
+
+// ─── Mostrar nota tienda si seleccionan tienda online ───
+document.querySelectorAll('input[name="secciones"]').forEach(cb => {
+  cb.addEventListener('change', function() {
+    const tienda = document.querySelector('input[value="tienda"]');
+    document.getElementById('nota-tienda').style.display = tienda && tienda.checked ? 'block' : 'none';
+  });
+});
+
+// ─── Mostrar campo dominio si ya tienen uno ───
+document.querySelectorAll('input[name="tiene_dominio"]').forEach(r => {
+  r.addEventListener('change', function() {
+    document.getElementById('campo-dominio-url').style.display =
+      this.value === 'si' ? 'block' : 'none';
+  });
+});
+
+// ─── Envío del formulario ───
+const form = document.getElementById('form-cliente');
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('btn-enviar');
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  try {
+    const data = new FormData(form);
+    const resp = await fetch(form.action, {
+      method: 'POST', body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (resp.ok) {
+      const screen = document.getElementById('success-screen');
+      screen.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    } else {
+      btn.textContent = 'Error al enviar. Inténtalo de nuevo.';
+      btn.disabled = false;
+    }
+  } catch(err) {
+    btn.textContent = 'Sin conexión. Inténtalo de nuevo.';
+    btn.disabled = false;
+  }
+});
+</script>
+
+<!-- ─── PANTALLA ÉXITO (capa completa) ─── -->
+<div id="success-screen">
+  <div class="check-circle">
+    <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="9,23 19,33 37,14" stroke="white" stroke-width="5"
+                stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <h2>¡Cuestionario enviado<br><span>con éxito!</span></h2>
+
+  <p class="desc">
+    Ricardo ha recibido vuestras respuestas y se pondrá en contacto con vosotros
+    en menos de 24 horas para empezar con la web.
+  </p>
+
+  <div class="steps">
+    <p><span class="step-icon">📬</span><strong style="color:#F07C1E">Paso 1:</strong> Ricardo revisa vuestras respuestas</p>
+    <p><span class="step-icon">📞</span><strong style="color:#F07C1E">Paso 2:</strong> Os llama o escribe para concretar detalles</p>
+    <p><span class="step-icon">🚀</span><strong style="color:#F07C1E">Paso 3:</strong> Empezamos a crear la web</p>
+  </div>
+
+  <div class="contact-info">
+    <strong>686 712 391</strong>
+    ricardollastarry.ai@gmail.com
+  </div>
+</div>
+
+</body>
+</html>
