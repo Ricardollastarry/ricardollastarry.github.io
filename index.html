@@ -201,6 +201,51 @@ line-height: 1.15;
 margin-bottom: 1.5rem;
 }
 .section-title span { color: var(--orange); }
+/* ── PUNTO DE DOLOR ── */
+#punto-de-dolor {
+padding: 60px 20px;
+text-align: center;
+max-width: 800px;
+margin: 0 auto;
+}
+#punto-de-dolor h2 {
+font-family: var(--font-brand);
+font-size: clamp(1.6rem, 4vw, 2rem);
+line-height: 1.3;
+font-weight: 700;
+margin-bottom: 24px;
+}
+#punto-de-dolor .highlight {
+color: var(--orange);
+}
+#punto-de-dolor .dolor-subtitulo {
+font-size: 1.15rem;
+font-style: italic;
+opacity: 0.85;
+margin-bottom: 24px;
+line-height: 1.7;
+}
+#punto-de-dolor .dolor-cuerpo {
+font-size: 1rem;
+line-height: 1.8;
+opacity: 0.9;
+margin-bottom: 36px;
+}
+.boton-dolor {
+display: inline-block;
+background-color: var(--orange);
+color: var(--white);
+padding: 14px 28px;
+border-radius: 8px;
+text-decoration: none;
+font-weight: 600;
+font-size: 1rem;
+transition: opacity 0.2s, background-color 0.2s;
+}
+.boton-dolor:hover {
+background-color: var(--orange2);
+opacity: 0.95;
+}
 /* ── SOBRE MÍ ── */
 #sobre {
 display: grid;
@@ -711,6 +756,7 @@ footer a { color: var(--orange); text-decoration: none; }
 nav { padding: 1rem 1.2rem; }
 .nav-links { display: none; }
 #hero { padding: 5rem 1.2rem 3rem; min-height: auto; }
+#punto-de-dolor { padding: 40px 1.2rem; }
 #waveCanvas { width: 260px; height: 260px; right: -60px; opacity: 0.45; }
 #sobre { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.2rem; }
 section { padding: 3rem 1.2rem; }
@@ -753,6 +799,29 @@ footer { flex-direction: column; gap: 0.5rem; text-align: center; }
 Rubí · Barcelona
 </p>
 </div>
+</section>
+
+<div class="orange-line"></div>
+
+<!-- SECCIÓN PUNTO DE DOLOR -->
+<section id="punto-de-dolor">
+<h2>Tus clientes merecen un despacho que siempre esté al día.<br>
+<span class="highlight">Sin que eso te cueste el doble de horas.</span></h2>
+<p class="dolor-subtitulo">
+El aviso de cobro que llega tarde, la cita que se confirma por WhatsApp
+a las 10 de la noche, la pregunta que nadie responde hasta el día
+siguiente... Tu cliente lo nota. Y lo recuerda.
+</p>
+<p class="dolor-cuerpo">
+¿Cuánto tiempo pierde tu equipo en tareas que no le aportan nada
+a tus clientes? Perseguir cobros, contestar siempre lo mismo,
+gestionar citas a mano... son horas que desaparecen cada semana.
+Horas que podrías dedicar a lo que tus clientes realmente
+necesitan de ti.
+</p>
+<a href="#contacto" class="boton-dolor">
+Cuéntame cómo trabajas → te digo qué se puede automatizar
+</a>
 </section>
 
 <div class="orange-line"></div>
