@@ -618,6 +618,7 @@ flex-shrink: 0;
 .contacto-link-value { font-weight: 600; font-size: 0.95rem; }
 .social-row {
 display: flex;
+flex-wrap: wrap;
 justify-content: center;
 gap: 1rem;
 margin-top: 1rem;
@@ -754,7 +755,9 @@ footer a { color: var(--orange); text-decoration: none; }
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
 nav { padding: 1rem 1.2rem; }
-.nav-links { display: none; }
+.nav-links { gap: 1rem; }
+.nav-links li:not(:nth-child(2)):not(:nth-child(5)) { display: none; }
+.nav-links a { font-size: 0.85rem; }
 #hero { padding: 5rem 1.2rem 3rem; min-height: auto; }
 #punto-de-dolor { padding: 40px 1.2rem; }
 #waveCanvas { width: 260px; height: 260px; right: -60px; opacity: 0.45; }
@@ -763,6 +766,7 @@ section { padding: 3rem 1.2rem; }
 .servicios-grid { grid-template-columns: 1fr; }
 .evento-banner { flex-direction: column; padding: 1.8rem; }
 .orange-line { margin: 0 1.2rem; }
+.evento-wrap { padding: 0 1.2rem !important; }
 footer { flex-direction: column; gap: 0.5rem; text-align: center; }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -1039,7 +1043,7 @@ Tu navegador no soporta vídeo HTML5.
 </div>
 
 <!-- EVENTO BANNER -->
-<div id="evento" style="padding: 0 2.5rem; max-width: 1100px; margin: 0 auto 5rem;">
+<div id="evento" class="evento-wrap" style="padding: 0 2.5rem; max-width: 1100px; margin: 0 auto 5rem;">
 
   <!-- Evento pasado: 19 mayo 2026 -->
   <div class="evento-banner past">
