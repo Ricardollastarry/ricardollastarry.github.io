@@ -123,7 +123,7 @@ font-size: 1rem;
 font-weight: 600;
 letter-spacing: 0.12em;
 text-transform: uppercase;
-color: var(--blue);
+color: #6f9bc8;
 margin-bottom: 1.8rem;
 }
 .hero-tagline span { color: var(--text-muted); margin: 0 0.4em; }
@@ -234,7 +234,7 @@ margin-bottom: 36px;
 .boton-dolor {
 display: inline-block;
 background-color: var(--orange);
-color: var(--white);
+color: var(--navy);
 padding: 14px 28px;
 border-radius: 8px;
 text-decoration: none;
@@ -1154,6 +1154,14 @@ document.getElementById('galeriaLightbox').classList.remove('active');
 }
 document.addEventListener('keydown', function(e) {
 if (e.key === 'Escape') cerrarGaleriaLightbox();
+});
+// Que las fotos de la galería también se puedan abrir con el teclado
+document.querySelectorAll('.galeria-grid img').forEach(function(img) {
+img.tabIndex = 0;
+img.setAttribute('role', 'button');
+img.addEventListener('keydown', function(e) {
+if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirGaleriaLightbox(img); }
+});
 });
 </script>
 
