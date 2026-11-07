@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R.Llastarry IA — Automatización · IA · Formación</title>
-<meta name="description" content="Ricardo Llastarry — Consultor IA en Rubí. Automatizaciones y chatbots para gestorías, despachos y negocios locales en Rubí y Sant Cugat. Sin tecnicismos.">
+<title>R.Llastarry IA — Divulgación de IA en Rubí y el Vallès</title>
+<meta name="description" content="Ricardo Llastarry, divulgador de IA en Rubí (Vallès Occidental). Encuentros para entender la inteligencia artificial sin tecnicismos, para entidades y asociaciones del Vallès.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -248,11 +248,9 @@ opacity: 0.95;
 }
 /* ── SOBRE MÍ ── */
 #sobre {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 4rem;
-align-items: center;
+display: block;
 }
+.sobre-text { max-width: 720px; }
 .sobre-text p {
 color: rgba(255,255,255,0.75);
 font-size: 1.05rem;
@@ -466,10 +464,35 @@ transition: background 0.2s;
 white-space: nowrap;
 }
 .evento-cta:hover { background: var(--orange2); }
-/* ── TESTIMONIOS Y GALERÍA ── */
+.evento-details a { color: var(--orange); font-weight: 600; }
+/* ── PRÓXIMO ENCUENTRO Y ENCUENTROS REALIZADOS ── */
+#encuentros {
+padding: 0 2.5rem;
+max-width: 1100px;
+margin: 0 auto 5rem;
+scroll-margin-top: 80px;
+}
+.bloque-titulo {
+text-align: center;
+padding-top: 3rem;
+}
+/* ── PARA ENTIDADES ── */
+#servicios { text-align: center; max-width: 1100px; }
+.entidades-texto { max-width: 780px; margin-left: auto; margin-right: auto; }
+.temas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; text-align: left; margin-top: 3rem; }
+.temas-grid .servicio-cta { margin-top: 1.3rem; }
+.temas-titulo { margin-top: 4rem; scroll-margin-top: 90px; }
+@media (max-width: 900px) { .temas-grid { grid-template-columns: 1fr; } }
+.entidades-texto {
+color: rgba(255,255,255,0.75);
+font-size: 1.05rem;
+line-height: 1.75;
+margin-bottom: 2rem;
+}
+/* ── TESTIMONIOS ── */
 .testimonios-grid {
 display: grid;
-grid-template-columns: repeat(3, 1fr);
+grid-template-columns: repeat(2, 1fr);
 gap: 1.5rem;
 margin-top: 2.5rem;
 }
@@ -498,80 +521,16 @@ font-size: 0.95rem;
 margin-top: -0.8rem;
 margin-bottom: 0.5rem;
 }
-.galeria-subtitulo {
-text-align: center;
-color: var(--text-muted);
-font-size: 0.95rem;
-margin-top: -0.8rem;
-margin-bottom: 2.5rem;
-}
-.galeria-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 1rem;
-}
-.galeria-grid img {
-width: 100%;
-height: 220px;
-object-fit: cover;
-border-radius: 8px;
-border: 1px solid rgba(58,104,152,0.2);
-cursor: pointer;
-transition: transform 0.2s ease, border-color 0.2s ease;
-}
-.galeria-grid img:hover {
-transform: scale(1.02);
-border-color: var(--orange);
-}
-.galeria-bloque {
-margin-bottom: 3rem;
-}
-.galeria-bloque:last-child {
-margin-bottom: 0;
-}
-.galeria-bloque h3 {
-font-family: var(--font-brand);
-font-size: 1.25rem;
-font-weight: 700;
-text-align: center;
-margin-bottom: 1.2rem;
-}
-.galeria-video {
-margin-top: 0.5rem;
-}
-.galeria-video video {
-width: 100%;
-max-width: 480px;
-display: block;
-margin: 0 auto;
-border-radius: 8px;
-border: 1px solid rgba(58,104,152,0.2);
-}
-.galeria-lightbox {
-display: none;
-position: fixed;
-inset: 0;
-background: rgba(15,28,46,0.92);
-z-index: 999;
-align-items: center;
-justify-content: center;
-padding: 2rem;
-cursor: zoom-out;
-}
-.galeria-lightbox.active {
-display: flex;
-}
-.galeria-lightbox img {
-max-width: 100%;
-max-height: 90vh;
-border-radius: 8px;
-box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-cursor: zoom-out;
-}
 @media (max-width: 768px) {
 .testimonios-grid { grid-template-columns: 1fr; }
-.galeria-grid { grid-template-columns: 1fr 1fr; }
 }
+/* ── ENCUENTROS REALIZADOS (lista) ── */
+.encuentros-lista { list-style: none; margin: 1.5rem 0 0; padding: 0; border-top: 1px solid rgba(139,165,194,0.2); }
+.encuentros-lista li { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(139,165,194,0.2); }
+.encuentros-lista .fecha { font-weight: 700; color: var(--orange); font-size: 0.95rem; }
+.encuentros-lista .nombre { font-family: var(--font-brand); font-weight: 700; color: var(--white); display: block; }
+.encuentros-lista .detalle { color: var(--text-muted); font-size: 0.9rem; }
+@media (max-width: 600px) { .encuentros-lista li { grid-template-columns: 1fr; gap: 0.2rem; } }
 /* ── CONTACTO ── */
 .contacto-desc {
 color: rgba(255,255,255,0.65);
@@ -777,9 +736,10 @@ footer { flex-direction: column; gap: 0.5rem; text-align: center; }
 <a class="nav-brand" href="#hero">R.<span>Llastarry</span> IA</a>
 <ul class="nav-links">
 <li><a href="#sobre">Sobre mí</a></li>
-<li><a href="#servicios">Servicios</a></li>
+<li><a href="#evento">Próximo encuentro</a></li>
+<li><a href="#encuentros">Encuentros realizados</a></li>
+<li><a href="#que-hago">Qué hago</a></li>
 <li><a href="#testimonios">Testimonios</a></li>
-<li><a href="#evento">Evento</a></li>
 <li><a href="#contacto">Contacto</a></li>
 </ul>
 </nav>
@@ -788,40 +748,13 @@ footer { flex-direction: column; gap: 0.5rem; text-align: center; }
 <section id="hero">
 <canvas id="waveCanvas" width="640" height="640"></canvas>
 <div class="hero-content">
-<div class="hero-label">Consultor IA · Rubí, Barcelona</div>
+<div class="hero-label">Divulgador de IA · Rubí (Vallès Occidental)</div>
 <h1 class="hero-name">R.<span>Llastarry</span><br>IA</h1>
-<p class="hero-tagline">Automatización <span>·</span> IA <span>·</span> Formación</p>
-<p class="hero-desc">Ayudo a gestorías, despachos y negocios locales de Rubí y Sant Cugat a ahorrar tiempo automatizando lo que hacen a mano. Sin tecnicismos. Con resultados reales.</p>
-<a href="#contacto" class="hero-cta">Hablemos →</a>
-<a href="#servicios" class="hero-cta-ghost">Ver servicios</a>
-<p class="hero-location">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-Rubí · Barcelona
-</p>
+<p class="hero-tagline">Divulgación <span>·</span> Formación <span>·</span> Agentes IA</p>
+<p class="hero-desc">Soy Ricardo Llastarry. Explico la inteligencia artificial sin tecnicismos, con ejemplos de la vida real, en encuentros abiertos para entidades y asociaciones del Vallès.</p>
+<a href="#evento" class="hero-cta">Próximo encuentro: 25/11</a>
+<a href="#contacto" class="hero-cta-ghost">Escríbeme</a>
 </div>
-</section>
-
-<div class="orange-line"></div>
-
-<!-- SECCIÓN PUNTO DE DOLOR -->
-<section id="punto-de-dolor">
-<h2>Tus clientes merecen un despacho que siempre esté al día.<br>
-<span class="highlight">Sin que eso te cueste el doble de horas.</span></h2>
-<p class="dolor-subtitulo">
-El aviso de cobro que llega tarde, la cita que se confirma por WhatsApp
-a las 10 de la noche, la pregunta que nadie responde hasta el día
-siguiente... Tu cliente lo nota. Y lo recuerda.
-</p>
-<p class="dolor-cuerpo">
-¿Cuánto tiempo pierde tu equipo en tareas que no le aportan nada
-a tus clientes? Perseguir cobros, contestar siempre lo mismo,
-gestionar citas a mano... son horas que desaparecen cada semana.
-Horas que podrías dedicar a lo que tus clientes realmente
-necesitan de ti.
-</p>
-<a href="#contacto" class="boton-dolor">
-Cuéntame cómo trabajas → te digo qué se puede automatizar
-</a>
 </section>
 
 <div class="orange-line"></div>
@@ -830,165 +763,104 @@ Cuéntame cómo trabajas → te digo qué se puede automatizar
 <section id="sobre">
 <div class="sobre-text">
 <p class="section-label">Sobre mí</p>
-<h2 class="section-title">Consultor IA para empresas locales de <span>Rubí y Sant Cugat</span></h2>
-<p>Ayudo a gestorías, despachos de abogados, notarías y pequeños negocios a ahorrar tiempo automatizando las tareas que hacen a mano cada día.</p>
-<p>Sin necesidad de saber de tecnología. Sin cambiar cómo trabajas de golpe. Solo soluciones concretas que empiezan a funcionar desde el primer día.</p>
-<p>Llevo años trabajando con inteligencia artificial aplicada a negocios reales. Conozco Rubí, conozco a sus profesionales, y sé que el tiempo es el recurso más escaso en una empresa local. Mi trabajo es devolverte ese tiempo.</p>
-<p>Sin tecnicismos. Sin humo. Solo resultados.</p>
+<h2 class="section-title">Divulgador de IA en <span>Rubí</span></h2>
+<p>He organizado encuentros y talleres para acercar la inteligencia artificial a quien no la buscaría por su cuenta: gente que busca trabajo y cualquiera con curiosidad.</p>
+<p>Hablo claro, enseño en directo y siempre dejo tiempo para las preguntas, que suelen ser lo mejor de la tarde.</p>
+<p>Si tu entidad o asociación quiere organizar un encuentro, escríbeme.</p>
 </div>
-<div class="sobre-stats">
-<div class="stat-card">
-<div class="stat-number">+86</div>
-<div class="stat-desc">Vídeos propios sobre IA y automatización en YouTube</div>
+</section>
+
+<div class="orange-line"></div>
+
+<!-- PRÓXIMO ENCUENTRO -->
+<div id="evento">
+<div class="bloque-titulo">
+<p class="section-label">Próximo encuentro</p>
 </div>
-<div class="stat-card">
-<div class="stat-number">IA</div>
-<div class="stat-desc">Especialista en automatizaciones e IA para negocios locales</div>
+<div class="evento-banner">
+<div>
+<span class="evento-badge">Próximo encuentro · Gratuito</span>
+<h3 class="evento-title">IA y búsqueda de empleo: <em>de la idea a la práctica</em></h3>
+<div class="evento-details">
+<span>📅 <strong>Miércoles 25 de noviembre de 2026</strong> · 17:00 · unas 2 horas</span>
+<span>📍 <strong>Wise People Sant Cugat</strong></span>
+<span>Pensado para personas de más de 45 años que buscan trabajo. Abierto a todo el público. Gratuito · Plazas limitadas · Reserva previa.</span>
+<span>Para reservar plaza, escribe a <a href="mailto:wp@wisepeoplesantcugat.cat">wp@wisepeoplesantcugat.cat</a></span>
 </div>
-<div class="stat-card">
-<div class="stat-number">Rubí</div>
-<div class="stat-desc">Consultor local en Rubí · Barcelona. Disponible en Sant Cugat</div>
 </div>
-<div class="stat-card">
-<div class="stat-number">100%</div>
-<div class="stat-desc">Enfoque práctico. Tu tiempo vale dinero — yo te lo ahorro.</div>
+<a class="evento-cta" href="mailto:wp@wisepeoplesantcugat.cat?subject=Reserva%20encuentro%2025%2F11">Reservar plaza →</a>
+</div>
+</div>
+
+<!-- ENCUENTROS REALIZADOS -->
+<div id="encuentros">
+<div class="bloque-titulo">
+<p class="section-label">Encuentros realizados</p>
+</div>
+<ul class="encuentros-lista">
+<li><span class="fecha">13/10/2026</span><span><span class="nombre">Encuentro sobre IA</span><span class="detalle">Wise People Sant Cugat · La IA para mayores de 45 y la búsqueda de trabajo</span></span></li>
+<li><span class="fecha">22/09/2026</span><span><span class="nombre">Encuentro sobre IA</span><span class="detalle">Wise People Sant Cugat · Introducción a la IA y «¿Nos va a sustituir?»</span></span></li>
+<li><span class="fecha">10/06/2026</span><span><span class="nombre">Tu dIA a día — Segona Part</span><span class="detalle">Sala Neus Català, Rubí · Aplicaciones de IA para el día a día</span></span></li>
+<li><span class="fecha">19/05/2026</span><span><span class="nombre">Tu dIA a día — Encuentro sobre IA</span><span class="detalle">Sala Neus Català, Rubí · Entender la IA sin tecnicismos</span></span></li>
+<li><span class="fecha">11/04/2026</span><span><span class="nombre">Taller Básico IA</span><span class="detalle">Rubí</span></span></li>
+</ul>
+</div>
+
+<div class="orange-line"></div>
+
+<!-- PARA ENTIDADES Y ASOCIACIONES -->
+<section id="servicios">
+<p class="section-label">Para entidades</p>
+<h2 class="section-title">Para entidades y <span>asociaciones</span></h2>
+<p class="entidades-texto">Encuentros de divulgación de 60 a 90 minutos para público abierto: charla, demostración en directo y preguntas. Si vuestra entidad pone la sala y abre la puerta a su público, el encuentro es gratuito.</p>
+<a href="#contacto" class="hero-cta" data-tema="organizar un encuentro en mi entidad">Quiero organizar un encuentro</a>
+
+<p class="section-label temas-titulo" id="que-hago">Qué hago</p>
+<h2 class="section-title">Divulgación · Formación · <span>Agentes IA</span></h2>
+<div class="temas-grid">
+<div class="servicio-card">
+<div class="servicio-title">Divulgación</div>
+<div class="servicio-desc">Encuentros abiertos para entender la IA sin tecnicismos.</div>
+<ul class="servicio-list">
+<li>Encuentros gratuitos para entidades y asociaciones</li>
+<li>Charla, demostración en directo y preguntas</li>
+</ul>
+<a href="#contacto" class="servicio-cta" data-tema="Divulgación (encuentros para entidades)">Si quieres información, rellena el formulario →</a>
+</div>
+<div class="servicio-card">
+<div class="servicio-title">Formación</div>
+<div class="servicio-desc">Talleres prácticos para aprender a usar la IA. Ahora mismo no hay fechas abiertas.</div>
+<ul class="servicio-list">
+<li>IA para el día a día, con el móvil (en pausa)</li>
+<li>Imágenes, voz y vídeo con IA (en pausa)</li>
+<li>Talleres para equipos de trabajo</li>
+<li>Sesiones individuales</li>
+</ul>
+<a href="#contacto" class="servicio-cta" data-tema="Formación (talleres y sesiones)">Si quieres información, rellena el formulario →</a>
+</div>
+<div class="servicio-card">
+<div class="servicio-title">Agentes IA</div>
+<div class="servicio-desc">Asistentes de IA sencillos para tareas concretas de tu día a día o de tu trabajo.</div>
+<ul class="servicio-list">
+<li>Cuéntame qué tarea te quita tiempo</li>
+<li>Te explico qué opciones hay</li>
+</ul>
+<a href="#contacto" class="servicio-cta" data-tema="Agentes IA">Si quieres información, rellena el formulario →</a>
 </div>
 </div>
 </section>
 
 <div class="orange-line"></div>
 
-<!-- SERVICIOS -->
-<section id="servicios">
-<div>
-<p class="section-label">Servicios</p>
-<h2 class="section-title">¿En qué puedo <span>ayudarte</span>?</h2>
-<p style="color:var(--text-muted);font-size:0.95rem;margin-top:-0.5rem;">Precios adaptados a autónomos y pequeños negocios. Sin sorpresas ni letra pequeña.</p>
-</div>
-<div class="servicios-grid">
-<!-- Chatbot / Recepcionista IA -->
-<div class="servicio-card">
-<div class="servicio-icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
-</div>
-<div class="servicio-title">🤖 Chatbot / Recepcionista IA</div>
-<div class="servicio-desc">Tu negocio atendiendo consultas las 24 horas, los 7 días de la semana. Sin que tengas que estar tú.</div>
-<ul class="servicio-list">
-<li>Responde preguntas frecuentes de tus clientes automáticamente</li>
-<li>Filtra consultas y deriva las importantes a tu equipo</li>
-<li>Ideal para despachos de abogados, gestorías y clínicas</li>
-<li>Se integra en tu web o por WhatsApp</li>
-<li>Disponible en todo momento, sin coste por llamada</li>
-</ul>
-<div class="servicio-price">A consultar <small>· según proyecto</small></div>
-<a href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20me%20interesa%20el%20servicio%20de%20Chatbot%20%2F%20Recepcionista%20IA" target="_blank" rel="noopener" class="servicio-cta">Pedir información →</a>
-</div>
-<!-- Automatizaciones -->
-<div class="servicio-card">
-<div class="servicio-icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-</div>
-<div class="servicio-title">⚙️ Automatizaciones — Ahorra tiempo</div>
-<div class="servicio-desc">Automatiza las tareas repetitivas de tu negocio con IA. Tú dedícate a lo que mejor sabes hacer.</div>
-<ul class="servicio-list">
-<li>Facturación y albaranes automáticos</li>
-<li>Recordatorios de cobro a clientes</li>
-<li>Registro y organización de gastos</li>
-<li>Respuestas automáticas por email o WhatsApp</li>
-<li>Agenda y reservas online</li>
-</ul>
-<div class="servicio-price">Desde 150€ <small>· mantenimiento opcional 30–50€/mes</small></div>
-<a href="landing-automatizaciones.html" class="servicio-cta">Pedir información →</a>
-</div>
-<!-- Taller Grupal -->
-<div class="servicio-card">
-<div class="servicio-icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-</div>
-<div class="servicio-title">🎤 Taller IA Grupal — Para tu equipo</div>
-<div class="servicio-desc">Sesión práctica de mínimo 3 horas para grupos. Aprended a usar la IA en vuestro negocio, sin tecnicismos y con ejemplos reales.</div>
-<ul class="servicio-list">
-<li>Ideal para asociaciones de comerciantes y PYMES</li>
-<li>Mínimo 6–8 personas</li>
-<li>Asociaciones con sala propia: precio reducido</li>
-<li>Sin sala: Ricardo gestiona el espacio</li>
-</ul>
-<div class="servicio-price">40–60€/persona <small>· según grupo y espacio</small></div>
-<a href="landing-taller-grupal.html" class="servicio-cta">Organizar taller →</a>
-</div>
-<!-- Sesión Individual -->
-<div class="servicio-card">
-<div class="servicio-icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><path d="M17 11l2 2 4-4"/></svg>
-</div>
-<div class="servicio-title">🎯 Sesión Individual — Tu negocio, tu IA</div>
-<div class="servicio-desc">1 a 2 horas contigo para analizar tu negocio, identificar qué herramientas te ahorran más tiempo y darte una hoja de ruta concreta.</div>
-<ul class="servicio-list">
-<li>Diagnóstico de tu situación actual</li>
-<li>Herramientas recomendadas para tu caso</li>
-<li>Hoja de ruta de primeros pasos</li>
-<li>15 días de seguimiento por WhatsApp</li>
-</ul>
-<div class="servicio-price">Desde 60€ <small>· según duración y complejidad</small></div>
-<a href="landing-sesion-individual.html" class="servicio-cta">Reservar sesión →</a>
-</div>
-</div>
-
-<!-- TALLERES PÚBLICOS -->
-<div style="margin-top: 3rem;">
-<p class="section-label" style="text-align:center; margin-bottom: 0.5rem;">Talleres para el público general</p>
-<h3 style="font-family: var(--font-brand); font-size: clamp(1.3rem, 2.5vw, 1.7rem); font-weight: 700; text-align: center; margin-bottom: 0.5rem;">Para cualquier persona, <span style="color: var(--orange);">sin tecnicismos</span></h3>
-<p style="text-align:center; color: var(--text-muted); font-size: 0.92rem; margin-bottom: 2rem;">Sin relación con negocios — para reducir la brecha digital. Solo 30€. Lista de espera abierta.</p>
-<div class="servicios-grid">
-<!-- Taller IA para tu Vida -->
-<div class="servicio-card" style="border-color: rgba(240,124,30,0.2);">
-<div class="servicio-icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 8v4l3 3"/></svg>
-</div>
-<div class="servicio-title">🌱 IA para tu Vida — Taller Básico</div>
-<div class="servicio-desc">Aprende a usar ChatGPT, Claude y Gemini en el día a día. Documentos, traducciones, escritura. Solo hace falta el móvil.</div>
-<ul class="servicio-list">
-<li>Para cualquier edad y nivel</li>
-<li>Herramientas 100% gratuitas</li>
-<li>Mínimo 3 horas · Rubí</li>
-<li>Lista de espera — próxima fecha por confirmar</li>
-</ul>
-<div class="servicio-price">30€/persona <small>· espacio incluido</small></div>
-<a href="landing-taller-ia-basica.html" class="servicio-cta">Apuntarme a la lista →</a>
-</div>
-<!-- Taller Audiovisual con IA -->
-<div class="servicio-card" style="border-color: rgba(240,124,30,0.2);">
-<div class="servicio-icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><polygon points="10 9 10 13 14 11"/></svg>
-</div>
-<div class="servicio-title">🎨 Audiovisual con IA — Taller Creativo</div>
-<div class="servicio-desc">Crea imágenes, música, voces y vídeos con IA desde el móvil. Sin diseño previo, sin experiencia. Herramientas gratuitas.</div>
-<ul class="servicio-list">
-<li>Imagen · Música · Voz · Vídeo</li>
-<li>Herramientas 100% gratuitas</li>
-<li>Mínimo 3 horas · Rubí</li>
-<li>Lista de espera — próxima fecha por confirmar</li>
-</ul>
-<div class="servicio-price">30€/persona <small>· espacio incluido</small></div>
-<a href="landing-taller-audiovisual.html" class="servicio-cta">Apuntarme a la lista →</a>
-</div>
-</div>
-</div>
-</section>
-
 <!-- SECCIÓN TESTIMONIOS -->
 <section id="testimonios">
 <p class="section-label" style="text-align:center;">Testimonios</p>
 <h2 class="section-title" style="text-align:center;">Lo que dicen quienes ya han pasado por aquí</h2>
-<p class="testimonios-subtitulo">Opiniones reales de asistentes al Taller Básico IA · Rubí · Abril 2026</p>
+<p class="testimonios-subtitulo">Opiniones de asistentes al Taller Básico IA celebrado en Rubí en abril de 2026</p>
 <div class="testimonios-grid">
 <div class="testimonio">
 <p class="testimonio-texto">"Lo explicaste a un nivel que todos pudimos entender. Se nota que tienes muchas ganas de ayudar, y eso en un mundo como el de la IA no es fácil. Las 3 horas pasaron volando, de verdad."</p>
 <p class="testimonio-autor">— Toni, asistente al Taller Básico IA · Rubí</p>
-</div>
-<div class="testimonio">
-<p class="testimonio-texto">"Le doy un 10. Descubrí herramientas de IA que no conocía para nada. Volvería sin dudarlo."</p>
-<p class="testimonio-autor">— Remei, asistente al Taller Básico IA · Rubí</p>
 </div>
 <div class="testimonio">
 <p class="testimonio-texto">"Me gustó mucho. Aprendí cosas que no tenía ni idea de que existían. ¡Ole el profe!"</p>
@@ -997,91 +869,11 @@ Cuéntame cómo trabajas → te digo qué se puede automatizar
 </div>
 </section>
 
-<!-- SECCIÓN GALERÍA EVENTOS -->
-<section id="galeria">
-<p class="section-label" style="text-align:center;">Galería</p>
-<h2 class="section-title" style="text-align:center;">Así han sido los encuentros</h2>
-<p class="galeria-subtitulo">Fotos de los talleres y eventos celebrados en Rubí</p>
-
-<div class="galeria-bloque">
-<h3>Taller Básico IA · 11 de abril de 2026</h3>
-<div class="galeria-grid">
-<img src="img/galeria/taller-11-abril-01.jpg" alt="Grupo de asistentes en el Taller Básico IA, ambiente distendido, Rubí" onclick="abrirGaleriaLightbox(this)">
-<img src="img/galeria/taller-11-abril-02.jpg" alt="Asistentes al Taller Básico IA trabajando con sus dispositivos, Rubí" onclick="abrirGaleriaLightbox(this)">
-</div>
-</div>
-
-<div class="galeria-bloque">
-<h3>Tu dIA a día · 19 de mayo de 2026</h3>
-<div class="galeria-grid">
-<img src="img/galeria/evento-19-mayo-01.jpg" alt="Ricardo presentando el evento Tu dIA a día en la Sala Neus Català, Rubí" onclick="abrirGaleriaLightbox(this)">
-<img src="img/galeria/evento-19-mayo-02.jpg" alt="Collage del evento: sala llena, dinámica sobre miedos hacia la IA, Sala Neus Català" onclick="abrirGaleriaLightbox(this)">
-<img src="img/galeria/evento-19-mayo-03.jpg" alt="Vista general de la sala con asistentes durante la presentación" onclick="abrirGaleriaLightbox(this)">
-<img src="img/galeria/evento-19-mayo-04.jpg" alt="Participante interviniendo durante el debate del evento" onclick="abrirGaleriaLightbox(this)">
-<img src="img/galeria/evento-19-mayo-05.jpg" alt="Grupo de asistentes en dinámica de debate cercano" onclick="abrirGaleriaLightbox(this)">
-<img src="img/galeria/evento-19-mayo-06.jpg" alt="Ricardo mostrando una herramienta de IA en el móvil a una asistente" onclick="abrirGaleriaLightbox(this)">
-</div>
-
-<div class="galeria-video">
-<video controls preload="metadata" poster="img/galeria/evento-19-mayo-video-poster.jpg">
-<source src="video/evento-19-mayo.mp4" type="video/mp4">
-Tu navegador no soporta vídeo HTML5.
-</video>
-</div>
-</div>
-
-<div class="galeria-bloque">
-<h3>Tu dIA a día — Segona Part · 10 de junio de 2026</h3>
-<div class="galeria-grid">
-<img src="img/galeria/evento-10-junio-01.png" alt="Collage del evento Tu dIA a día Segona Part: Ricardo presentando, sala con asistentes y dinámica sobre privacidad y consentimiento de datos, Sala Neus Català, Rubí" onclick="abrirGaleriaLightbox(this)">
-</div>
-</div>
-
-</section>
-
-<!-- LIGHTBOX GALERÍA -->
-<div class="galeria-lightbox" id="galeriaLightbox" onclick="cerrarGaleriaLightbox()">
-<img id="galeriaLightboxImg" src="" alt="">
-</div>
-
-<!-- EVENTO BANNER -->
-<div id="evento" style="padding: 0 2.5rem; max-width: 1100px; margin: 0 auto 5rem;">
-
-  <!-- Evento pasado: 19 mayo 2026 -->
-  <div class="evento-banner past">
-    <div>
-      <span class="evento-badge past">✅ Celebrado — 19 mayo 2026</span>
-      <h3 class="evento-title">Tu <em>dIA</em> a día — Encuentro sobre IA</h3>
-      <div class="evento-details">
-        <span>📅 <strong>19 de mayo de 2026</strong> · 18:30h · <span style="color:#7ee88a; font-weight:600;">¡Sesión completada con éxito!</span></span>
-        <span>📍 <strong>Sala Neus Català</strong> · C/ Ulloa, 9 · Rubí</span>
-        <span>45 minutos para entender la IA sin tecnicismos · Acceso libre</span>
-      </div>
-    </div>
-    <span style="flex-shrink:0; font-size:0.82rem; color:var(--text-muted); font-weight:600; letter-spacing:0.05em; text-align:center; line-height:1.5;">SESIÓN<br>REALIZADA<br><span style="font-size:1.2rem;">✅</span></span>
-  </div>
-
-  <!-- Evento pasado: 10 de junio 2026 -->
-  <div class="evento-banner past">
-    <div>
-      <span class="evento-badge past">✅ Celebrado — 10 de junio de 2026</span>
-      <h3 class="evento-title">Tu <em>dIA</em> a día — <em>Segona Part</em></h3>
-      <div class="evento-details">
-        <span>📅 <strong>10 de junio de 2026</strong> · 19:00h · <span style="color:#7ee88a; font-weight:600;">¡Sesión completada con éxito!</span></span>
-        <span>📍 <strong>Sala Neus Català</strong> · C/ Ulloa, 9 · Rubí</span>
-        <span>Aplicaciones de IA para el día a día · Sin tecnicismos · Acceso libre</span>
-      </div>
-    </div>
-    <span style="flex-shrink:0; font-size:0.82rem; color:var(--text-muted); font-weight:600; letter-spacing:0.05em; text-align:center; line-height:1.5;">SESIÓN<br>REALIZADA<br><span style="font-size:1.2rem;">✅</span></span>
-  </div>
-
-</div>
-
 <!-- CONTACTO -->
 <section id="contacto">
 <p class="section-label">Contacto</p>
 <h2 class="section-title">¿Hablamos?</h2>
-<p class="contacto-desc">Cuéntame qué necesitas y te respondo en menos de 24h.</p>
+<p class="contacto-desc">Cuéntame qué necesitas. Te respondo en cuanto pueda, normalmente en pocos días.</p>
 <form class="contacto-form" id="contact-form">
 <div class="form-row">
 <div class="form-group">
@@ -1101,8 +893,13 @@ Tu navegador no soporta vídeo HTML5.
 <label for="mensaje">¿En qué puedo ayudarte? *</label>
 <textarea id="mensaje" name="mensaje" required placeholder="Cuéntame tu proyecto o pregunta..."></textarea>
 </div>
+<div class="form-group" style="flex-direction:row;align-items:flex-start;gap:.6rem">
+<input type="checkbox" id="avisos" name="quiere_avisos" value="si" style="width:auto;margin-top:.25rem">
+<label for="avisos" style="text-transform:none;letter-spacing:0;font-weight:400">Quiero que me avises de próximos encuentros y actividades <span class="form-optional">(opcional)</span></label>
+</div>
+<p class="form-privacy" style="font-size:.85rem;opacity:.8;margin:.2rem 0 1rem">Responsable: Ricardo Llastarry Alonso (ricardollastarry.ai@gmail.com). Uso tus datos para responderte y, solo si marcas la casilla, para avisarte de próximas actividades. No se ceden a terceros. El formulario lo gestiona Formspree, un servicio de EE. UU., así que tus datos se envían allí. Se guardan mientras no retires tu consentimiento o pidas que se borren. Puedes pedir el acceso, la rectificación, la supresión, la oposición, la limitación o la portabilidad de tus datos, y retirar tu consentimiento cuando quieras, escribiendo a ricardollastarry.ai@gmail.com. Si crees que no se respetan tus derechos, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
 <button type="submit" class="form-submit" id="form-btn">Enviar mensaje →</button>
-<div class="form-success" id="form-success">✅ ¡Mensaje recibido! Te respondo en menos de 24h.</div>
+<div class="form-success" id="form-success">✅ ¡Mensaje recibido! Te respondo en cuanto pueda, normalmente en pocos días.</div>
 <div class="form-error-msg" id="form-error">Algo fue mal al enviar. Escríbeme directamente por <a href="https://wa.me/34686712391">WhatsApp</a>.</div>
 </form>
 <p class="contacto-alt">O si prefieres contacto directo:</p>
@@ -1116,9 +913,9 @@ Tu navegador no soporta vídeo HTML5.
 <span class="contacto-link-value">ricardollastarry.ai@gmail.com</span>
 </div>
 </a>
-<a class="contacto-link" href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20servicios" target="_blank" rel="noopener">
+<a class="contacto-link" href="https://wa.me/34686712391?text=Hola%20Ricardo%2C%20te%20escribo%20desde%20tu%20web" target="_blank" rel="noopener">
 <div class="contacto-link-icon">
-<svg viewBox="0 0 24 24" fill="#f07c1e"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<svg viewBox="0 0 24 24" fill="none" stroke="#f07c1e" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
 </div>
 <div class="contacto-link-text">
 <span class="contacto-link-label">WhatsApp</span>
@@ -1128,41 +925,19 @@ Tu navegador no soporta vídeo HTML5.
 </div>
 <div class="social-row">
 <a class="social-btn" href="https://www.linkedin.com/in/ricardo-llastarry-alonso-150a32131/" target="_blank" rel="noopener">
-<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
 LinkedIn
 </a>
 <a class="social-btn" href="https://www.instagram.com/ricardollastarry.ai/" target="_blank" rel="noopener">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
 Instagram
-</a>
-<a class="social-btn" href="https://www.youtube.com/@RicardoFinanzas50" target="_blank" rel="noopener">
-<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
-YouTube
 </a>
 </div>
 </section>
 
-<!-- GALERÍA — LIGHTBOX -->
-<script>
-function abrirGaleriaLightbox(img) {
-var lb = document.getElementById('galeriaLightbox');
-var lbImg = document.getElementById('galeriaLightboxImg');
-lbImg.src = img.src;
-lbImg.alt = img.alt;
-lb.classList.add('active');
-}
-function cerrarGaleriaLightbox() {
-document.getElementById('galeriaLightbox').classList.remove('active');
-}
-document.addEventListener('keydown', function(e) {
-if (e.key === 'Escape') cerrarGaleriaLightbox();
-});
-</script>
 
 <!-- FOOTER -->
 <footer>
 <span>© 2026 R.Llastarry IA · Rubí, Barcelona</span>
-<span>Hecho con IA · <a href="mailto:ricardollastarry.ai@gmail.com">ricardollastarry.ai@gmail.com</a></span>
+<span>Web hecha con ayuda de IA · <a href="mailto:ricardollastarry.ai@gmail.com">ricardollastarry.ai@gmail.com</a></span>
 </footer>
 
 <!-- FORMULARIO CONTACTO — FORMSPREE -->
@@ -1186,7 +961,7 @@ body: new FormData(form),
 headers: { 'Accept': 'application/json' }
 });
 if (resp.ok) {
-form.querySelectorAll('input, textarea').forEach(function(el){ el.value = ''; });
+form.reset();
 btn.style.display = 'none';
 successEl.style.display = 'block';
 } else {
@@ -1199,6 +974,12 @@ btn.disabled = false;
 btn.textContent = 'Enviar mensaje →';
 errorEl.style.display = 'block';
 }
+});
+document.querySelectorAll('[data-tema]').forEach(function(a) {
+a.addEventListener('click', function() {
+var msg = document.getElementById('mensaje');
+if (msg && (!msg.value || /^Quiero información sobre: [^\n]*\. $/.test(msg.value))) msg.value = 'Quiero información sobre: ' + a.getAttribute('data-tema') + '. ';
+});
 });
 })();
 </script>
