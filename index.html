@@ -716,7 +716,14 @@ nav { padding: 1rem 1.2rem; }
 .nav-links { display: none; }
 #hero { padding: 5rem 1.2rem 3rem; min-height: auto; }
 #punto-de-dolor { padding: 40px 1.2rem; }
-#waveCanvas { width: 260px; height: 260px; right: -60px; opacity: 0.45; }
+#waveCanvas { width: 170px; height: 170px; right: -40px; top: 62px; transform: none; opacity: 0.35; }
+.hero-content { padding-top: 70px; }
+.hero-cta-ghost { margin-left: 0; margin-top: 0.8rem; }
+.hero-cta, .hero-cta-ghost { display: flex; justify-content: center; width: 100%; max-width: 320px; }
+#servicios .hero-cta { margin: 0 auto; }
+#evento, #encuentros { padding: 0 1.2rem; }
+.contacto-link { padding: 0.9rem 1rem; }
+.contacto-link-value { font-size: 0.85rem; overflow-wrap: anywhere; }
 #sobre { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.2rem; }
 section { padding: 3rem 1.2rem; }
 .servicios-grid { grid-template-columns: 1fr; }
@@ -816,7 +823,7 @@ footer { flex-direction: column; gap: 0.5rem; text-align: center; }
 <a href="#contacto" class="hero-cta" data-tema="organizar un encuentro en mi entidad">Quiero organizar un encuentro</a>
 
 <p class="section-label temas-titulo" id="que-hago">Qué hago</p>
-<h2 class="section-title">Divulgación · Formación · <span>Agentes IA</span></h2>
+<h2 class="section-title">Divulgación&nbsp;· Formación&nbsp;· <span>Agentes&nbsp;IA</span></h2>
 <div class="temas-grid">
 <div class="servicio-card">
 <div class="servicio-title">Divulgación</div>
@@ -893,9 +900,9 @@ footer { flex-direction: column; gap: 0.5rem; text-align: center; }
 <label for="mensaje">¿En qué puedo ayudarte? *</label>
 <textarea id="mensaje" name="mensaje" required placeholder="Cuéntame tu proyecto o pregunta..."></textarea>
 </div>
-<div class="form-group" style="flex-direction:row;align-items:flex-start;gap:.6rem">
-<input type="checkbox" id="avisos" name="quiere_avisos" value="si" style="width:auto;margin-top:.25rem">
-<label for="avisos" style="text-transform:none;letter-spacing:0;font-weight:400">Quiero que me avises de próximos encuentros y actividades <span class="form-optional">(opcional)</span></label>
+<div class="form-group" style="display:flex;flex-direction:row;align-items:flex-start;gap:.6rem">
+<input type="checkbox" id="avisos" name="quiere_avisos" value="si" style="width:18px;height:18px;flex:0 0 18px;margin-top:.2rem;padding:0;accent-color:#f07c1e">
+<label for="avisos" style="text-transform:none;letter-spacing:0;font-weight:400;margin-bottom:0;font-size:.9rem;line-height:1.5">Quiero que me avises de próximos encuentros y actividades <span class="form-optional">(opcional)</span></label>
 </div>
 <p class="form-privacy" style="font-size:.85rem;opacity:.8;margin:.2rem 0 1rem">Responsable: Ricardo Llastarry Alonso (ricardollastarry.ai@gmail.com). Uso tus datos para responderte y, solo si marcas la casilla, para avisarte de próximas actividades. No se ceden a terceros. El formulario lo gestiona Formspree, un servicio de EE. UU., así que tus datos se envían allí. Se guardan mientras no retires tu consentimiento o pidas que se borren. Puedes pedir el acceso, la rectificación, la supresión, la oposición, la limitación o la portabilidad de tus datos, y retirar tu consentimiento cuando quieras, escribiendo a ricardollastarry.ai@gmail.com. Si crees que no se respetan tus derechos, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
 <button type="submit" class="form-submit" id="form-btn">Enviar mensaje →</button>
